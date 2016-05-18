@@ -1,0 +1,57 @@
+/**
+ * Copyright (C) 2015 Fernando Cejas Open Source Project
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.techidea.data.cache.serializer;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+/**
+ * Class user as Serializer/Deserializer for user entities.
+ */
+@Singleton
+public class JsonSerializer<T> {
+
+    private final Gson gson = new Gson();
+    private TypeToken<T> mTypeToken;
+
+    @Inject
+    public JsonSerializer(TypeToken<T> typeToken) {
+        this.mTypeToken = typeToken;
+    }
+
+    /**
+     * Serialize an object to Json.
+     *
+     * @param  {@link } to serialize.
+     */
+    public String serialize(T entity) {
+        String jsonString = gson.toJson(entity, this.mTypeToken.getType());
+        return jsonString;
+    }
+
+    /**
+     * Deserialize a json representation of an object.
+     *
+     * @param jsonString A json string to deserialize.
+     * @return {@link }
+     */
+    public T deserialize(String jsonString) {
+        T entity = gson.fromJson(jsonString, this.mTypeToken.getType());
+        return entity;
+    }
+}

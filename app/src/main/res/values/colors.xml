@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="primary">#FF3C508D</color>
+    <color name="primary_dark">#FF0C1A4B</color>
+    <color name="primary_light">#FF8A9DDF</color>
+    <color name="primary_gray">#FF9B9B9B</color>
+    <color name="primary_text">#FF000000</color>
+
+    <color name="accent">#FFFE6A00</color>
+    <color name="accent_second">#FFFC9B3C</color>
+
+    <color name="accent_third">#FFEADC</color>
+    <color name="accent_light">#FFF58220</color>
+
+    <color name="secondary_text">#FFFFFF</color>
+    <color name="secondary_white">#FFFFFF</color>
+
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#CACACA</color>
+
+    <color name="transparent_dark">#B0000000</color>
+    <color name="transparent_grey">#33000000</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="third">#000000</color>
+    <color name="third_gray">#FF8F8F8F</color>
+    <color name="third_greyTint">#434343</color>
+    <color name="third_greyLight">#858585</color>
+    <color name="third_background">#F0F0F2</color>
+    <color name="third_text">#555555</color>
+
+    <!-- ProgressBarColor   -->
+    <color name="progressbar_endcolor">#FFDCDCDC</color>
+    <color name="progressbar_startcolor">#FFF3F3F3</color>
+    <color name="splash_progress_back">#133340</color>
+
+    <color name="button_gray">#E5E5E5</color>
+    <color name="button_back_gray_dark">#5D5D5D</color>
+    <color name="ring_gray">#DADADA</color>
+    <color name="button_gray_ligth">#CACACA</color>
+    <color name="button_gray_dark">#ADADAD</color>
+    <color name="button_login_click">#f59820</color>
+    <color name="number_pad_dark">#858585</color>
+
+    <color name="content_title_backround">#969696</color>
+    <color name="gray_background">#434343</color>
+    <color name="layout_default_backgroud_color">#EFEFEF</color>
+
+    <color name="dialog_title_blue">#53AEFF</color>
+</resources>

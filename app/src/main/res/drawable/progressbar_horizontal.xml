@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@android:id/background">
+        <shape>
+            <solid android:color="@color/splash_progress_back" />
+            <stroke
+                android:width="@dimen/splash_progress_background_strolke_width"
+                android:color="@color/secondary_text" />
+            <size
+                android:width="@dimen/splash_progress_width"
+                android:height="@dimen/splash_progress_heigth" />
+            <corners android:radius="@dimen/splash_progress_radius" />
+        </shape>
+    </item>
+
+    <item android:id="@android:id/progress">
+        <!--<item>-->
+        <clip>
+            <shape>
+                <gradient
+                    android:angle="270"
+                    android:endColor="@color/progressbar_endcolor"
+                    android:startColor="@color/progressbar_startcolor" />
+                <stroke
+                    android:width="@dimen/progress_stroke_width"
+                    android:color="@color/transparent" />
+                <size
+                    android:width="@dimen/splash_progress_width"
+                    android:height="@dimen/splash_progress_heigth" />
+                <corners android:radius="@dimen/splash_progress_radius" />
+            </shape>
+        </clip>
+    </item>
+
+</layer-list>
+
