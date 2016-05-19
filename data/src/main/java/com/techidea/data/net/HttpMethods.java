@@ -1,7 +1,9 @@
 package com.techidea.data.net;
 
 import android.text.TextUtils;
+import android.util.Log;
 
+import com.techidea.data.BuildConfig;
 import com.techidea.domain.entity.LoginUser;
 import com.techidea.domain.entity.Product;
 import com.techidea.domain.entity.ProductCategory;
@@ -11,6 +13,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -24,8 +27,8 @@ import rx.schedulers.Schedulers;
  */
 public class HttpMethods {
 
-    private static  String BASE_URL = "";
-    private static  String BASE_URL_HTTPS = "https://kyfw.12306.cn/";
+    private static String BASE_URL = "";
+    private static String BASE_URL_HTTPS = "https://kyfw.12306.cn/";
     private static final int DEFAULT_TIMEOUT = 5;
 
 
@@ -51,12 +54,9 @@ public class HttpMethods {
     }
 
     private HttpMethods() {
-        //手动创建一个OkHttpClient并设置超时时间
-        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
-        httpClientBuilder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
 
         retrofit = new Retrofit.Builder()
-                .client(CustomTrust.getInstance().getClient())
+                .client(getClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(BASE_URL)
@@ -142,5 +142,19 @@ public class HttpMethods {
             }
             return httpResult.getObject();
         }
+    }
+
+    private OkHttpClient getClient() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        if (BuildConfig.DEBUG) {
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        } else {
+            logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
+        }
+        return new OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                .build();
+
     }
 }

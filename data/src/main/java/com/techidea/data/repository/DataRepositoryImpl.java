@@ -15,6 +15,7 @@ import rx.Observable;
 
 /**
  * Created by zchao on 2016/5/19.
+ * 区分 从缓存获取 从网络获取
  */
 public class DataRepositoryImpl implements DataRepository {
 

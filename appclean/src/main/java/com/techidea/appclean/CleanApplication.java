@@ -29,7 +29,5 @@ public class CleanApplication extends Application {
         } catch (PackageManager.NameNotFoundException e) {
             HttpMethods.setBaseUrl("http://cn.bing.com");
         }
-
-
     }
 }
