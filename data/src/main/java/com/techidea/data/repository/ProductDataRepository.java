@@ -1,14 +1,11 @@
 package com.techidea.data.repository;
 
-import com.techidea.data.entity.ProductCategoryEntity;
-import com.techidea.data.entity.ProductEntity;
-import com.techidea.data.entity.mapper.ProductMapper;
+
 import com.techidea.data.net.HttpMethods;
-import com.techidea.domain.Product;
-import com.techidea.domain.ProductCategory;
+import com.techidea.domain.entity.Product;
+import com.techidea.domain.entity.ProductCategory;
 import com.techidea.domain.respository.ProductRepository;
 
-import org.w3c.dom.ProcessingInstruction;
 
 import java.util.List;
 
@@ -16,13 +13,13 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import rx.Observable;
-import rx.functions.Func1;
+
 
 /**
  * Created by zchao on 2016/5/12.
  */
 @Singleton
-public class ProductDataRepository implements ProductRepository{
+public class ProductDataRepository implements ProductRepository {
 
     private static ProductDataRepository INSTANCE = null;
 

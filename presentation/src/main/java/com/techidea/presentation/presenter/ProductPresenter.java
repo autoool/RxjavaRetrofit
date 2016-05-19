@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.techidea.corelibrary.util.CommonUtilAPP;
-import com.techidea.domain.Product;
+import com.techidea.domain.entity.Product;
 import com.techidea.domain.interactor.DefaultSubscriber;
 import com.techidea.domain.interactor.RxBaseCase;
 import com.techidea.presentation.internal.di.PerActivity;
@@ -12,7 +12,6 @@ import com.techidea.presentation.mapper.ProductModelMapper;
 import com.techidea.presentation.view.ProductView;
 
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.inject.Inject;
 import javax.inject.Named;

@@ -1,6 +1,6 @@
 package com.techidea.presentation.mapper;
 
-import com.techidea.domain.UserInfo;
+import com.techidea.domain.entity.UserInfo;
 import com.techidea.presentation.internal.di.PerActivity;
 import com.techidea.presentation.model.UserInfoModel;
 

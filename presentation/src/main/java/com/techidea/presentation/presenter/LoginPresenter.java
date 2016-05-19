@@ -3,7 +3,7 @@ package com.techidea.presentation.presenter;
 import android.content.Context;
 import android.util.Log;
 
-import com.techidea.domain.LoginUser;
+import com.techidea.domain.entity.LoginUser;
 import com.techidea.domain.interactor.DefaultSubscriber;
 import com.techidea.domain.interactor.RxBaseCase;
 import com.techidea.presentation.internal.di.PerActivity;

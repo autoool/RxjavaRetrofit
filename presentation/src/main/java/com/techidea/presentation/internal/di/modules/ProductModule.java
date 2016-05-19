@@ -38,7 +38,8 @@ public class ProductModule {
             ThreadExecutor threadExecutor,
             PostExecutionThread postExecutionThread
     ) {
-        return new InitProductCategory( productRepository);
+//        return new InitProductCategory(productRepository);
+        return null;
     }
 
     @Provides
@@ -47,6 +48,7 @@ public class ProductModule {
     RxBaseCase provideInitProduct(ProductRepository productRepository,
                                   ThreadExecutor threadExecutor,
                                   PostExecutionThread postExecutionThread) {
-        return new InitProduct(productRepository);
+//        return new InitProduct(productRepository);
+        return null;
     }
 }

@@ -3,9 +3,9 @@ package com.techidea.appclean.splash;
 import android.util.Log;
 
 import com.techidea.corelibrary.util.CommonUtilAPP;
-import com.techidea.domain.Product;
-import com.techidea.domain.ProductCategory;
-import com.techidea.domain.UserInfo;
+import com.techidea.domain.entity.Product;
+import com.techidea.domain.entity.ProductCategory;
+import com.techidea.domain.entity.UserInfo;
 import com.techidea.domain.interactor.DefaultSubscriber;
 import com.techidea.domain.interactor.InitLoginUser;
 import com.techidea.domain.interactor.InitProduct;

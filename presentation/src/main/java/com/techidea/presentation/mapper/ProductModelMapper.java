@@ -1,19 +1,16 @@
 package com.techidea.presentation.mapper;
 
-import com.techidea.domain.Product;
-import com.techidea.domain.ProductCategory;
+import com.techidea.domain.entity.Product;
+import com.techidea.domain.entity.ProductCategory;
 import com.techidea.presentation.internal.di.PerActivity;
 import com.techidea.presentation.model.ProductCategoryModel;
 import com.techidea.presentation.model.ProductModel;
 
-import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
 import javax.inject.Inject;
-
-import dagger.Provides;
 
 /**
  * Created by zchao on 2016/5/12.

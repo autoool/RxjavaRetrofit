@@ -1,9 +1,10 @@
-package com.techidea.data.entity;
+package com.techidea.domain.entity;
 
 /**
  * Created by zchao on 2016/5/12.
  */
-public class ProductEntity {
+public class Product {
+
     private String id;
     private String description;
     private String spellCode;
@@ -49,5 +50,4 @@ public class ProductEntity {
     public void setType(String type) {
         this.type = type;
     }
-
 }

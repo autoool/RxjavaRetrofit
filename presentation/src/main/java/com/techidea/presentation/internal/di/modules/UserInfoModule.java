@@ -45,7 +45,8 @@ public class UserInfoModule {
     @Named("userInfoList")
     RxBaseCase provideGetUserInfoListCase(UserInfoRepository userInfoRepository,
                                           ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
-        return new InitLoginUser(userInfoRepository);
+//        return new InitLoginUser(userInfoRepository);
+        return null;
     }
 
     @Provides
@@ -53,7 +54,8 @@ public class UserInfoModule {
     @Named("login")
     RxBaseCase provideLoginCase(UserInfoRepository userInfoRepository,
                                 ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
-        return new Login(userInfoRepository);
+//        return new Login(userInfoRepository);
+        return null;
     }
 
 

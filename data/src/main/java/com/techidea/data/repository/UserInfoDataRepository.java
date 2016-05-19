@@ -1,11 +1,9 @@
 package com.techidea.data.repository;
 
-import com.techidea.data.entity.UserInfoEntity;
-import com.techidea.data.entity.mapper.UserInfoEntityMapper;
 import com.techidea.data.net.HttpMethods;
-import com.techidea.data.net.HttpResult;
-import com.techidea.domain.LoginUser;
-import com.techidea.domain.UserInfo;
+
+import com.techidea.domain.entity.LoginUser;
+import com.techidea.domain.entity.UserInfo;
 import com.techidea.domain.respository.UserInfoRepository;
 
 import java.util.List;
@@ -14,7 +12,6 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import rx.Observable;
-import rx.functions.Func1;
 
 /**
  * Created by zchao on 2016/5/5.

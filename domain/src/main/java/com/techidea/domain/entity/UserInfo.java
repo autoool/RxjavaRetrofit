@@ -1,4 +1,4 @@
-package com.techidea.domain;
+package com.techidea.domain.entity;
 
 public class UserInfo {
 

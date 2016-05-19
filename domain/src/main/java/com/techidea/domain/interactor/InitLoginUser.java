@@ -1,10 +1,6 @@
 package com.techidea.domain.interactor;
 
-import com.techidea.domain.executor.PostExecutionThread;
-import com.techidea.domain.executor.ThreadExecutor;
-import com.techidea.domain.respository.UserInfoRepository;
-
-import javax.inject.Inject;
+import com.techidea.domain.respository.DataRepository;
 
 import rx.Observable;
 
@@ -15,11 +11,10 @@ public class InitLoginUser extends RxBaseCase {
 
     private String deviceId;
     private String deviceType;
-    private final UserInfoRepository mUserInfoRepository;
+    private final DataRepository mDataRepository;
 
-    @Inject
-    public InitLoginUser(UserInfoRepository userInfoRepository) {
-        this.mUserInfoRepository = userInfoRepository;
+    public InitLoginUser(DataRepository dataRepository) {
+        this.mDataRepository = dataRepository;
     }
 
     @Override
@@ -31,6 +26,6 @@ public class InitLoginUser extends RxBaseCase {
 
     @Override
     protected Observable buildCaseObservable() {
-        return this.mUserInfoRepository.initUserInfo(deviceId, deviceType);
+        return this.mDataRepository.initUserInfo(deviceId, deviceType);
     }
 }

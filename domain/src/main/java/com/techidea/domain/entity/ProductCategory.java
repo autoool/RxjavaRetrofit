@@ -1,4 +1,4 @@
-package com.techidea.domain;
+package com.techidea.domain.entity;
 
 /**
  * Created by zchao on 2016/5/12.

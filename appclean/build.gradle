@@ -17,6 +17,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        alpha_canyin {
+            applicationId = "com.techidea.appclean"
+            manifestPlaceholders = [API_HOST_VALUE: "",
+            ]
+        }
+    }
 }
 
 dependencies {

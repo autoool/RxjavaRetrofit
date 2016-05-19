@@ -2,13 +2,10 @@ package com.techidea.data.net;
 
 import android.text.TextUtils;
 
-import com.techidea.data.entity.ProductCategoryEntity;
-import com.techidea.data.entity.ProductEntity;
-import com.techidea.data.entity.UserInfoEntity;
-import com.techidea.domain.LoginUser;
-import com.techidea.domain.Product;
-import com.techidea.domain.ProductCategory;
-import com.techidea.domain.UserInfo;
+import com.techidea.domain.entity.LoginUser;
+import com.techidea.domain.entity.Product;
+import com.techidea.domain.entity.ProductCategory;
+import com.techidea.domain.entity.UserInfo;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -20,7 +17,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
-import rx.observers.Subscribers;
 import rx.schedulers.Schedulers;
 
 /**
@@ -28,8 +24,8 @@ import rx.schedulers.Schedulers;
  */
 public class HttpMethods {
 
-    private static final String BASE_URL = "";
-    private static final String BASE_URL_HTTPS = "https://kyfw.12306.cn/";
+    private static  String BASE_URL = "";
+    private static  String BASE_URL_HTTPS = "https://kyfw.12306.cn/";
     private static final int DEFAULT_TIMEOUT = 5;
 
 
@@ -44,6 +40,14 @@ public class HttpMethods {
 
     public static HttpMethods getInstance() {
         return SingletonHolder.INSTANCE;
+    }
+
+    public static void setBaseUrl(String baseUrl) {
+        BASE_URL = baseUrl;
+    }
+
+    public static void setBaseUrlHttps(String baseUrlHttps) {
+        BASE_URL_HTTPS = baseUrlHttps;
     }
 
     private HttpMethods() {

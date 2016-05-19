@@ -1,8 +1,6 @@
 package com.techidea.domain.interactor;
 
-import com.techidea.domain.executor.PostExecutionThread;
-import com.techidea.domain.executor.ThreadExecutor;
-import com.techidea.domain.respository.ProductRepository;
+import com.techidea.domain.respository.DataRepository;
 
 import javax.inject.Inject;
 
@@ -15,11 +13,11 @@ public class InitProduct extends RxBaseCase {
 
     private String deviceId;
     private String deviceType;
-    private final ProductRepository mProductRepository;
+    private DataRepository mDataRepository;
 
     @Inject
-    public InitProduct(ProductRepository productRepository) {
-        this.mProductRepository = productRepository;
+    public InitProduct(DataRepository dataRepository) {
+        this.mDataRepository = dataRepository;
     }
 
     @Override
@@ -31,6 +29,6 @@ public class InitProduct extends RxBaseCase {
 
     @Override
     protected Observable buildCaseObservable() {
-        return this.mProductRepository.initProduct(deviceId, deviceType);
+        return this.mDataRepository.initProduct(deviceId, deviceType);
     }
 }

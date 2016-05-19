@@ -1,13 +1,9 @@
 package com.techidea.data.net;
 
-import com.techidea.data.entity.ProductCategoryEntity;
-import com.techidea.data.entity.ProductEntity;
-import com.techidea.data.entity.UserInfoEntity;
-import com.techidea.domain.LoginUser;
-import com.techidea.domain.Product;
-import com.techidea.domain.ProductCategory;
-import com.techidea.domain.UserInfo;
-import com.techidea.domain.interactor.Login;
+import com.techidea.domain.entity.LoginUser;
+import com.techidea.domain.entity.Product;
+import com.techidea.domain.entity.ProductCategory;
+import com.techidea.domain.entity.UserInfo;
 
 import java.util.List;
 

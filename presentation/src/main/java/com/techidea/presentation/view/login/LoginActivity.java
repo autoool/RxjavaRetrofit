@@ -11,8 +11,6 @@ import com.techidea.corelibrary.util.CommonUtilAPP;
 import com.techidea.presentation.R;
 import com.techidea.presentation.base.BaseActivity;
 import com.techidea.presentation.internal.di.HasComponent;
-import com.techidea.presentation.internal.di.components.DaggerActivityComponent;
-import com.techidea.presentation.internal.di.components.DaggerFragmentComponent;
 import com.techidea.presentation.internal.di.components.FragmentComponent;
 import com.techidea.presentation.internal.di.modules.UserInfoModule;
 
@@ -40,11 +38,6 @@ public class LoginActivity extends BaseActivity
     }
 
     private void initializeInjector() {
-        this.mFragmentComponent = DaggerFragmentComponent.builder()
-                .applicationComponent(getApplicationComponent())
-                .activityModule(getActivityModule())
-                .userInfoModule(new UserInfoModule())
-                .build();
     }
 
     @Override

@@ -3,23 +3,18 @@ package com.techidea.presentation.view.login;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.techidea.corelibrary.util.CommonUtilAPP;
-import com.techidea.data.repository.UserInfoDataRepository;
 import com.techidea.presentation.R;
 import com.techidea.presentation.base.BaseFragment;
 import com.techidea.presentation.internal.di.components.FragmentComponent;
-import com.techidea.presentation.internal.di.modules.UserInfoModule;
 import com.techidea.presentation.presenter.LoginPresenter;
-import com.techidea.presentation.presenter.UserInfoPresenter;
 import com.techidea.presentation.view.LoginView;
 
 import javax.inject.Inject;

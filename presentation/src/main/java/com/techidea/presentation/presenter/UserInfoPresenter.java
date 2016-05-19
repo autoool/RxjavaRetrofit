@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.techidea.corelibrary.util.CommonUtilAPP;
-import com.techidea.domain.UserInfo;
+import com.techidea.domain.entity.UserInfo;
 import com.techidea.domain.interactor.DefaultSubscriber;
 import com.techidea.domain.interactor.RxBaseCase;
 import com.techidea.presentation.internal.di.PerActivity;
