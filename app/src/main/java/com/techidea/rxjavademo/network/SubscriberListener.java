@@ -6,8 +6,8 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.techidea.rxjavademo.RxjavaApplication;
-import com.techidea.rxjavademo.interf.SubscriberOnCompletedListener;
-import com.techidea.rxjavademo.interf.SubscriberOnNextListener;
+import com.techidea.rxjavademo.httpinterf.SubscriberOnCompletedListener;
+import com.techidea.rxjavademo.httpinterf.SubscriberOnNextListener;
 
 import java.net.UnknownHostException;
 

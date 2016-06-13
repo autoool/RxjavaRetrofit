@@ -1,6 +1,5 @@
 package com.techidea.domain.entity;
 
-import java.util.List;
 
 /**
  * Created by zchao on 2016/5/13.

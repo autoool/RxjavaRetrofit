@@ -36,15 +36,6 @@ public class SplashPresenter implements SplashContract.Presenter {
         mView.setPresenter(this);
     }
 
-    @Override
-    public void updateProgress(int progress) {
-
-    }
-
-    @Override
-    public void loadDataSuccess() {
-
-    }
 
     @Override
     public void start() {
@@ -62,7 +53,8 @@ public class SplashPresenter implements SplashContract.Presenter {
             DefaultSubscriber<List<Product>> {
         @Override
         public void onCompleted() {
-
+            mView.refreshProgress(100);
+            mView.goLogin();
         }
 
         @Override
@@ -82,6 +74,7 @@ public class SplashPresenter implements SplashContract.Presenter {
 
         @Override
         public void onCompleted() {
+            mView.refreshProgress(10);
             mInitProductCategory
                     .initParams(CommonUtilAPP.getMacAddress(mView.getApplicationContext()),
                             CommonUtilAPP.getDeviceName())
@@ -101,9 +94,11 @@ public class SplashPresenter implements SplashContract.Presenter {
         }
     }
 
+
     private final class ProductCategorySubscriber extends DefaultSubscriber<List<ProductCategory>> {
         @Override
         public void onCompleted() {
+            mView.refreshProgress(50);
             mInitProduct
                     .initParams(CommonUtilAPP.getMacAddress(mView.getApplicationContext()),
                             CommonUtilAPP.getDeviceName())

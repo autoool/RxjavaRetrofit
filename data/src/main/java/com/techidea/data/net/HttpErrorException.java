@@ -5,7 +5,21 @@ package com.techidea.data.net;
  */
 public class HttpErrorException extends RuntimeException{
 
-    public HttpErrorException(String detailMessage) {
+    private int code;
+    private String message;
+
+    public HttpErrorException(int code,String detailMessage) {
         super(detailMessage);
+        this.code = code;
+        this.message = detailMessage;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
     }
 }

@@ -10,6 +10,6 @@ public abstract class BaseFragment extends Fragment {
 
     protected void showToastMessage(String message) {
         Toast.makeText(getActivity().getApplicationContext(),
-                message, Toast.LENGTH_SHORT);
+                message, Toast.LENGTH_SHORT).show();
     }
 }

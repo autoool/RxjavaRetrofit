@@ -1,6 +1,6 @@
 package com.techidea.appclean.base;
 
-import com.techidea.data.repository.DataRepositoryImpl;
+import com.techidea.data.repository.DataRepository;
 import com.techidea.domain.interactor.InitLoginUser;
 import com.techidea.domain.interactor.InitProduct;
 import com.techidea.domain.interactor.InitProductCategory;
@@ -11,8 +11,8 @@ import com.techidea.domain.interactor.Login;
  */
 public class Injection {
 
-    public static DataRepositoryImpl provideDataRepository() {
-        return DataRepositoryImpl.getInstance();
+    public static DataRepository provideDataRepository() {
+        return DataRepository.getInstance();
     }
 
     public static InitLoginUser provideInitLoginUser() {

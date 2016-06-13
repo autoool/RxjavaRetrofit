@@ -13,7 +13,7 @@ import org.mockito.MockitoAnnotations;
  */
 public class DataRepositoryTest extends ApplicationTestCase {
 
-    private DataRepositoryImpl mDataRepository;
+    private DataRepository mDataRepository;
 
     @Rule
     public ExpectedException mExpectedException = ExpectedException.none();
@@ -21,7 +21,7 @@ public class DataRepositoryTest extends ApplicationTestCase {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        mDataRepository = new DataRepositoryImpl();
+        mDataRepository = new DataRepository();
     }
 
     @Test

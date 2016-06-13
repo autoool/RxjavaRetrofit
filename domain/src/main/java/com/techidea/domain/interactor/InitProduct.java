@@ -1,6 +1,6 @@
 package com.techidea.domain.interactor;
 
-import com.techidea.domain.respository.DataRepository;
+import com.techidea.domain.respository.DataRepositoryDomain;
 
 import javax.inject.Inject;
 
@@ -13,10 +13,10 @@ public class InitProduct extends RxBaseCase {
 
     private String deviceId;
     private String deviceType;
-    private DataRepository mDataRepository;
+    private DataRepositoryDomain mDataRepository;
 
     @Inject
-    public InitProduct(DataRepository dataRepository) {
+    public InitProduct(DataRepositoryDomain dataRepository) {
         this.mDataRepository = dataRepository;
     }
 

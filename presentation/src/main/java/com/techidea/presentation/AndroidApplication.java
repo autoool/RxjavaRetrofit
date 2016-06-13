@@ -2,7 +2,7 @@ package com.techidea.presentation;
 
 import android.app.Application;
 
-import com.techidea.data.net.CustomTrust;
+import com.techidea.data.net.SslSocketFactory;
 import com.techidea.presentation.internal.di.components.ApplicationComponent;
 
 /**
@@ -16,7 +16,7 @@ public class AndroidApplication extends Application {
     public void onCreate() {
         super.onCreate();
         initializeInjector();
-        CustomTrust.getInstance().init(getApplicationContext());
+//        SslSocketFactory.getInstance().init(getApplicationContext());
     }
 
     private void initializeInjector() {

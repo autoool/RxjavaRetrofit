@@ -23,70 +23,43 @@ import javax.net.ssl.TrustManagerFactory;
 import okhttp3.CertificatePinner;
 import okhttp3.OkHttpClient;
 
-public final class CustomTrust {
+public final class SslSocketFactory {
 
-    private OkHttpClient client;
-    private OkHttpClient clientHttps;
     private Context context;
 
-    private static CustomTrust instance;
+    private static SslSocketFactory instance;
+    private SSLSocketFactory mSSLSocketFactory;
 
-    public synchronized static CustomTrust getInstance() {
+    public synchronized static SslSocketFactory getInstance() {
         if (instance == null)
-            instance = new CustomTrust();
+            instance = new SslSocketFactory();
         return instance;
     }
 
     public void init(Context context) {
-     /*   this.context = context;
-        SSLSocketFactory sslSocketFactory;
-        try {
-            SSLContext sslContext = SSLContext.getInstance("TLS");
-            //init()第一个参数为null 如果需要双向认证，这里需要设置
-            sslContext.init(keyManagerForCertificates(keyCertificatesInputStream()),
-                    trustManagerForCertificates(trustedCertificatesInputStream())
-                    , null);
-
-            sslSocketFactory = sslContext.getSocketFactory();
-        } catch (GeneralSecurityException e) {
-            throw new RuntimeException(e);
+        if (context != null) {
+//            this.context = context;
+//            try {
+//                SSLContext sslContext = SSLContext.getInstance("TLS");
+//                //init()第一个参数为null 如果需要双向认证，这里需要设置
+//                sslContext.init(keyManagerForCertificates(keyCertificatesInputStream()),
+//                        trustManagerForCertificates(trustedCertificatesInputStream())
+//                        , null);
+//
+//                mSSLSocketFactory = sslContext.getSocketFactory();
+//            } catch (GeneralSecurityException e) {
+//                throw new RuntimeException(e);
+//            }
         }
-
-        //https
-        clientHttps = new OkHttpClient.Builder()
-                .sslSocketFactory(sslSocketFactory)
-                .build();*/
-        //http
-        client = new OkHttpClient.Builder().build();
     }
 
-    public CustomTrust() {
+    private SslSocketFactory() {
 
     }
 
-    public OkHttpClient getClientHttps() {
-        return clientHttps;
+    public SSLSocketFactory getSSLSocketFactory() {
+        return mSSLSocketFactory;
     }
-
-    public OkHttpClient getClient() {
-        return client;
-    }
-
-    //    public void run() throws Exception {
-//        Request request = new Request.Builder()
-//                .url("https://publicobject.com/helloworld.txt")
-//                .build();
-//
-//        Response response = client.newCall(request).execute();
-//        if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
-//
-//        Headers responseHeaders = response.headers();
-//        for (int i = 0; i < responseHeaders.size(); i++) {
-//            System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
-//        }
-//
-//        System.out.println(response.body().string());
-//    }
 
     /**
      * Returns an input stream containing one or more certificate PEM files. This implementation just

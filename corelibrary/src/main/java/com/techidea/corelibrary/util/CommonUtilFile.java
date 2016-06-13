@@ -7,10 +7,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
-/**
- * 通用文件工具类
- * Created by YY on 2015/12/23.
- */
 public class CommonUtilFile {
 
     public static String loadFileAsString(String filePath) throws java.io.IOException {

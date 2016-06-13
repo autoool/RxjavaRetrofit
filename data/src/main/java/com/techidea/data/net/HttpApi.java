@@ -1,6 +1,7 @@
 package com.techidea.data.net;
 
 import com.techidea.domain.entity.LoginUser;
+import com.techidea.domain.entity.MemberInfoItem;
 import com.techidea.domain.entity.Product;
 import com.techidea.domain.entity.ProductCategory;
 import com.techidea.domain.entity.UserInfo;
@@ -41,6 +42,19 @@ public interface HttpApi {
         @Field("deviceId") String deviceId,
         @Field("username") String username,
         @Field("password") String password
+    );
+
+/*    postParam.put(CommonConstant.POST_PARAM_QRCODE, code);
+    postParam.put(CommonConstant.POST_PARAM_TYPE, CommonConstant.MEMBER_TYPE_STANDARD);
+
+    PostRequest<MemberPointsItem> request = new PostRequest<>(
+            "getMemberPoints.do",*/
+
+    @FormUrlEncoded
+    @POST("getMemberPoints.do")
+    Observable<HttpResult<MemberInfoItem>> getMemberInfo(
+            @Field("qrcode") String qrcode,
+            @Field("type") String type
     );
 
 }

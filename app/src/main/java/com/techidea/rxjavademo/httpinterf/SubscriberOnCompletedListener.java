@@ -1,4 +1,4 @@
-package com.techidea.rxjavademo.interf;
+package com.techidea.rxjavademo.httpinterf;
 
 /**
  * Created by zchao on 2016/3/25.

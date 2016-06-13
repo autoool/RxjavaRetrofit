@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 
-import com.techidea.data.net.CustomTrust;
+import com.techidea.data.net.SslSocketFactory;
 import com.techidea.data.net.HttpMethods;
 
 /**
@@ -15,7 +15,7 @@ public class CleanApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        CustomTrust.getInstance().init(getApplicationContext());
+//        SslSocketFactory.getInstance().init(getApplicationContext());
         getApiHost();
     }
 

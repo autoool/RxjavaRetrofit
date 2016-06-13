@@ -1,11 +1,8 @@
 package com.techidea.rxjavademo.network;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.text.TextUtils;
 
-import com.techidea.rxjavademo.interf.HttpRequestInterface;
+import com.techidea.rxjavademo.httpinterf.HttpRequestInterface;
 import com.techidea.rxjavademo.itemadapter.Product;
 import com.techidea.rxjavademo.itemadapter.ProductCategory;
 import com.techidea.rxjavademo.model.HttpResult;
@@ -13,19 +10,10 @@ import com.techidea.rxjavademo.model.LoginUserInfo;
 import com.techidea.rxjavademo.model.Repo;
 import com.techidea.rxjavademo.model.UserInfo;
 
-import java.io.InputStream;
-import java.io.PushbackInputStream;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import javax.net.ssl.SSLContext;
-
-import okhttp3.CipherSuite;
-import okhttp3.ConnectionSpec;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.TlsVersion;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -97,59 +85,45 @@ public class HttpMethods {
 
     public Observable<Response<String>> testHttps() {
         return service.testHttps()
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .compose(RxUtils.<Response<String>>rxSchedulerHelper());
 
     }
 
     //RxJava还为我们提供了subscribeOn()和observeOn()两个方法来指定Observable和Observer运行的线程。
     public void listRepos(Subscriber<List<Repo>> subscriber, String account) {
         service.listRepos(account)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(RxUtils.<List<Repo>>rxSchedulerHelper())
                 .subscribe(subscriber);
     }
 
 
     public Observable<HttpResult<List<UserInfo>>> initLoginUsers(String deviceId, String deviceType) {
         return service.initLoginUsers(deviceId, deviceType)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .compose(RxUtils.<HttpResult<List<UserInfo>>>rxSchedulerHelper());
 
     }
 
 
     public Observable<HttpResult<List<ProductCategory>>> initProductCategories(String deviceId, String deviceType) {
         return service.initProductCategories(deviceId, deviceType)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .compose(RxUtils.<HttpResult<List<ProductCategory>>>rxSchedulerHelper());
 
     }
 
     public Observable<HttpResult<List<Product>>> initProducts(String deviceId) {
         return service.initProducts(deviceId)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .compose(RxUtils.<HttpResult<List<Product>>>rxSchedulerHelper());
     }
 
     public Observable<Response<HttpResult<LoginUserInfo>>> doLogin(String deviceId, String username, String password) {
         return service.doLogin(deviceId, username, password)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .compose(RxUtils.<Response<HttpResult<LoginUserInfo>>>rxSchedulerHelper());
     }
 
     public void initProducts(Subscriber<List<Product>> subscriber, String deviceId) {
         service.initProducts(deviceId)
                 .map(new HttpResultFuncList<List<Product>>())
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+
                 .subscribe(subscriber);
     }
 

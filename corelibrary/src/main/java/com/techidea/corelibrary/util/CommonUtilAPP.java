@@ -14,11 +14,6 @@ import android.util.DisplayMetrics;
 import java.io.IOException;
 import java.util.Locale;
 
-/**
- * 应用工具类
- * <p/>
- * Created by YY on 2015/12/23.
- */
 public class CommonUtilAPP {
 
     public static String getAppPackageName(Context context) {
@@ -80,7 +75,7 @@ public class CommonUtilAPP {
 
         // TODO: 2016/1/19 模拟器运行使用 ,正式运行需要删除
         if (Build.MANUFACTURER.equals("Genymotion")) {
-            return "0C:1D:AF:03:70:DF";
+            return "CH:AO:FF:FF:FF:01";
         }
 
         String macAddress;

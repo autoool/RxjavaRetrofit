@@ -1,6 +1,6 @@
 package com.techidea.domain.interactor;
 
-import com.techidea.domain.respository.DataRepository;
+import com.techidea.domain.respository.DataRepositoryDomain;
 
 import rx.Observable;
 
@@ -11,9 +11,9 @@ public class InitLoginUser extends RxBaseCase {
 
     private String deviceId;
     private String deviceType;
-    private final DataRepository mDataRepository;
+    private final DataRepositoryDomain mDataRepository;
 
-    public InitLoginUser(DataRepository dataRepository) {
+    public InitLoginUser(DataRepositoryDomain dataRepository) {
         this.mDataRepository = dataRepository;
     }
 

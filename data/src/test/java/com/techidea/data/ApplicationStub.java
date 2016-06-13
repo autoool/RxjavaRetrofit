@@ -2,7 +2,7 @@ package com.techidea.data;
 
 import android.app.Application;
 
-import com.techidea.data.net.CustomTrust;
+import com.techidea.data.net.SslSocketFactory;
 import com.techidea.data.net.HttpMethods;
 
 /**
@@ -11,7 +11,6 @@ import com.techidea.data.net.HttpMethods;
 public class ApplicationStub extends Application {
 
     public ApplicationStub() {
-        CustomTrust.getInstance().init(null);
-        HttpMethods.setBaseUrl("");
+
     }
 }

@@ -8,15 +8,14 @@ import com.techidea.appclean.base.BaseView;
 /**
  * Created by zchao on 2016/5/18.
  */
-public interface SplashContract {
+public class SplashContract {
 
     interface Presenter extends BasePresenter {
-        void updateProgress(int progress);
-        void loadDataSuccess();
     }
 
     interface View extends BaseView<Presenter> {
         void refreshProgress(int progress);
+        void goLogin();
         Context getApplicationContext();
     }
 }

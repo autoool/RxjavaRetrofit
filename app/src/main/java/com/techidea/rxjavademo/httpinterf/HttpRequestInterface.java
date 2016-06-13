@@ -1,4 +1,4 @@
-package com.techidea.rxjavademo.interf;
+package com.techidea.rxjavademo.httpinterf;
 
 import com.techidea.rxjavademo.itemadapter.Product;
 import com.techidea.rxjavademo.itemadapter.ProductCategory;

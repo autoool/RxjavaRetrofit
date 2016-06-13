@@ -1,6 +1,6 @@
 package com.techidea.domain.interactor;
 
-import com.techidea.domain.respository.DataRepository;
+import com.techidea.domain.respository.DataRepositoryDomain;
 
 import javax.inject.Inject;
 
@@ -15,10 +15,10 @@ public class Login extends RxBaseCase {
     private String username;
     private String password;
 
-    private final DataRepository mDataRepository;
+    private final DataRepositoryDomain mDataRepository;
 
     @Inject
-    public Login(DataRepository dataRepository) {
+    public Login(DataRepositoryDomain dataRepository) {
         this.mDataRepository = dataRepository;
     }
 
