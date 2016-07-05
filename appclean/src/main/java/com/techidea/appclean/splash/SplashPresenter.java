@@ -13,6 +13,9 @@ import com.techidea.domain.interactor.InitProductCategory;
 
 import java.util.List;
 
+import rx.Subscriber;
+import rx.Subscription;
+
 /**
  * Created by zchao on 2016/5/18.
  */
@@ -22,6 +25,7 @@ public class SplashPresenter implements SplashContract.Presenter {
     private final InitProduct mInitProduct;
     private final InitProductCategory mInitProductCategory;
     private final InitLoginUser mInitLoginUser;
+
 
     public SplashPresenter(SplashContract.View view,
                            InitProduct initProduct,
@@ -40,6 +44,16 @@ public class SplashPresenter implements SplashContract.Presenter {
     @Override
     public void start() {
         initData();
+    }
+
+    @Override
+    public void destory() {
+        if (mInitLoginUser != null)
+            mInitLoginUser.unsubscribe();
+        if (mInitProduct != null)
+            mInitProduct.unsubscribe();
+        if (mInitProductCategory != null)
+            mInitProductCategory.unsubscribe();
     }
 
     private void initData() {

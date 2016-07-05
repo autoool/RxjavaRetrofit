@@ -5,4 +5,5 @@ package com.techidea.appclean.base;
  */
 public interface BasePresenter {
     void start();
+    void destory();
 }

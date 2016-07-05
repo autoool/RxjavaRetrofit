@@ -23,6 +23,34 @@ public class RxUtils {
         };
     }
 
+    public static <T> Observable.Transformer<HttpResult<T>, T> handleResult() {
+        return new Observable.Transformer<HttpResult<T>, T>() {
+            @Override
+            public Observable<T> call(Observable<HttpResult<T>> httpResultObservable) {
+                return httpResultObservable.flatMap(
+                        new Func1<HttpResult<T>, Observable<T>>() {
+                            @Override
+                            public Observable<T> call(HttpResult<T> tHttpResult) {
+                                if (tHttpResult.getCode() == 1) {
+//                                    返回真正需要的数据
+                                    return null;
+                                } else if (tHttpResult.getCode() == 900) {
+                                    // TODO: 2016/7/5 token失效
+                                } else {
+                                    //处理错误
+                                }
+                                return Observable.empty();
+                            }
+                        }
+                );
+            }
+        };
+    }
+
+    private static <T> Observable<T> getData(T t){
+        return
+    }
+
    /* public static <T> Observable.Transformer<HttpResult<T>, T> handleResult() {
         return new Observable.Transformer<HttpResult<T>, T>() {
             @Override

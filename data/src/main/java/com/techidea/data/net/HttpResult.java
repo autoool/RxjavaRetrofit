@@ -11,7 +11,7 @@ public class HttpResult<T> {
     private String time;
     private T list;
     private T object;
-
+//list 和 object 能不能合并成一个data 服务端返回呢？
 
     public int getCode() {
         return code;

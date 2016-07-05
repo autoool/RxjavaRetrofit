@@ -1,7 +1,6 @@
 package com.techidea.data.net;
 
 import android.app.VoiceInteractor;
-import android.support.v4.BuildConfig;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -15,21 +14,17 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Authenticator;
 import okhttp3.FormBody;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.Route;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by zchao on 2016/5/5.
@@ -63,8 +58,6 @@ public class HttpMethods {
     }
 
     private HttpMethods() {
-
-//        SslSocketFactory.getInstance().init(null);
 
         retrofit = new Retrofit.Builder()
                 .client(getClient())

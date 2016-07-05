@@ -65,6 +65,12 @@ public class SplashFragment extends BaseFragment implements SplashContract.View 
     }
 
     @Override
+    public void onDestroy() {
+
+        super.onDestroy();
+    }
+
+    @Override
     public void goLogin() {
         mContext.startActivity(new Intent(getActivity(), LoginActivity.class));
     }

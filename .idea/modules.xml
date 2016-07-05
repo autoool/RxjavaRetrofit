@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RxjavaDemo.iml" filepath="$PROJECT_DIR$/RxjavaDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RxjavaRetrofit.iml" filepath="$PROJECT_DIR$/RxjavaRetrofit.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/appclean/appclean.iml" filepath="$PROJECT_DIR$/appclean/appclean.iml" />
       <module fileurl="file://$PROJECT_DIR$/corelibrary/corelibrary.iml" filepath="$PROJECT_DIR$/corelibrary/corelibrary.iml" />
