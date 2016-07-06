@@ -9,8 +9,4 @@ import com.techidea.data.net.HttpMethods;
  * Created by zchao on 2016/5/19.
  */
 public class ApplicationStub extends Application {
-
-    public ApplicationStub() {
-
-    }
 }

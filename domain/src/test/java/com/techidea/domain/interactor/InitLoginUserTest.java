@@ -1,7 +1,6 @@
 package com.techidea.domain.interactor;
 
 import com.techidea.domain.entity.UserInfo;
-import com.techidea.domain.respository.DataRepository;
 import com.techidea.domain.respository.DataRepositoryDomain;
 
 import org.junit.Before;

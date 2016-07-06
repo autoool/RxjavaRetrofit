@@ -20,13 +20,12 @@ public abstract class RxBaseCase {
     }
 
     protected abstract Observable buildCaseObservable();
+    protected abstract RxBaseCase initParams(String... paras);
 
     public void execute(Subscriber subscriber) {
         this.mSubscription = this.buildCaseObservable()
                 .subscribe(subscriber);
     }
-
-    public abstract RxBaseCase initParams(String... paras);
 
     public void unsubscribe() {
         if (!mSubscription.isUnsubscribed())

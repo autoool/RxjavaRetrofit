@@ -1,33 +1,32 @@
-package com.techidea.data;
-
-import android.text.TextUtils;
+package com.techidea.data.cache.serializer;
 
 import com.google.gson.reflect.TypeToken;
-import com.techidea.data.cache.serializer.JsonSerializer;
+import com.techidea.data.ApplicationTestCase;
 import com.techidea.domain.entity.LoginUser;
 
+import org.junit.Before;
 import org.junit.Test;
-import org.robolectric.RuntimeEnvironment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.http.PUT;
-
-import static org.junit.Assert.*;
-
 /**
- * To work on unit tests, switch the Test Artifact in the Build Variants view.
+ * Created by zchao on 2016/7/6.
  */
-public class ExampleUnitTest {
-    @Test
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+public class JsonSerializerTest extends ApplicationTestCase {
+
+    private JsonSerializer<LoginUser> jsonSerializer;
+    private JsonSerializer<List<LoginUser>> listJsonSerializer;
+
+    @Before
+    public void setUp() {
+        jsonSerializer = new JsonSerializer<>();
+        listJsonSerializer = new JsonSerializer<>();
     }
 
     @Test
-    public void testJsonSerializer() {
-        JsonSerializer<LoginUser> jsonSerializer = new JsonSerializer<>();
+    public void testSerializeCase() {
+
         LoginUser loginUser = new LoginUser();
         loginUser.setId("1");
         loginUser.setPosCode("1111");
@@ -47,7 +46,7 @@ public class ExampleUnitTest {
         List<LoginUser> loginUserList = new ArrayList<>();
         loginUserList.add(loginUser);
         loginUserList.add(loginUser1);
-        JsonSerializer<List<LoginUser>> listJsonSerializer = new JsonSerializer<>();
+
         String jsonList = listJsonSerializer.serialize(loginUserList, new TypeToken<List<LoginUser>>() {
         });
         System.out.println(jsonStr);
@@ -55,10 +54,5 @@ public class ExampleUnitTest {
         loginUserList1 = listJsonSerializer.deserialize(jsonList, new TypeToken<List<LoginUser>>() {
         });
         System.out.println("" + loginUserList1.size());
-    }
-
-    @Test
-    public void testCache(){
-
     }
 }

@@ -1,6 +1,8 @@
 package com.techidea.data.net;
 
 
+import java.util.List;
+
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -17,23 +19,32 @@ public class RxUtils {
             @Override
             public Observable<T> call(Observable<T> tObservable) {
                 return tObservable.subscribeOn(Schedulers.io())
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread());
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .unsubscribeOn(Schedulers.io());
             }
         };
     }
 
-    public static <T> Observable.Transformer<HttpResult<T>, T> handleResult() {
+  /*  public static <T> Observable.Transformer<HttpResult<T>, T> handleResult() {
         return new Observable.Transformer<HttpResult<T>, T>() {
             @Override
             public Observable<T> call(Observable<HttpResult<T>> httpResultObservable) {
                 return httpResultObservable.flatMap(
                         new Func1<HttpResult<T>, Observable<T>>() {
                             @Override
-                            public Observable<T> call(HttpResult<T> tHttpResult) {
+                            public Observable<T> call(final HttpResult<T> tHttpResult) {
                                 if (tHttpResult.getCode() == 1) {
 //                                    返回真正需要的数据
-                                    return null;
+                                    return Observable.create(new Observable.OnSubscribe<T>() {
+                                        @Override
+                                        public void call(Subscriber<? super T> subscriber) {
+                                            if (tHttpResult.getObject() != null) {
+
+                                            } else if (tHttpResult.getList() != null) {
+
+                                            }
+                                        }
+                                    });
                                 } else if (tHttpResult.getCode() == 900) {
                                     // TODO: 2016/7/5 token失效
                                 } else {
@@ -47,9 +58,9 @@ public class RxUtils {
         };
     }
 
-    private static <T> Observable<T> getData(T t){
-        return
-    }
+    private static <T> Observable<T> getData(T t) {
+        return null;
+    }*/
 
    /* public static <T> Observable.Transformer<HttpResult<T>, T> handleResult() {
         return new Observable.Transformer<HttpResult<T>, T>() {
