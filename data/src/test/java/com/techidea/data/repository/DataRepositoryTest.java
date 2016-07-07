@@ -36,7 +36,6 @@ public class DataRepositoryTest extends ApplicationTestCase {
                 .subscribe(new Subscriber<List<UserInfo>>() {
                     @Override
                     public void onCompleted() {
-                        System.out.println("onCompleted");
                     }
 
                     @Override
@@ -47,7 +46,10 @@ public class DataRepositoryTest extends ApplicationTestCase {
                     @Override
                     public void onNext(List<UserInfo> userInfoList) {
                         if (userInfoList != null)
-                            System.out.println(userInfoList.size());
+                            for (UserInfo item : userInfoList) {
+                                System.out.println(item.getUsername());
+                            }
+
                     }
                 });
     }

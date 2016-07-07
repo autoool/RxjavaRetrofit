@@ -32,12 +32,9 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
-
     compile project(':data')
     compile project(':domain')
     compile project(':corelibrary')
-    compile project(':dblibrary')
-
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
@@ -45,5 +42,4 @@ dependencies {
     compile 'com.jakewharton.rxbinding:rxbinding-design:0.4.0'
     compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:0.4.0'
     compile 'com.android.support:support-v4:23.3.0'
-
 }

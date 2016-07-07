@@ -1,1 +1,1 @@
-include ':app', ':dblibrary', ':data', ':domain', ':corelibrary', ':appclean'
+include ':data', ':domain', ':corelibrary', ':appclean'
