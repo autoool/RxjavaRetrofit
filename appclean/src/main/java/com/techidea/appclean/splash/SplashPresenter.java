@@ -46,7 +46,7 @@ public class SplashPresenter implements SplashContract.Presenter {
         initData();
     }
 
-    @Override
+
     public void destory() {
         if (mInitLoginUser != null)
             mInitLoginUser.unsubscribe();

@@ -2,10 +2,7 @@ package com.techidea.presentation.internal.di.modules;
 
 import com.techidea.domain.executor.PostExecutionThread;
 import com.techidea.domain.executor.ThreadExecutor;
-import com.techidea.domain.interactor.InitProduct;
-import com.techidea.domain.interactor.InitProductCategory;
 import com.techidea.domain.interactor.RxBaseCase;
-import com.techidea.domain.respository.ProductRepository;
 import com.techidea.presentation.internal.di.PerActivity;
 
 import javax.inject.Named;

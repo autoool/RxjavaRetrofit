@@ -18,12 +18,6 @@ package com.techidea.data.cache.serializer;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
 /**
  * Class  as Serializer/Deserializer
  */

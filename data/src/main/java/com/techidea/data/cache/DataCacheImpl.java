@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.google.gson.reflect.TypeToken;
 import com.techidea.data.cache.serializer.JsonSerializer;
+import com.techidea.data.executor.JobExecutor;
 import com.techidea.data.net.CacheException;
 import com.techidea.domain.entity.LoginUser;
 import com.techidea.domain.entity.Product;
@@ -13,6 +14,8 @@ import com.techidea.domain.executor.ThreadExecutor;
 
 import java.io.File;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -35,11 +38,11 @@ public class DataCacheImpl implements DataCache {
     private final FileManager mFileManager;
     private final ThreadExecutor mThreadExecutor;
 
-    public DataCacheImpl(Context context, FileManager fileManager, ThreadExecutor threadExecutor) {
+    public DataCacheImpl(Context context) {
         this.mContext = context.getApplicationContext();
         this.cacheDir = this.mContext.getCacheDir();
-        this.mFileManager = fileManager;
-        this.mThreadExecutor = threadExecutor;
+        this.mFileManager = new FileManager();
+        this.mThreadExecutor = new JobExecutor();
         this.userinfoSerializer = new JsonSerializer<>();
         this.loginuserSerializer = new JsonSerializer<>();
         this.productSerializer = new JsonSerializer<>();
@@ -109,13 +112,13 @@ public class DataCacheImpl implements DataCache {
     }
 
     @Override
-    public boolean isCached(String name) {
-        File file = this.buildFile(name);
+    public boolean isCached(String filename) {
+        File file = this.buildFile(filename);
         return this.mFileManager.exists(file);
     }
 
     @Override
-    public boolean isExpired() {
+    public boolean isExpired(String filename) {
         return false;
     }
 

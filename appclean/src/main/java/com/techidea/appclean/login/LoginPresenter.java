@@ -44,8 +44,6 @@ public class LoginPresenter implements LoginContract.Precenter {
     private final class LoginSubscriber extends DefaultSubscriber<LoginUser> {
         @Override
         public void onCompleted() {
-            if (mLoginUser != null)
-                HttpMethods.getInstance().setToken(mLoginUser.getToken());
             mView.loginSuccess();
 
         }

@@ -3,7 +3,6 @@ package com.techidea.domain.interactor;
 import com.techidea.domain.respository.DataRepositoryDomain;
 
 import rx.Observable;
-import rx.Subscriber;
 
 /**
  * Created by zchao on 2016/6/13.

@@ -7,8 +7,6 @@ import com.techidea.data.repository.ProductDataRepository;
 import com.techidea.data.repository.UserInfoDataRepository;
 import com.techidea.domain.executor.PostExecutionThread;
 import com.techidea.domain.executor.ThreadExecutor;
-import com.techidea.domain.respository.ProductRepository;
-import com.techidea.domain.respository.UserInfoRepository;
 import com.techidea.presentation.AndroidApplication;
 import com.techidea.presentation.UIThread;
 

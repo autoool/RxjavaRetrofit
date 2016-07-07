@@ -28,7 +28,7 @@ public class LoginActivity extends BaseActivity {
 
         mLoginPresenter = new LoginPresenter(
                 loginFragment,
-                Injection.provideLogin()
+                Injection.provideLogin(getApplicationContext())
         );
     }
 }

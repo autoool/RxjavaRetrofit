@@ -2,10 +2,7 @@ package com.techidea.presentation.internal.di.modules;
 
 import com.techidea.domain.executor.PostExecutionThread;
 import com.techidea.domain.executor.ThreadExecutor;
-import com.techidea.domain.interactor.InitLoginUser;
-import com.techidea.domain.interactor.Login;
 import com.techidea.domain.interactor.RxBaseCase;
-import com.techidea.domain.respository.UserInfoRepository;
 import com.techidea.presentation.internal.di.PerActivity;
 
 import javax.inject.Named;

@@ -4,8 +4,6 @@ import android.content.Context;
 
 import com.techidea.domain.executor.PostExecutionThread;
 import com.techidea.domain.executor.ThreadExecutor;
-import com.techidea.domain.respository.ProductRepository;
-import com.techidea.domain.respository.UserInfoRepository;
 import com.techidea.presentation.base.BaseActivity;
 import com.techidea.presentation.internal.di.modules.ApplicationModule;
 

@@ -30,9 +30,9 @@ public interface DataCache {
 
     void putLoginUser(LoginUser loginUser);
 
-    boolean isCached(String name);
+    boolean isCached(String filename);
 
-    boolean isExpired();
+    boolean isExpired(String filename);
 
     void evictAll();
 }

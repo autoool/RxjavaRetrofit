@@ -28,9 +28,9 @@ public class SplashActivity extends BaseActivity {
 
         mCSplashPresenter = new SplashPresenter(
                 splashFragment,
-                Injection.provideInitProduct(),
-                Injection.provideInitProductCategory(),
-                Injection.provideInitLoginUser()
+                Injection.provideInitProduct(getApplicationContext()),
+                Injection.provideInitProductCategory(getApplicationContext()),
+                Injection.provideInitLoginUser(getApplicationContext())
         );
 
     }

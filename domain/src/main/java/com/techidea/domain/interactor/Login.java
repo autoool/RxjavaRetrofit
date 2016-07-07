@@ -2,8 +2,6 @@ package com.techidea.domain.interactor;
 
 import com.techidea.domain.respository.DataRepositoryDomain;
 
-import javax.inject.Inject;
-
 import rx.Observable;
 
 /**
@@ -17,7 +15,6 @@ public class Login extends RxBaseCase {
 
     private final DataRepositoryDomain mDataRepository;
 
-    @Inject
     public Login(DataRepositoryDomain dataRepository) {
         this.mDataRepository = dataRepository;
     }

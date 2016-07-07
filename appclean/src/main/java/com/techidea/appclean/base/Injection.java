@@ -1,5 +1,7 @@
 package com.techidea.appclean.base;
 
+import android.content.Context;
+
 import com.techidea.data.repository.DataRepository;
 import com.techidea.domain.interactor.InitLoginUser;
 import com.techidea.domain.interactor.InitProduct;
@@ -11,24 +13,24 @@ import com.techidea.domain.interactor.Login;
  */
 public class Injection {
 
-    public static DataRepository provideDataRepository() {
-        return DataRepository.getInstance();
+    public static DataRepository provideDataRepository(Context context) {
+        return DataRepository.getInstance(context);
     }
 
-    public static InitLoginUser provideInitLoginUser() {
-        return new InitLoginUser(provideDataRepository());
+    public static InitLoginUser provideInitLoginUser(Context context) {
+        return new InitLoginUser(provideDataRepository(context));
     }
 
-    public static InitProduct provideInitProduct() {
-        return new InitProduct(provideDataRepository());
+    public static InitProduct provideInitProduct(Context context) {
+        return new InitProduct(provideDataRepository(context));
     }
 
-    public static InitProductCategory provideInitProductCategory() {
-        return new InitProductCategory(provideDataRepository());
+    public static InitProductCategory provideInitProductCategory(Context context) {
+        return new InitProductCategory(provideDataRepository(context));
     }
 
-    public static Login provideLogin() {
-        return new Login(provideDataRepository());
+    public static Login provideLogin(Context context) {
+        return new Login(provideDataRepository(context));
     }
 
 }

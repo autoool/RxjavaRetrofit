@@ -22,6 +22,7 @@ android {
         alpha_canyin {
             applicationId = "com.techidea.appclean"
             manifestPlaceholders = [API_HOST_VALUE: "",
+
             ]
         }
     }
