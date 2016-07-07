@@ -5,10 +5,17 @@
                 android:layout_gravity="center"
                 android:gravity="center">
 
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/spinner_username"
+        android:layout_width="400dp"
+        android:layout_height="48dp"/>
+
     <EditText
         android:id="@+id/edittext_username"
         android:layout_width="400dp"
-        android:layout_height="96dp"/>
+        android:layout_height="96dp"
+        android:layout_below="@id/spinner_username"/>
 
     <EditText
         android:id="@+id/edittext_password"
@@ -19,8 +26,8 @@
     <Button
         android:id="@+id/button_login"
         android:layout_width="400dp"
-        android:layout_below="@id/edittext_password"
         android:layout_height="96dp"
+        android:layout_below="@id/edittext_password"
         android:text="login"/>
 
 </RelativeLayout>

@@ -1,8 +1,5 @@
 package com.techidea.data.repository;
 
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-
 import com.techidea.corelibrary.util.CommonUtilAPP;
 import com.techidea.data.ApplicationTestCase;
 import com.techidea.data.net.HttpMethods;

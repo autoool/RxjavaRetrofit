@@ -1,10 +1,18 @@
 package com.techidea.appclean.login;
 
+import com.techidea.appclean.adapter.SpinnerItem;
 import com.techidea.corelibrary.util.CommonUtilAPP;
 import com.techidea.data.net.HttpMethods;
+import com.techidea.data.repository.datasource.local.LocalDataSource;
 import com.techidea.domain.entity.LoginUser;
+import com.techidea.domain.entity.UserInfo;
 import com.techidea.domain.interactor.DefaultSubscriber;
+import com.techidea.domain.interactor.InitLoginUser;
 import com.techidea.domain.interactor.Login;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
 
 /**
  * Created by zchao on 2016/5/20.
@@ -13,11 +21,13 @@ public class LoginPresenter implements LoginContract.Precenter {
 
     private LoginContract.View mView;
     private final Login mLogin;
+    private final InitLoginUser mInitLoginUser;
     private LoginUser mLoginUser;
 
-    public LoginPresenter(LoginContract.View view, Login login) {
+    public LoginPresenter(LoginContract.View view, Login login, InitLoginUser initLoginUser) {
         mView = view;
         mLogin = login;
+        this.mInitLoginUser = initLoginUser;
         mView.setPresenter(this);
     }
 
@@ -35,6 +45,12 @@ public class LoginPresenter implements LoginContract.Precenter {
         } else {
             mView.showError("用户名或密码输入有误");
         }
+    }
+
+    @Override
+    public void init() {
+        mInitLoginUser.initParams(CommonUtilAPP.getMacAddress(mView.getApplicationContext()),
+                CommonUtilAPP.getDeviceName()).execute(new InitLoginUserSubscriber());
     }
 
     private boolean checkUserInput(String username, String password) {
@@ -60,5 +76,24 @@ public class LoginPresenter implements LoginContract.Precenter {
         }
     }
 
-    ;
+    private final class InitLoginUserSubscriber extends DefaultSubscriber<List<UserInfo>> {
+        @Override
+        public void onCompleted() {
+
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            mView.showError(e.getMessage());
+        }
+
+        @Override
+        public void onNext(List<UserInfo> userInfoList) {
+            List<SpinnerItem> list = new ArrayList<>();
+            for (int i = 0; i < userInfoList.size(); i++) {
+                list.add(new SpinnerItem(userInfoList.get(i).getUsername(), String.valueOf(i)));
+            }
+            mView.initLoginUsers(list);
+        }
+    }
 }
