@@ -13,9 +13,6 @@ import com.techidea.domain.interactor.InitProductCategory;
 
 import java.util.List;
 
-import rx.Subscriber;
-import rx.Subscription;
-
 /**
  * Created by zchao on 2016/5/18.
  */

@@ -28,8 +28,7 @@ public class DataRepositoryTest extends ApplicationTestCase {
 
     @Test
     public void testInitLoginUserCase() {
-        mDataRepository.initUserInfo(CommonUtilAPP.getMacAddress(RuntimeEnvironment.application.getApplicationContext()),
-                CommonUtilAPP.getDeviceName())
+        mDataRepository.initUserInfo("08:00:00:64:84:0C", "WIZARHAND")
                 .subscribe(new Subscriber<List<UserInfo>>() {
                     @Override
                     public void onCompleted() {
