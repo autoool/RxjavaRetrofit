@@ -10,7 +10,6 @@ import com.techidea.domain.entity.LoginUser;
 import com.techidea.domain.entity.Product;
 import com.techidea.domain.entity.ProductCategory;
 import com.techidea.domain.entity.UserInfo;
-import com.techidea.domain.interactor.Login;
 
 import java.util.List;
 

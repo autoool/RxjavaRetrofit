@@ -1,8 +1,6 @@
 package com.techidea.data.net;
 
-import android.app.VoiceInteractor;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.techidea.domain.entity.LoginUser;
 import com.techidea.domain.entity.MemberInfoItem;
@@ -31,15 +29,15 @@ import rx.functions.Func1;
  */
 public class HttpMethods {
 
-    private static String BASE_URL = "";
+    private static String BASE_URL = "https://kyfw.12306.cn";
     private static String BASE_URL_HTTPS = "https://kyfw.12306.cn/";
     private static final int DEFAULT_TIMEOUT = 5;
     private String token = "";
 
     private Retrofit retrofit;
     private Retrofit retrofitHttps;
-    private HttpApi service;
-    private HttpApi serviceHttps;
+    private ApiService service;
+    private ApiService serviceHttps;
 
     private static class SingletonHolder {
         private static final HttpMethods INSTANCE = new HttpMethods();
@@ -73,7 +71,7 @@ public class HttpMethods {
                 .baseUrl(BASE_URL_HTTPS)
                 .build();*/
 
-        service = retrofit.create(HttpApi.class);
+        service = retrofit.create(ApiService.class);
 //        serviceHttps = retrofitHttps.create(HttpApi.class);
     }
 

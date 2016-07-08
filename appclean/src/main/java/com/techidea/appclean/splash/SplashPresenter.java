@@ -26,6 +26,9 @@ public class SplashPresenter implements SplashContract.Presenter {
     private final InitProductCategory mInitProductCategory;
     private final InitLoginUser mInitLoginUser;
 
+    private final UserInfosSubscriber mUserInfosSubscriber;
+    private final ProductCategorySubscriber mProductCategorySubscriber;
+    private final ProductSubscriber mProductSubscriber;
 
     public SplashPresenter(SplashContract.View view,
                            InitProduct initProduct,
@@ -36,7 +39,9 @@ public class SplashPresenter implements SplashContract.Presenter {
         mInitProduct = initProduct;
         mInitProductCategory = initProductCategory;
         mInitLoginUser = initLoginUser;
-
+        mUserInfosSubscriber = new UserInfosSubscriber();
+        mProductCategorySubscriber = new ProductCategorySubscriber();
+        mProductSubscriber = new ProductSubscriber();
         mView.setPresenter(this);
     }
 

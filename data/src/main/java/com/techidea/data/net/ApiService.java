@@ -16,7 +16,7 @@ import rx.Observable;
 /**
  * Created by zchao on 2016/5/5.
  */
-public interface HttpApi {
+public interface ApiService {
 
     @FormUrlEncoded
     @POST("initLoginUsers.do")

@@ -2,8 +2,6 @@ package com.techidea.appclean.login;
 
 import com.techidea.appclean.adapter.SpinnerItem;
 import com.techidea.corelibrary.util.CommonUtilAPP;
-import com.techidea.data.net.HttpMethods;
-import com.techidea.data.repository.datasource.local.LocalDataSource;
 import com.techidea.domain.entity.LoginUser;
 import com.techidea.domain.entity.UserInfo;
 import com.techidea.domain.interactor.DefaultSubscriber;
@@ -12,7 +10,6 @@ import com.techidea.domain.interactor.Login;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 
 /**
  * Created by zchao on 2016/5/20.

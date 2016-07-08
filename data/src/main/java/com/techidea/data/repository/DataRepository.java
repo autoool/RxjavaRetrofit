@@ -1,7 +1,6 @@
 package com.techidea.data.repository;
 
 import android.content.Context;
-import android.net.ConnectivityManager;
 
 import com.techidea.data.net.HttpMethods;
 import com.techidea.data.repository.datasource.local.LocalDataSource;

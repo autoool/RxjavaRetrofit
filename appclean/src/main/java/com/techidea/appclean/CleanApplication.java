@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 
-import com.techidea.data.net.SslSocketFactory;
 import com.techidea.data.net.HttpMethods;
 
 /**
@@ -27,6 +26,8 @@ public class CleanApplication extends Application {
                                     getPackageName(), PackageManager.GET_META_DATA);
             HttpMethods.setBaseUrl(applicationInfo.metaData.getString("API_HOST"));
         } catch (PackageManager.NameNotFoundException e) {
+            HttpMethods.setBaseUrl("http://cn.bing.com");
+        } catch (Exception e) {
             HttpMethods.setBaseUrl("http://cn.bing.com");
         }
     }
