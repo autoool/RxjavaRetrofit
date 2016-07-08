@@ -58,7 +58,6 @@ public class LoginPresenter implements LoginContract.Precenter {
         @Override
         public void onCompleted() {
             mView.loginSuccess();
-
         }
 
         @Override

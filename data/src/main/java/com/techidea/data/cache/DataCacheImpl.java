@@ -14,8 +14,6 @@ import com.techidea.domain.executor.ThreadExecutor;
 
 import java.io.File;
 import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -25,8 +23,16 @@ import rx.Subscriber;
  */
 public class DataCacheImpl implements DataCache {
 
+    private static final String SETTING_FILE_NAME = "com.techidea.appclean.setting";
     private static final String DEFAULT_FILE_NAME = "yunpos_";
-    private static final String FILE_NAME_LOGINUSERS = "loginusers";
+    public static final String FILE_USREINFOS = "userinfos";
+    public static final String FILE_PRODUCTS = "products";
+    public static final String FILE_PRODUCTCATEGORYS = "productcategorys";
+    private static final String CACHE_UPDATE_USERINFOS = "cache_update_userinfos";
+    private static final String CACHE_UPDATE_PRODUCTS = "cache_update_products";
+    private static final String CACHE_UPDATE_PRODUCTCATEGRYS = "cache_update_productcategorys";
+
+
     private static final long EXPIPATION_TIME = 60 * 10 * 1000;
 
     private final Context mContext;
@@ -54,7 +60,7 @@ public class DataCacheImpl implements DataCache {
         return Observable.create(new Observable.OnSubscribe<List<UserInfo>>() {
             @Override
             public void call(Subscriber<? super List<UserInfo>> subscriber) {
-                File loginusers = DataCacheImpl.this.buildFile(FILE_NAME_LOGINUSERS);
+                File loginusers = DataCacheImpl.this.buildFile(FILE_USREINFOS);
                 String fileContent = DataCacheImpl.this.mFileManager.readFileContent(loginusers);
                 List<UserInfo> list = DataCacheImpl.this.userinfoSerializer.deserialize(fileContent, new TypeToken<List<UserInfo>>() {
                 });
@@ -71,19 +77,34 @@ public class DataCacheImpl implements DataCache {
     @Override
     public void putLoginUsers(List<UserInfo> userInfoList) {
         if (userInfoList != null) {
-            File loginusers = this.buildFile(FILE_NAME_LOGINUSERS);
-            if (!isCached(FILE_NAME_LOGINUSERS)) {
+            File loginusers = this.buildFile(FILE_USREINFOS);
+            if (!isCached(FILE_USREINFOS)) {
                 String jsonString = this.userinfoSerializer.serialize(userInfoList, new TypeToken<List<UserInfo>>() {
                 });
                 this.executeAsynchronously(new CacheWriter(this.mFileManager,
                         loginusers, jsonString));
             }
+            setLastCacheUpdateTimeMillis(FILE_USREINFOS);
         }
     }
 
     @Override
     public Observable<List<Product>> getProducts() {
-        return null;
+        return Observable.create(new Observable.OnSubscribe<List<Product>>() {
+            @Override
+            public void call(Subscriber<? super List<Product>> subscriber) {
+                File products = DataCacheImpl.this.buildFile(FILE_PRODUCTS);
+                String fileContent = DataCacheImpl.this.mFileManager.readFileContent(products);
+                List<Product> list = DataCacheImpl.this.productSerializer.deserialize(fileContent, new TypeToken<List<Product>>() {
+                });
+                if (list != null) {
+                    subscriber.onNext(list);
+                    subscriber.onCompleted();
+                } else {
+                    subscriber.onError(new CacheException("获取商品数据失败"));
+                }
+            }
+        });
     }
 
     @Override
@@ -119,7 +140,13 @@ public class DataCacheImpl implements DataCache {
 
     @Override
     public boolean isExpired(String filename) {
-        return false;
+        long currentTime = System.currentTimeMillis();
+        long lastUpdateTime = this.getLastCacheUpdateTimeMillis(filename);
+        boolean expired = ((currentTime - lastUpdateTime) > EXPIPATION_TIME);
+        if (expired) {
+            this.evictAll();
+        }
+        return expired;
     }
 
     @Override
@@ -169,6 +196,28 @@ public class DataCacheImpl implements DataCache {
         @Override
         public void run() {
             this.fileManager.clearDirectory(this.cacheDir);
+        }
+    }
+
+    private long getLastCacheUpdateTimeMillis(String filename) {
+        if (filename.equals(FILE_USREINFOS)) {
+            return this.mFileManager.getFromPreferences(this.mContext, SETTING_FILE_NAME, CACHE_UPDATE_USERINFOS);
+        } else if (filename.equals(FILE_PRODUCTCATEGORYS)) {
+            return this.mFileManager.getFromPreferences(this.mContext, SETTING_FILE_NAME, CACHE_UPDATE_PRODUCTCATEGRYS);
+        } else if (filename.equals(FILE_PRODUCTS)) {
+            return this.mFileManager.getFromPreferences(this.mContext, SETTING_FILE_NAME, CACHE_UPDATE_PRODUCTS);
+        }
+        return 0;
+    }
+
+    private void setLastCacheUpdateTimeMillis(String filename) {
+        long currentMillis = System.currentTimeMillis();
+        if (filename.equals(FILE_USREINFOS)) {
+            this.mFileManager.writeToPreferences(this.mContext, SETTING_FILE_NAME, CACHE_UPDATE_USERINFOS, currentMillis);
+        } else if (filename.equals(FILE_PRODUCTCATEGORYS)) {
+            this.mFileManager.writeToPreferences(this.mContext, SETTING_FILE_NAME, CACHE_UPDATE_PRODUCTCATEGRYS, currentMillis);
+        } else if (filename.equals(FILE_PRODUCTS)) {
+            this.mFileManager.writeToPreferences(this.mContext, SETTING_FILE_NAME, CACHE_UPDATE_PRODUCTS, currentMillis);
         }
     }
 

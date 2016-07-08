@@ -1,5 +1,8 @@
 package com.techidea.data.cache;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -64,5 +67,19 @@ public class FileManager {
                 file.delete();
             }
         }
+    }
+
+    public void writeToPreferences(Context context, String preFileName, String key,
+                                   long value) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(preFileName,
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putLong(key, value);
+        editor.commit();
+    }
+
+    public long getFromPreferences(Context context, String preFileName, String key) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(preFileName, Context.MODE_PRIVATE);
+        return sharedPreferences.getLong(key, 0);
     }
 }

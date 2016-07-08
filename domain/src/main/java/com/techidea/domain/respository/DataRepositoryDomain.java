@@ -15,9 +15,9 @@ import rx.Observable;
  */
 public interface DataRepositoryDomain {
 
-    Observable<List<ProductCategory>> initProductCategory(String devideId, String deviceType);
+    Observable<List<ProductCategory>> initProductCategory(String deviceId, String deviceType);
 
-    Observable<List<Product>> initProduct(String devideId, String deviceType);
+    Observable<List<Product>> initProduct(String deviceId, String deviceType);
 
     Observable<List<UserInfo>> initUserInfo(String deviceId, String deviceType);
 

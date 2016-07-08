@@ -2,6 +2,8 @@ package com.techidea.data.repository;
 
 import android.content.Context;
 
+import com.techidea.data.cache.DataCache;
+import com.techidea.data.cache.DataCacheImpl;
 import com.techidea.data.net.HttpMethods;
 import com.techidea.data.repository.datasource.local.LocalDataSource;
 import com.techidea.data.repository.datasource.remote.RemoteDataSource;
@@ -25,10 +27,12 @@ public class DataRepository implements DataRepositoryDomain {
     private static DataRepository INSTANCE = null;
     private final RemoteDataSource mRemoteDataSource;
     private final LocalDataSource mLocalDataSource;
+    private final DataCache mDataCache;
 
     public DataRepository(Context context) {
         this.mLocalDataSource = new LocalDataSource(context);
         this.mRemoteDataSource = new RemoteDataSource(context);
+        this.mDataCache = new DataCacheImpl(context);
     }
 
     public static DataRepository getInstance(Context context) {
@@ -38,18 +42,42 @@ public class DataRepository implements DataRepositoryDomain {
     }
 
     @Override
-    public Observable<List<ProductCategory>> initProductCategory(String devideId, String deviceType) {
-        return this.mRemoteDataSource.initProductCategory(devideId, deviceType);
+    public Observable<List<ProductCategory>> initProductCategory(String deviceId, String deviceType) {
+        if (this.mDataCache.isCached(DataCacheImpl.FILE_PRODUCTCATEGORYS)) {
+            if (this.mDataCache.isExpired(DataCacheImpl.FILE_PRODUCTCATEGORYS)) {
+                return this.mRemoteDataSource.initProductCategory(deviceId, deviceType);
+            } else {
+                return this.mLocalDataSource.initProductCategory(deviceId, deviceType);
+            }
+        } else {
+            return this.mRemoteDataSource.initProductCategory(deviceId, deviceType);
+        }
     }
 
     @Override
-    public Observable<List<Product>> initProduct(String devideId, String deviceType) {
-        return this.mRemoteDataSource.initProduct(devideId, deviceType);
+    public Observable<List<Product>> initProduct(String deviceId, String deviceType) {
+        if (this.mDataCache.isCached(DataCacheImpl.FILE_PRODUCTS)) {
+            if (this.mDataCache.isExpired(DataCacheImpl.FILE_PRODUCTS)) {
+                return this.mRemoteDataSource.initProduct(deviceId, deviceType);
+            } else {
+                return this.mLocalDataSource.initProduct(deviceId, deviceType);
+            }
+        } else {
+            return this.mRemoteDataSource.initProduct(deviceId, deviceType);
+        }
     }
 
     @Override
     public Observable<List<UserInfo>> initUserInfo(String deviceId, String deviceType) {
-        return this.mRemoteDataSource.initUserInfo(deviceId, deviceType);
+        if (this.mDataCache.isCached(DataCacheImpl.FILE_USREINFOS)) {
+            if (this.mDataCache.isExpired(DataCacheImpl.FILE_USREINFOS)) {
+                return this.mRemoteDataSource.initUserInfo(deviceId, deviceType);
+            } else {
+                return this.mLocalDataSource.initUserInfo(deviceId, deviceType);
+            }
+        } else {
+            return this.mRemoteDataSource.initUserInfo(deviceId, deviceType);
+        }
     }
 
     @Override
