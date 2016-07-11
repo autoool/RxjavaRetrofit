@@ -47,7 +47,7 @@ public class DataRepository implements DataRepositoryDomain {
             if (this.mDataCache.isExpired(DataCacheImpl.FILE_PRODUCTCATEGORYS)) {
                 return this.mRemoteDataSource.initProductCategory(deviceId, deviceType);
             } else {
-                return this.mLocalDataSource.initProductCategory(deviceId, deviceType);
+                return this.mLocalDataSource.initProductCategory();
             }
         } else {
             return this.mRemoteDataSource.initProductCategory(deviceId, deviceType);
@@ -60,7 +60,7 @@ public class DataRepository implements DataRepositoryDomain {
             if (this.mDataCache.isExpired(DataCacheImpl.FILE_PRODUCTS)) {
                 return this.mRemoteDataSource.initProduct(deviceId, deviceType);
             } else {
-                return this.mLocalDataSource.initProduct(deviceId, deviceType);
+                return this.mLocalDataSource.initProduct();
             }
         } else {
             return this.mRemoteDataSource.initProduct(deviceId, deviceType);
@@ -73,7 +73,7 @@ public class DataRepository implements DataRepositoryDomain {
             if (this.mDataCache.isExpired(DataCacheImpl.FILE_USREINFOS)) {
                 return this.mRemoteDataSource.initUserInfo(deviceId, deviceType);
             } else {
-                return this.mLocalDataSource.initUserInfo(deviceId, deviceType);
+                return this.mLocalDataSource.initUserInfo();
             }
         } else {
             return this.mRemoteDataSource.initUserInfo(deviceId, deviceType);
@@ -88,5 +88,9 @@ public class DataRepository implements DataRepositoryDomain {
     @Override
     public Observable<MemberInfoItem> getMemberInfo(String qrcode, String type) {
         return HttpMethods.getInstance().getMemberInfo(qrcode, type);
+    }
+
+    public Observable<LoginUser> getLoginUser() {
+        return null;
     }
 }

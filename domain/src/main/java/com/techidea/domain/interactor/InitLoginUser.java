@@ -25,7 +25,7 @@ public class InitLoginUser extends RxBaseCase {
     }
 
     @Override
-    protected Observable buildCaseObservable() {
+    public Observable buildCaseObservable() {
         return this.mDataRepository.initUserInfo(deviceId, deviceType);
     }
 }

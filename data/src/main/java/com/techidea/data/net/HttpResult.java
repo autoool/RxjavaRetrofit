@@ -5,12 +5,12 @@ package com.techidea.data.net;
  */
 public class HttpResult<T> {
 
-
     private int code;
     private String msg;
     private String time;
     private T list;
     private T object;
+    private T data;
 //list 和 object 能不能合并成一个data 服务端返回呢？
 
     public int getCode() {
@@ -31,6 +31,10 @@ public class HttpResult<T> {
 
     public T getObject() {
         return object;
+    }
+
+    public T getData() {
+        return data;
     }
 
 }

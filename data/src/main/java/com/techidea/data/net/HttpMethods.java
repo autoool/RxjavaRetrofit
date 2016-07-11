@@ -78,7 +78,7 @@ public class HttpMethods {
     public Observable<List<UserInfo>> initLoginUsers(String deviceId, String deviceType) {
         return service.initLoginUsers(deviceId, deviceType)
                 .compose(RxUtils.<HttpResult<List<UserInfo>>>rxSchedulerHelper())
-                .map(new HttpResultFuncList<List<UserInfo>>());
+                .map(new HttpResultFunc<List<UserInfo>>());
     }
 
     public Observable<List<ProductCategory>> initProductCategory(String deviceId, String deviceType) {
@@ -96,7 +96,7 @@ public class HttpMethods {
     public Observable<LoginUser> login(String deviceId, String username, String password) {
         return service.login(deviceId, username, password)
                 .compose(RxUtils.<HttpResult<LoginUser>>rxSchedulerHelper())
-                .map(new HttpResultFuncObject<LoginUser>());
+                .map(new HttpResultFunc<LoginUser>());
     }
 
     public Observable<MemberInfoItem> getMemberInfo(String qrcode, String type) {
@@ -133,6 +133,17 @@ public class HttpMethods {
                 throw new HttpErrorException(httpResult.getCode(), httpResult.getMsg());
             }
             return httpResult.getObject();
+        }
+    }
+
+    private class HttpResultFunc<T> implements Func1<HttpResult<T>, T> {
+
+        @Override
+        public T call(HttpResult<T> httpResult) {
+            if (httpResult.getCode() != 1) {
+                throw new HttpErrorException(httpResult.getCode(), httpResult.getMsg());
+            }
+            return httpResult.getData();
         }
     }
 

@@ -38,7 +38,8 @@ public class JsonSerializerTest extends ApplicationTestCase {
         String jsonStr = jsonSerializer.serialize(loginUser);
         System.out.println(jsonStr);
         LoginUser loginUser1 = new LoginUser();
-        loginUser1 = jsonSerializer.deserialize(jsonStr, LoginUser.class);
+        loginUser1 = jsonSerializer.deserialize(jsonStr, new TypeToken<LoginUser>() {
+        });
         if (loginUser1 != null)
             System.out.println(loginUser1.getToken());
         else

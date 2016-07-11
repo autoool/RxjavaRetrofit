@@ -18,11 +18,11 @@ public class FileManager {
     public FileManager() {
     }
 
-    public void writeToFile(File file, String fielContent) {
+    public void writeToFile(File file, String fileContent) {
         if (!file.exists()) {
             try {
                 FileWriter writer = new FileWriter(file);
-                writer.write(fielContent);
+                writer.write(fileContent);
                 writer.close();
             } catch (FileNotFoundException e) {
 

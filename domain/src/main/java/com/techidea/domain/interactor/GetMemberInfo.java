@@ -25,7 +25,7 @@ public class GetMemberInfo extends RxBaseCase {
     }
 
     @Override
-    protected Observable buildCaseObservable() {
+    public Observable buildCaseObservable() {
         return mDataRepositoryDomain.getMemberInfo(qrcode, type);
     }
 }

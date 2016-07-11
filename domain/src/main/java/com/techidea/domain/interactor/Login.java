@@ -1,8 +1,10 @@
 package com.techidea.domain.interactor;
 
+import com.techidea.domain.entity.LoginUser;
 import com.techidea.domain.respository.DataRepositoryDomain;
 
 import rx.Observable;
+import rx.Subscriber;
 
 /**
  * Created by zchao on 2016/5/13.
@@ -19,7 +21,6 @@ public class Login extends RxBaseCase {
         this.mDataRepository = dataRepository;
     }
 
-
     @Override
     public Login initParams(String... paras) {
         this.deviceId = paras[0];
@@ -29,7 +30,8 @@ public class Login extends RxBaseCase {
     }
 
     @Override
-    protected Observable buildCaseObservable() {
+    public Observable<LoginUser> buildCaseObservable() {
         return this.mDataRepository.login(deviceId, username, password);
     }
+
 }

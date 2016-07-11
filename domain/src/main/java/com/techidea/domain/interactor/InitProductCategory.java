@@ -25,7 +25,7 @@ public class InitProductCategory extends RxBaseCase {
     }
 
     @Override
-    protected Observable buildCaseObservable() {
+    public Observable buildCaseObservable() {
         return this.mDataRepository.initProductCategory(this.deviceId, this.deviceType);
     }
 

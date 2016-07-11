@@ -14,15 +14,14 @@ import rx.subscriptions.Subscriptions;
  */
 public abstract class RxBaseCase {
 
-    //这样的写法感觉非常不好
     private Subscription mSubscription = Subscriptions.empty();
 
     protected RxBaseCase() {
     }
 
-    protected abstract Observable buildCaseObservable();
+    public abstract Observable buildCaseObservable();
 
-    protected abstract RxBaseCase initParams(String... paras);
+    public abstract RxBaseCase initParams(String... paras);
 
     public void execute(Subscriber subscriber) {
         this.mSubscription = this.buildCaseObservable()

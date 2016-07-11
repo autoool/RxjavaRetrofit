@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.techidea.data.cache.DataCache;
 import com.techidea.data.cache.DataCacheImpl;
-import com.techidea.data.repository.datasource.DataStore;
 import com.techidea.domain.entity.LoginUser;
 import com.techidea.domain.entity.Product;
 import com.techidea.domain.entity.ProductCategory;
@@ -18,32 +17,30 @@ import rx.Observable;
  * Created by zchao on 2016/7/6.
  * //本地数据源
  */
-public class LocalDataSource implements DataStore {
+public class LocalDataSource {
 
     private final DataCache mDataCache;
 
     public LocalDataSource(Context context) {
-
         this.mDataCache = new DataCacheImpl(context);
     }
 
-    @Override
-    public Observable<List<ProductCategory>> initProductCategory(String devideId, String deviceType) {
+    public Observable<List<ProductCategory>> initProductCategory() {
         return this.mDataCache.getProductCategorys();
     }
 
-    @Override
-    public Observable<List<Product>> initProduct(String devideId, String deviceType) {
+
+    public Observable<List<Product>> initProduct() {
         return this.mDataCache.getProducts();
     }
 
-    @Override
-    public Observable<List<UserInfo>> initUserInfo(String deviceId, String deviceType) {
+
+    public Observable<List<UserInfo>> initUserInfo() {
         return this.mDataCache.getLoginUsers();
     }
 
-    @Override
-    public Observable<LoginUser> login(String deviceId, String username, String password) {
+
+    public Observable<LoginUser> login() {
         return this.mDataCache.getLoginUser();
     }
 

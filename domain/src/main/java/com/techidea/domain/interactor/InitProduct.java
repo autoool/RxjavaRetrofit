@@ -2,7 +2,6 @@ package com.techidea.domain.interactor;
 
 import com.techidea.domain.respository.DataRepositoryDomain;
 
-
 import rx.Observable;
 
 /**
@@ -26,7 +25,7 @@ public class InitProduct extends RxBaseCase {
     }
 
     @Override
-    protected Observable buildCaseObservable() {
+    public Observable buildCaseObservable() {
         return this.mDataRepository.initProduct(deviceId, deviceType);
     }
 }

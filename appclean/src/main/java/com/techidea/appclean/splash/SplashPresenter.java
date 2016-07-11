@@ -65,8 +65,7 @@ public class SplashPresenter implements SplashContract.Presenter {
                 .execute(new UserInfosSubscriber());
     }
 
-    private final class ProductSubscriber extends
-            DefaultSubscriber<List<Product>> {
+    private final class ProductSubscriber extends DefaultSubscriber<List<Product>> {
         @Override
         public void onCompleted() {
             mView.refreshProgress(100);
