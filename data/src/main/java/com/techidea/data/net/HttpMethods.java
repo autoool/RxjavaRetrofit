@@ -78,7 +78,7 @@ public class HttpMethods {
     public Observable<List<UserInfo>> initLoginUsers(String deviceId, String deviceType) {
         return service.initLoginUsers(deviceId, deviceType)
                 .compose(RxUtils.<HttpResult<List<UserInfo>>>rxSchedulerHelper())
-                .map(new HttpResultFunc<List<UserInfo>>());
+                .map(new HttpResultFuncList<List<UserInfo>>());
     }
 
     public Observable<List<ProductCategory>> initProductCategory(String deviceId, String deviceType) {
@@ -96,7 +96,7 @@ public class HttpMethods {
     public Observable<LoginUser> login(String deviceId, String username, String password) {
         return service.login(deviceId, username, password)
                 .compose(RxUtils.<HttpResult<LoginUser>>rxSchedulerHelper())
-                .map(new HttpResultFunc<LoginUser>());
+                .map(new HttpResultFuncObject<LoginUser>());
     }
 
     public Observable<MemberInfoItem> getMemberInfo(String qrcode, String type) {
