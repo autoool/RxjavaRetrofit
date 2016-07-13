@@ -86,14 +86,17 @@ ext {
             crashlyticsAnswers: "com.crashlytics.sdk.android:answers:${crashlyticsAnswersVersion}@aar",
             leakcanaryDebug   : "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
             leakcanaryRelease : "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryVersion}",
-            appcompat         : "com.android.support:appcompat-v7:${supportVersion}",
-            supportV4         : "com.android.support:support-v4:${supportVersion}",
             butterKnife       : "com.jakewharton:butterknife:${butterKnifeVersion}",
             rxBinding         : "com.jakewharton.rxbinding:rxbinding:${rxBindingVersion}",
             rxBindingSupportV4: "com.jakewharton.rxbinding:rxbinding-support-v4:${rxBindingVersion}",
             rxBindingDesign   : "com.jakewharton.rxbinding:rxbinding-design:${rxBindingVersion}",
             rxBindingAppcompat: "com.jakewharton.rxbinding:rxbinding-appcompat-v7:${rxBindingVersion}",
-            recyclerView      : "com.android.support:recyclerview-v7:${recyclerViewVersion}"
+            recyclerView      : "com.android.support:recyclerview-v7:${recyclerViewVersion}",
+            appcompat         : "com.android.support:appcompat-v7:${supportVersion}",
+            supportV4         : "com.android.support:support-v4:${supportVersion}",
+            cardview          : "com.android.support:cardview-v7:${supportVersion}",
+            percent           : "com.android.support:percent:${supportVersion}",
+            design            : "com.android.support:design:${supportVersion}"
     ]
 
     appTestDependencies = [

@@ -160,5 +160,6 @@ dependencies {
     compile appDependencies.butterKnife
     compile appDependencies.recyclerView
 
+    testCompile appTestDependencies.junit
     testCompile appTestDependencies.mockito
 }
