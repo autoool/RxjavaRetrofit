@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatSpinner;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.techidea.appclean.adapter.CommonSpinnerAdapter;
 import com.techidea.appclean.adapter.SpinnerItem;
 import com.techidea.appclean.base.BaseFragment;
 import com.techidea.appclean.main.MainActivity;
+import com.techidea.corelibrary.util.CommonUtilAPP;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +82,7 @@ public class LoginFragment extends BaseFragment implements LoginContract.View {
 
     @OnClick(R.id.button_login)
     void buttonLogin() {
+        Log.d("Ser", CommonUtilAPP.getDeviceSerial());
         String username = mEditTextUsername.getText().toString().trim();
         String password = mEditTextPassword.getText().toString().trim();
         mPrecenter.login(username, password);

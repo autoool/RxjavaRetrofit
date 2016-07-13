@@ -1,12 +1,15 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.neenbedankt.android-apt'
+
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.androidBuildToolsVersion
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 23
+
+        minSdkVersion rootProject.ext.androidMinSDKVersion
+        targetSdkVersion rootProject.ext.androidTargetSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -25,21 +28,27 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'io.reactivex:rxjava:1.1.4'
-    compile 'io.reactivex:rxandroid:1.1.0'
-    compile 'com.google.code.gson:gson:2.6.2'
-    compile 'javax.annotation:jsr250-api:1.0'
-    compile 'com.squareup.retrofit2:retrofit:2.0.2'
-    compile 'com.squareup.retrofit2:retrofit-converters:2.0.2'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+
+    def dataDependencies = rootProject.ext.dataDependencies
+    def testDependencies = rootProject.ext.dataTestDependencies
+
     compile project(':domain')
-    compile 'javax.annotation:jsr250-api:1.0'
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:2.0.52-beta'
-    testCompile 'org.robolectric:robolectric:3.1-rc1'
-    testCompile 'org.assertj:assertj-core:3.4.1'
     compile project(':corelibrary')
-    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    provided dataDependencies.javaxAnnotation
+    compile dataDependencies.rxJava
+    compile dataDependencies.rxAndroid
+    compile dataDependencies.gson
+    compile dataDependencies.okHttp
+    compile dataDependencies.okHttpLoggingInterceptor
+    compile dataDependencies.retrofit
+    compile dataDependencies.retrofitConverters
+    compile dataDependencies.retrofitConverterGson
+    compile dataDependencies.retrofitAdapterRxjava
+
+    testCompile testDependencies.junit
+    testCompile testDependencies.mockito
+    testCompile testDependencies.robolectric
+    testCompile testDependencies.assertj
 }

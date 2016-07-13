@@ -11,14 +11,18 @@ configurations {
 
 sourceSets {
     main {
-        compileClasspath += configurations.provided
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'org.mockito:mockito-core:2.0.53-beta'
-    compile 'io.reactivex:rxjava:1.1.4'
-    provided 'javax.annotation:jsr250-api:1.0'
+
+    def domainDependencies = rootProject.ext.domainDependencies
+    def domainTestDependencies = rootProject.ext.domainTestDependencies
+
+    provided domainDependencies.javaxAnnotation
+    compile domainDependencies.rxJava
+
+    testCompile domainTestDependencies.junit
+    testCompile domainTestDependencies.mockito
+
 }

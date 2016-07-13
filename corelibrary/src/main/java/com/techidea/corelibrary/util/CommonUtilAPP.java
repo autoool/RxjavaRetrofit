@@ -147,5 +147,11 @@ public class CommonUtilAPP {
         return (int) (fpixels + 0.5f);
     }
 
+    public static String getDeviceSerial() {
+        return "Build.SERIAL: " + Build.SERIAL + "\n" +
+                "Build.MANUFACTURER: " + Build.MANUFACTURER + "\n" +
+                "Build.MODEL: " + Build.MODEL + "\n";
+    }
+
 
 }

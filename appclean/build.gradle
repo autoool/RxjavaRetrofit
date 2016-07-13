@@ -1,45 +1,164 @@
+import org.tmatesoft.svn.core.wc.*
+
 apply plugin: 'com.android.application'
 
+//打包时间函数
+def packageTime() {
+    return new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("GMT+8:00"))
+}
+
+//获取svn当前提交代码版本
+def getSvnRevision() {
+    ISVNOptions options = SVNWCUtil.createDefaultOptions(true);
+    SVNClientManager clientManager = SVNClientManager.newInstance(options);
+    SVNStatusClient statusClient = clientManager.getStatusClient();
+    SVNStatus status = statusClient.doStatus(projectDir, false);
+    SVNRevision revision = status.getCommittedRevision();
+    return revision.getNumber().toInteger();
+}
+
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = [rootProject.ext.jniLibPath]
+        }
+    }
+
+    signingConfigs {
+        debug {
+        }
+
+        release {
+        }
+    }
 
     defaultConfig {
         applicationId "com.techidea.appclean"
-        minSdkVersion 16
-        targetSdkVersion 23
+        minSdkVersion rootProject.ext.androidMinSDKVersion
+        targetSdkVersion rootProject.ext.androidTargetSdkVersion
         versionCode 1
         versionName "1.0"
+//        versionCode getSvnRevision().toInteger()
+//        versionName "1.0.0.${getSvnRevision()}"
     }
+
     buildTypes {
+
+        debug {
+            applicationIdSuffix ".debug"
+        }
+
         release {
             minifyEnabled false
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
+    //修改生成的最终文件名
+//    applicationVariants.all { variant ->
+//        if (variant.buildType.name == "release") {
+//            variant.outputs.each { output ->
+//                def outputFile = output.outputFile
+//                if (outputFile != null && outputFile.name.endsWith('.apk')) {
+//                    def fileName = "yunpos_${defaultConfig.versionName}_${defaultConfig.versionCode}_${packageTime()}_${variant.productFlavors[0].name}.apk"
+//                    output.outputFile = new File(outputFile.parent, fileName)
+//                }
+//            }
+//        }
+//    }
+
     productFlavors {
-        alpha_canyin {
+
+        def defaultSigning = signingConfigs.release
+        def productSigning = signingConfigs.release
+
+        alpha_rxjava {
             applicationId = "com.techidea.appclean"
             manifestPlaceholders = [API_HOST_VALUE: "",
 
             ]
+            signingConfig defaultSigning
         }
+
+        beta_rxjava {
+            applicationId = "com.techidea.appclean"
+            manifestPlaceholders = [API_HOST_VALUE: "",
+
+            ]
+            signingConfig defaultSigning
+        }
+
+        product_rxjava {
+            applicationId = "com.techidea.appclean"
+            manifestPlaceholders = [API_HOST_VALUE: "",
+
+            ]
+            signingConfig productSigning
+        }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://maven.fabric.io/public' }
+    flatDir {
+        dirs 'libs' //this way we can find the .aar file in libs folder
     }
 }
 
+// 读取sign key的配置
+File propFile = file("signing.properties");
+if (propFile.exists()) {
+    def Properties props = new Properties()
+    props.load(new FileInputStream(propFile))
+    if (props.containsKey('STORE_FILE') && props.containsKey('STORE_PASSWORD') &&
+            props.containsKey('KEY_ALIAS') && props.containsKey('KEY_PASSWORD')) {
+        android.signingConfigs.release.storeFile = file(props['STORE_FILE'])
+        android.signingConfigs.release.storePassword = props['STORE_PASSWORD']
+        android.signingConfigs.release.keyAlias = props['KEY_ALIAS']
+        android.signingConfigs.release.keyPassword = props['KEY_PASSWORD']
+    } else {
+        android.buildTypes.release.signingConfig = null
+    }
+} else {
+    android.buildTypes.release.signingConfig = null
+}
+
 dependencies {
+
+    def appDependencies = rootProject.ext.appDependencies
+    def appTestDependencies = rootProject.ext.appTestDependencies
+    compile(appDependencies.crashlytics) {
+        transitive = true;
+    }
+    compile(appDependencies.crashlyticsAnswers) {
+        transitive = true;
+    }
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.3.0'
     compile project(':domain')
     compile project(':corelibrary')
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
-    compile 'com.jakewharton.rxbinding:rxbinding-support-v4:0.4.0'
-    compile 'com.jakewharton.rxbinding:rxbinding-design:0.4.0'
-    compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:0.4.0'
-    compile 'com.android.support:support-v4:23.3.0'
     compile project(':data')
+
+    debugCompile appDependencies.leakcanaryDebug
+    releaseCompile appDependencies.leakcanaryRelease
+
+    compile appDependencies.appcompat
+    compile appDependencies.supportV4
+    compile appDependencies.butterKnife
+    compile appDependencies.recyclerView
+
+    testCompile appTestDependencies.mockito
 }

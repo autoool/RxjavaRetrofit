@@ -1,8 +1,6 @@
 # RxjavaDemo 
 
-##app  module
-
-- 测试rxjava
+##appclean  module
 
 ##data 
 

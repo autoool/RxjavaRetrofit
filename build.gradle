@@ -3,13 +3,21 @@ apply from: 'buildsystem/ci.gradle'
 apply from: 'buildsystem/dependencies.gradle'
 
 buildscript {
+
+    ext.gradleVersion = '2.1.0'
+    ext.svnkitVersion = '1.8.11'
+    ext.frodoVersion = '0.8.1'
+    ext.androidAptVersion = '1.4'
+
     repositories {
         jcenter()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.0'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
-        classpath "com.fernandocejas.frodo:frodo-plugin:0.8.1"
+        classpath "com.android.tools.build:gradle:$gradleVersion"
+        classpath "com.neenbedankt.gradle.plugins:android-apt:$androidAptVersion"
+        classpath "com.fernandocejas.frodo:frodo-plugin:$frodoVersion"
+        classpath group: 'org.tmatesoft.svnkit', name: 'svnkit', version: "$svnkitVersion"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -21,18 +29,8 @@ task wrapper(type: Wrapper) {
 }
 
 allprojects {
-    repositories {
-        jcenter()
-        mavenCentral()
-    }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
-}
-
-//Define versions
-ext{
-    mockitoVersion = ''
-    junitVersion = ''
 }

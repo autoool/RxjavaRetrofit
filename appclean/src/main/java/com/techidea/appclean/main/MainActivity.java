@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Button;
 
 import com.techidea.appclean.R;
+import com.techidea.corelibrary.util.CommonUtilAPP;
 import com.techidea.data.net.HttpMethods;
 import com.techidea.domain.entity.MemberInfoItem;
 
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
     }
 
     @OnClick(R.id.button_member)

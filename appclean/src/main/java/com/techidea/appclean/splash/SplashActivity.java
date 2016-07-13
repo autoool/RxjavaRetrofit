@@ -2,10 +2,12 @@ package com.techidea.appclean.splash;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.techidea.appclean.base.Injection;
 import com.techidea.appclean.R;
 import com.techidea.appclean.base.BaseActivity;
+import com.techidea.corelibrary.util.CommonUtilAPP;
 
 /**
  * Created by zchao on 2016/5/18.
@@ -32,6 +34,6 @@ public class SplashActivity extends BaseActivity {
                 Injection.provideInitProductCategory(getApplicationContext()),
                 Injection.provideInitLoginUser(getApplicationContext())
         );
-
+        Log.d("Ser", CommonUtilAPP.getDeviceSerial());
     }
 }
