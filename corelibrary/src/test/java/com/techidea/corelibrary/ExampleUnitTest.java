@@ -1,7 +1,5 @@
 package com.techidea.corelibrary;
 
-import com.techidea.corelibrary.util.CommonUtilAPP;
-
 import org.junit.Test;
 
 import static org.junit.Assert.*;

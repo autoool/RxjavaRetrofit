@@ -2,7 +2,7 @@ package com.techidea.appclean.splash;
 
 import android.util.Log;
 
-import com.techidea.corelibrary.util.CommonUtilAPP;
+import com.techidea.corelibrary.CommonUtilAPP;
 import com.techidea.domain.entity.Product;
 import com.techidea.domain.entity.ProductCategory;
 import com.techidea.domain.entity.UserInfo;

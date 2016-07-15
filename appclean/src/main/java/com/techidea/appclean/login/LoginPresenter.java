@@ -1,7 +1,7 @@
 package com.techidea.appclean.login;
 
 import com.techidea.appclean.adapter.SpinnerItem;
-import com.techidea.corelibrary.util.CommonUtilAPP;
+import com.techidea.corelibrary.CommonUtilAPP;
 import com.techidea.domain.entity.LoginUser;
 import com.techidea.domain.entity.UserInfo;
 import com.techidea.domain.interactor.DefaultSubscriber;
@@ -10,9 +10,6 @@ import com.techidea.domain.interactor.Login;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import rx.Observable;
-import rx.functions.Func1;
 
 /**
  * Created by zchao on 2016/5/20.
@@ -28,6 +25,7 @@ public class LoginPresenter implements LoginContract.Precenter {
         mView = view;
         mLogin = login;
         this.mInitLoginUser = initLoginUser;
+        //set this 这种写法有点让人困惑
         mView.setPresenter(this);
     }
 
@@ -56,6 +54,7 @@ public class LoginPresenter implements LoginContract.Precenter {
     private boolean checkUserInput(String username, String password) {
         return true;
     }
+
 
     private final class LoginSubscriber extends DefaultSubscriber<LoginUser> {
         @Override

@@ -5,6 +5,14 @@ public class UserInfo {
     private String type;
     private String username;
 
+    public UserInfo() {
+    }
+
+    public UserInfo(String type, String username) {
+        this.type = type;
+        this.username = username;
+    }
+
     public String getType() {
         return type;
     }

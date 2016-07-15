@@ -1,4 +1,4 @@
-package com.techidea.corelibrary.util;
+package com.techidea.corelibrary;
 
 import android.content.Context;
 import android.os.Environment;

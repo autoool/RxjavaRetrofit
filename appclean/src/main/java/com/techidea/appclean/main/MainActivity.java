@@ -6,7 +6,6 @@ import android.util.Log;
 import android.widget.Button;
 
 import com.techidea.appclean.R;
-import com.techidea.corelibrary.util.CommonUtilAPP;
 import com.techidea.data.net.HttpMethods;
 import com.techidea.domain.entity.MemberInfoItem;
 

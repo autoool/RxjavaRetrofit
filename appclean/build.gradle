@@ -76,6 +76,8 @@ android {
 
     productFlavors {
 
+//        https://api.heweather.com/x3/weather?cityid=城市ID&key=你的认证key
+
         def defaultSigning = signingConfigs.release
         def productSigning = signingConfigs.release
 

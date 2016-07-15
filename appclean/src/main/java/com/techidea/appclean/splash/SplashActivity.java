@@ -7,7 +7,7 @@ import android.util.Log;
 import com.techidea.appclean.base.Injection;
 import com.techidea.appclean.R;
 import com.techidea.appclean.base.BaseActivity;
-import com.techidea.corelibrary.util.CommonUtilAPP;
+import com.techidea.corelibrary.CommonUtilAPP;
 
 /**
  * Created by zchao on 2016/5/18.

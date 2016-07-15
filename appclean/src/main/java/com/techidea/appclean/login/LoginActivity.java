@@ -26,6 +26,7 @@ public class LoginActivity extends BaseActivity {
             addFragment(R.id.framelayout_login, loginFragment);
         }
 
+        //为什么这里的 presenter 可以在 fragment里面使用
         mLoginPresenter = new LoginPresenter(
                 loginFragment,
                 Injection.provideLogin(getApplicationContext()),

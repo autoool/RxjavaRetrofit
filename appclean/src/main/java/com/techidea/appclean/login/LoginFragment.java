@@ -16,7 +16,7 @@ import com.techidea.appclean.adapter.CommonSpinnerAdapter;
 import com.techidea.appclean.adapter.SpinnerItem;
 import com.techidea.appclean.base.BaseFragment;
 import com.techidea.appclean.main.MainActivity;
-import com.techidea.corelibrary.util.CommonUtilAPP;
+import com.techidea.corelibrary.CommonUtilAPP;
 
 import java.util.ArrayList;
 import java.util.List;

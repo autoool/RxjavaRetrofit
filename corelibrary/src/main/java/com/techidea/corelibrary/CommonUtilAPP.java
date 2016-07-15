@@ -1,4 +1,4 @@
-package com.techidea.corelibrary.util;
+package com.techidea.corelibrary;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;

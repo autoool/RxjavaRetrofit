@@ -1,6 +1,5 @@
 package com.techidea.data.repository;
 
-import com.techidea.corelibrary.util.CommonUtilAPP;
 import com.techidea.data.ApplicationTestCase;
 import com.techidea.data.net.HttpMethods;
 import com.techidea.domain.entity.UserInfo;

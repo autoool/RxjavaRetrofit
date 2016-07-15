@@ -32,6 +32,4 @@ public abstract class BaseActivity extends AppCompatActivity {
         fragmentTransaction.add(containerViewId, fragment);
         fragmentTransaction.commit();
     }
-
-
 }
