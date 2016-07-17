@@ -37,24 +37,28 @@ public class LoginPresenter implements LoginContract.Precenter {
     @Override
     public void login(String username, String password) {
         if (checkUserInput(username, password)) {
-            mLogin.initParams(CommonUtilAPP.getMacAddress(mView.getApplicationContext()),
-                    username, password)
-                    .execute(new LoginSubscriber());
+            mLogin.initParams(CommonUtilAPP.getMacAddress(mView.context()),
+                    username, password);
+            mLogin.execute(new LoginSubscriber());
         } else {
             mView.showError("用户名或密码输入有误");
         }
     }
 
     @Override
-    public void init() {
-        mInitLoginUser.initParams(CommonUtilAPP.getMacAddress(mView.getApplicationContext()),
-                CommonUtilAPP.getDeviceName()).execute(new InitLoginUserSubscriber());
+    public void init(String deviceid, String devicename) {
+        mInitLoginUser.initParams(deviceid, devicename);
+        mInitLoginUser.execute(new InitLoginUserSubscriber());
+        mView.showError("用户名或密码输入有误");
     }
 
     private boolean checkUserInput(String username, String password) {
         return true;
     }
 
+    public void initUserInfos(List<SpinnerItem> list){
+        mView.initLoginUsers(list);
+    }
 
     private final class LoginSubscriber extends DefaultSubscriber<LoginUser> {
         @Override
@@ -91,7 +95,7 @@ public class LoginPresenter implements LoginContract.Precenter {
             for (int i = 0; i < userInfoList.size(); i++) {
                 list.add(new SpinnerItem(userInfoList.get(i).getUsername(), String.valueOf(i)));
             }
-            mView.initLoginUsers(list);
+            initUserInfos(list);
         }
     }
 }

@@ -164,4 +164,6 @@ dependencies {
 
     testCompile appTestDependencies.junit
     testCompile appTestDependencies.mockito
+    testCompile appTestDependencies.robolectric
+    testCompile appTestDependencies.assertj
 }

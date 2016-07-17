@@ -13,6 +13,7 @@ import android.util.DisplayMetrics;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.concurrent.ExecutionException;
 
 public class CommonUtilAPP {
 
@@ -74,10 +75,13 @@ public class CommonUtilAPP {
     public static String getMacAddress(Context context) {
 
         // TODO: 2016/1/19 模拟器运行使用 ,正式运行需要删除
-        if (Build.MANUFACTURER.equals("Genymotion")) {
+        try {
+            if (Build.MANUFACTURER.equals("Genymotion")) {
+                return "CH:AO:FF:FF:FF:01";
+            }
+        } catch (NullPointerException e) {
             return "CH:AO:FF:FF:FF:01";
         }
-
         String macAddress;
 
         /*
@@ -113,9 +117,16 @@ public class CommonUtilAPP {
     public static final String DEVICE_NAME_WIZARHAND = "WIZARHAND"; //手持设备(目前支持设备为WIZARHAND_Q1)
 
     public static String getDeviceName() {
-        String manufacturer = Build.MANUFACTURER;
-        String model = Build.MODEL;
-
+        String manufacturer = "";
+        String model = "";
+        try {
+            manufacturer = Build.MANUFACTURER;
+            model = Build.MODEL;
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            manufacturer = "aaaa";
+            model = "aa";
+        }
         manufacturer = manufacturer.toUpperCase();
         model = model.toUpperCase();
 

@@ -101,6 +101,8 @@ ext {
 
     appTestDependencies = [
             junit  : "junit:junit:${jUnitVersion}",
-            mockito: "org.mockito:mockito-core:${mockitoVersion}"
+            robolectric: "org.robolectric:robolectric:${robolectricVersion}",
+            mockito: "org.mockito:mockito-core:${mockitoVersion}",
+            assertj    : "org.assertj:assertj-core:${assertjVersion}"
     ]
 }

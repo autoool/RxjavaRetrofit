@@ -16,6 +16,6 @@ public class SplashContract {
     interface View extends BaseView<Presenter> {
         void refreshProgress(int progress);
         void goLogin();
-        Context getApplicationContext();
+
     }
 }

@@ -15,15 +15,14 @@ import java.util.List;
 public class LoginContract {
 
     //界面调用precenter 方法
-    interface Precenter extends BasePresenter{
+    public interface Precenter extends BasePresenter{
         void login(String username,String password);
-        void init();
+        void init(String deviceid,String deviceName);
     }
 
     //precenter 通知 view
-    interface View extends BaseView<Precenter>{
+    public interface View extends BaseView<Precenter>{
         void initLoginUsers(List<SpinnerItem> list);
         void loginSuccess();
-        Context getApplicationContext();
     }
 }

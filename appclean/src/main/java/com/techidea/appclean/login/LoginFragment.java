@@ -70,8 +70,9 @@ public class LoginFragment extends BaseFragment implements LoginContract.View {
         return root;
     }
 
-    private void initialize() {
-        mPrecenter.init();
+    public void initialize() {
+        mPrecenter.init(CommonUtilAPP.getMacAddress(context()),
+                CommonUtilAPP.getDeviceName());
     }
 
 
@@ -89,7 +90,7 @@ public class LoginFragment extends BaseFragment implements LoginContract.View {
     }
 
     @Override
-    public Context getApplicationContext() {
+    public Context context() {
         return mContext.getApplicationContext();
     }
 
@@ -118,7 +119,7 @@ public class LoginFragment extends BaseFragment implements LoginContract.View {
     @Override
     public void initLoginUsers(List<SpinnerItem> list) {
         mSpinnerItems = list;
-        mCommonSpinnerAdapter = new CommonSpinnerAdapter(getApplicationContext(), mSpinnerItems);
+        mCommonSpinnerAdapter = new CommonSpinnerAdapter(context(), mSpinnerItems);
         mAppCompatSpinner.setAdapter(mCommonSpinnerAdapter);
     }
 }

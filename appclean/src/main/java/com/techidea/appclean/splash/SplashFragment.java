@@ -96,7 +96,7 @@ public class SplashFragment extends BaseFragment implements SplashContract.View 
     }
 
     @Override
-    public Context getApplicationContext() {
+    public Context context() {
         return mContext.getApplicationContext();
     }
 }

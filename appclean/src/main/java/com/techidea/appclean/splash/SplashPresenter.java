@@ -60,7 +60,7 @@ public class SplashPresenter implements SplashContract.Presenter {
 
     private void initData() {
         mInitLoginUser
-                .initParams(CommonUtilAPP.getMacAddress(mView.getApplicationContext()),
+                .initParams(CommonUtilAPP.getMacAddress(mView.context()),
                         CommonUtilAPP.getDeviceName())
                 .execute(new UserInfosSubscriber());
     }
@@ -91,7 +91,7 @@ public class SplashPresenter implements SplashContract.Presenter {
         public void onCompleted() {
             mView.refreshProgress(10);
             mInitProductCategory
-                    .initParams(CommonUtilAPP.getMacAddress(mView.getApplicationContext()),
+                    .initParams(CommonUtilAPP.getMacAddress(mView.context()),
                             CommonUtilAPP.getDeviceName())
                     .execute(new ProductCategorySubscriber());
         }
@@ -115,7 +115,7 @@ public class SplashPresenter implements SplashContract.Presenter {
         public void onCompleted() {
             mView.refreshProgress(50);
             mInitProduct
-                    .initParams(CommonUtilAPP.getMacAddress(mView.getApplicationContext()),
+                    .initParams(CommonUtilAPP.getMacAddress(mView.context()),
                             CommonUtilAPP.getDeviceName())
                     .execute(new ProductSubscriber());
         }

@@ -1,12 +1,8 @@
 package com.techidea.domain.interactor;
 
-import com.techidea.domain.executor.PostExecutionThread;
-import com.techidea.domain.executor.ThreadExecutor;
-
 import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
-import rx.schedulers.Schedulers;
 import rx.subscriptions.Subscriptions;
 
 /**
