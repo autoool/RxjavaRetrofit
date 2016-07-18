@@ -75,9 +75,7 @@
 - view 单元测试
 - 参考
   - http://www.chriszou.com/2016/04/13/android-unit-testing-start-from-what.html
-### junit
-### Mock以及Mockito
-### Robolectric
+
 
 
 

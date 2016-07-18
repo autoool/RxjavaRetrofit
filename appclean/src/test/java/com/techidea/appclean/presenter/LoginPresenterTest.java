@@ -17,11 +17,11 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyList;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
 
 /**
  * Created by Administrator on 2016/7/17.
+ * 保证presenter 一定触发 view的事件
  */
 public class LoginPresenterTest extends AndroidTestCase {
 

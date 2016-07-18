@@ -2,6 +2,7 @@ package com.techidea.appclean.login;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
 
 import com.techidea.appclean.R;
 import com.techidea.appclean.base.BaseActivity;
@@ -33,4 +34,5 @@ public class LoginActivity extends BaseActivity {
                 Injection.provideInitLoginUser(getApplicationContext())
         );
     }
+
 }

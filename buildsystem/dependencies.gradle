@@ -28,13 +28,18 @@ ext {
     javaxAnnotationVersion = '1.0'
     greendaoVersion = '2.1.0'
     freemarkerVersion = '2.3.23'
+    supportAnnotationsVersion = '23.4.0'
 
     //Testing
     robolectricVersion = '3.1-rc1'
+    robolectricShadowsVersion = "3.1.1"
     jUnitVersion = '4.12'
     mockitoVersion = '2.0.52-beta'
     assertjVersion = '3.4.1'
-
+    espressoVersion = '2.2.1'
+    testingSupportLibVersion = '0.1'
+    testRulesVersion = '0.4'
+    testRunnerVersion = '0.4'
     //Development
     leakCanaryVersion = '1.4-beta2'
     gradleVersion = '2.1.0'
@@ -100,9 +105,24 @@ ext {
     ]
 
     appTestDependencies = [
-            junit  : "junit:junit:${jUnitVersion}",
-            robolectric: "org.robolectric:robolectric:${robolectricVersion}",
-            mockito: "org.mockito:mockito-core:${mockitoVersion}",
-            assertj    : "org.assertj:assertj-core:${assertjVersion}"
+            junit             : "junit:junit:${jUnitVersion}",
+            robolectric       : "org.robolectric:robolectric:${robolectricVersion}",
+            robolectricShadows: "org.robolectric:shadows-support-v4:${robolectricShadowsVersion}",//如果使用support的Fragment
+            mockito           : "org.mockito:mockito-core:${mockitoVersion}",
+            assertj           : "org.assertj:assertj-core:${assertjVersion}",
+    ]
+
+    androidTestDependencies = [
+            testRunner        : "com.android.support.test:runner:${testRunnerVersion}",
+            testRules         : "com.android.support.test:rules:${testRulesVersion}",
+            espresso          : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+            testingSupportLib : "com.android.support.test:testing-support-lib:${testingSupportLibVersion}",
+            supportAnnotations: "com.android.support:support-annotations:${supportAnnotationsVersion}",
+            recyclerView      : "com.android.support:recyclerview-v7:${recyclerViewVersion}",
+            appcompat         : "com.android.support:appcompat-v7:${supportVersion}",
+            supportV4         : "com.android.support:support-v4:${supportVersion}",
+            cardview          : "com.android.support:cardview-v7:${supportVersion}",
+            percent           : "com.android.support:percent:${supportVersion}",
+            design            : "com.android.support:design:${supportVersion}"
     ]
 }

@@ -42,6 +42,8 @@ android {
         targetSdkVersion rootProject.ext.androidTargetSdkVersion
         versionCode 1
         versionName "1.0"
+        //用来运行脚本
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 //        versionCode getSvnRevision().toInteger()
 //        versionName "1.0.0.${getSvnRevision()}"
     }
@@ -59,6 +61,10 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    //增加packagingOptions,避免编译时候Liscens的冲突
+    packagingOptions {
+        exclude 'LICENSE.txt'
     }
 
     //修改生成的最终文件名
@@ -139,31 +145,41 @@ if (propFile.exists()) {
 }
 
 dependencies {
-
     def appDependencies = rootProject.ext.appDependencies
     def appTestDependencies = rootProject.ext.appTestDependencies
+    def androidTestDependencies = rootProject.ext.androidTestDependencies
+
     compile(appDependencies.crashlytics) {
         transitive = true;
     }
     compile(appDependencies.crashlyticsAnswers) {
         transitive = true;
     }
-
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':domain')
     compile project(':corelibrary')
     compile project(':data')
-
     debugCompile appDependencies.leakcanaryDebug
     releaseCompile appDependencies.leakcanaryRelease
-
     compile appDependencies.appcompat
     compile appDependencies.supportV4
-    compile appDependencies.butterKnife
     compile appDependencies.recyclerView
+    compile appDependencies.butterKnife
+
 
     testCompile appTestDependencies.junit
     testCompile appTestDependencies.mockito
     testCompile appTestDependencies.robolectric
+    testCompile appTestDependencies.robolectricShadows
     testCompile appTestDependencies.assertj
+
+    // Espresso 相关的引用
+    androidTestCompile androidTestDependencies.espresso
+    //Junit4
+    androidTestCompile androidTestDependencies.testRunner
+    androidTestCompile androidTestDependencies.testRules
+
+    androidTestCompile appDependencies.supportV4
+    androidTestCompile appDependencies.recyclerView
+
 }

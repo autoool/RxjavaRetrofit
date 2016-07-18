@@ -9,8 +9,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 
+import com.squareup.haha.perflib.Main;
 import com.techidea.appclean.R;
 import com.techidea.appclean.adapter.CommonSpinnerAdapter;
 import com.techidea.appclean.adapter.SpinnerItem;
@@ -73,6 +75,17 @@ public class LoginFragment extends BaseFragment implements LoginContract.View {
     public void initialize() {
         mPrecenter.init(CommonUtilAPP.getMacAddress(context()),
                 CommonUtilAPP.getDeviceName());
+        mAppCompatSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
 
@@ -87,6 +100,11 @@ public class LoginFragment extends BaseFragment implements LoginContract.View {
         String username = mEditTextUsername.getText().toString().trim();
         String password = mEditTextPassword.getText().toString().trim();
         mPrecenter.login(username, password);
+    }
+
+    @OnClick(R.id.button_jump)
+    void buttonJump() {
+        startActivity(new Intent(getActivity(), MainActivity.class));
     }
 
     @Override

@@ -30,4 +30,11 @@
         android:layout_below="@id/edittext_password"
         android:text="login"/>
 
+    <Button
+        android:id="@+id/button_jump"
+        android:layout_width="400dp"
+        android:layout_height="96dp"
+        android:layout_below="@id/button_login"
+        android:text="jump"/>
+
 </RelativeLayout>
