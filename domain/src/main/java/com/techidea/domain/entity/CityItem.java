@@ -1,4 +1,4 @@
-package com.techidea.data.net;
+package com.techidea.domain.entity;
 
 /**
  * Created by zchao on 2016/7/19.

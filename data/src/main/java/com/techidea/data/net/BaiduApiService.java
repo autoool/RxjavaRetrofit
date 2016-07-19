@@ -1,6 +1,6 @@
 package com.techidea.data.net;
 
-import com.techidea.domain.entity.CityEntity;
+import com.techidea.domain.entity.CityItem;
 
 import java.util.List;
 

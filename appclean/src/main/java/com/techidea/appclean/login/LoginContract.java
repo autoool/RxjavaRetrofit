@@ -1,7 +1,5 @@
 package com.techidea.appclean.login;
 
-import android.content.Context;
-
 import com.techidea.appclean.adapter.SpinnerItem;
 import com.techidea.appclean.base.BasePresenter;
 import com.techidea.appclean.base.BaseView;
@@ -15,13 +13,13 @@ import java.util.List;
 public class LoginContract {
 
     //界面调用precenter 方法
-    public interface Precenter extends BasePresenter{
+    public interface Presenter extends BasePresenter{
         void login(String username,String password);
         void init(String deviceid,String deviceName);
     }
 
     //precenter 通知 view
-    public interface View extends BaseView<Precenter>{
+    public interface View extends BaseView<Presenter>{
         void initLoginUsers(List<SpinnerItem> list);
         void loginSuccess();
     }

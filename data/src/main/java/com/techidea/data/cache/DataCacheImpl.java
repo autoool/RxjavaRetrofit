@@ -27,11 +27,12 @@ public class DataCacheImpl implements DataCache {
     private static final String DEFAULT_FILE_NAME = "yunpos_";
     public static final String FILE_USREINFOS = "userinfos";
     public static final String FILE_PRODUCTS = "products";
+    public static final String FILE_CITYLIST = "citylist";
     public static final String FILE_PRODUCTCATEGORYS = "productcategorys";
     private static final String CACHE_UPDATE_USERINFOS = "cache_update_userinfos";
     private static final String CACHE_UPDATE_PRODUCTS = "cache_update_products";
     private static final String CACHE_UPDATE_PRODUCTCATEGRYS = "cache_update_productcategorys";
-
+    private static final String CACHE_UPDATE_CITYLIST = "cache_update_citylist";
 
     private static final long EXPIPATION_TIME = 60 * 10 * 1000;
 

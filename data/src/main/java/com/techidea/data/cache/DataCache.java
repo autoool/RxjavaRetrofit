@@ -30,6 +30,10 @@ public interface DataCache {
 
     void putLoginUser(LoginUser loginUser);
 
+//    Observable<List<CityItem>> getCityList();
+//
+//    void putCityList(List<CityItem> list);
+
     boolean isCached(String filename);
 
     boolean isExpired(String filename);

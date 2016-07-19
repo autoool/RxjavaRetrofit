@@ -1,8 +1,10 @@
 package com.techidea.appclean.base;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
 
 import com.techidea.data.repository.DataRepository;
+import com.techidea.domain.interactor.GetCityList;
 import com.techidea.domain.interactor.InitLoginUser;
 import com.techidea.domain.interactor.InitProduct;
 import com.techidea.domain.interactor.InitProductCategory;
@@ -31,6 +33,10 @@ public class Injection {
 
     public static Login provideLogin(Context context) {
         return new Login(provideDataRepository(context));
+    }
+
+    public static GetCityList provideGetCityList(Context context) {
+        return new GetCityList(provideDataRepository(context));
     }
 
 }

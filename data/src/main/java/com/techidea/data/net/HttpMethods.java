@@ -2,6 +2,7 @@ package com.techidea.data.net;
 
 import android.text.TextUtils;
 
+import com.techidea.domain.entity.CityItem;
 import com.techidea.domain.entity.LoginUser;
 import com.techidea.domain.entity.MemberInfoItem;
 import com.techidea.domain.entity.Product;
@@ -12,11 +13,13 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Authenticator;
 import okhttp3.FormBody;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.Route;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -35,6 +38,7 @@ public class HttpMethods {
     private String token = "";
 
     private Retrofit retrofit;
+    private Retrofit retrofitBaidu;
     private Retrofit retrofitHttps;
     private ApiService service;
     private ApiService serviceHttps;
@@ -64,7 +68,15 @@ public class HttpMethods {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(BASE_URL)
                 .build();
-        mBaiduApiService = retrofit.create(BaiduApiService.class);
+
+        retrofitBaidu = new Retrofit.Builder()
+                .client(getClientBaidu())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .baseUrl(BASE_URL)
+                .build();
+
+        mBaiduApiService = retrofitBaidu.create(BaiduApiService.class);
        /* retrofitHttps = new Retrofit.Builder()
                 .client(getHttpsClient())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -107,7 +119,7 @@ public class HttpMethods {
                 .map(new HttpResultFuncObject<MemberInfoItem>());
     }
 
-    public Observable<List<CityItem>> getCityList(String cityname){
+    public Observable<List<CityItem>> getCityList(String cityname) {
         return mBaiduApiService.getCityList(cityname)
                 .compose(RxUtils.<BaiduResponse<List<CityItem>>>rxSchedulerHelper())
                 .map(new BaiduapiFunction<List<CityItem>>());
@@ -144,10 +156,10 @@ public class HttpMethods {
         }
     }
 
-    private class BaiduapiFunction<T> implements  Func1<BaiduResponse<T>,T>{
+    private class BaiduapiFunction<T> implements Func1<BaiduResponse<T>, T> {
         @Override
         public T call(BaiduResponse<T> tBaiduResponse) {
-            if (tBaiduResponse.getErrNum()!=0){
+            if (tBaiduResponse.getErrNum() != 0) {
                 throw new HttpErrorException(tBaiduResponse.getErrNum(), tBaiduResponse.getErrMsg());
             }
             return tBaiduResponse.getRetData();
@@ -190,18 +202,16 @@ public class HttpMethods {
         }
     };
 
-/*如果你需要在遇到诸如 401 Not Authorised 的时候进行刷新 token，
-可以使用 Authenticator，这是一个专门设计用于当验证出现错误的时候，
-进行询问获取处理的拦截器：在http头部增加内容*/
-/*Authenticator mAuthenticator = new Authenticator() {
-        @Override public VoiceInteractor.Request authenticate(Route route, Response response)
-                throws IOException {
-            Your.sToken = service.refreshToken();
+    /*可以使用 Authenticator，这是一个专门设计用于当验证出现错误的时候，
+    进行询问获取处理的拦截器：在http头部增加内容*/
+    Authenticator mAuthenticator = new Authenticator() {
+        @Override
+        public Request authenticate(Route route, Response response) throws IOException {
             return response.request().newBuilder()
-                    .addHeader("Authorization", Your.sToken)
+                    .addHeader("apikey", "f187336ea55cf8a698fc13dd6a2530f9")
                     .build();
         }
-    };*/
+    };
 
     private OkHttpClient getClient() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -212,6 +222,20 @@ public class HttpMethods {
                 .retryOnConnectionFailure(false)
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .addInterceptor(mTokenInterceptor)
+                .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                .build();
+
+    }
+
+    private OkHttpClient getClientBaidu() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        return new OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .retryOnConnectionFailure(false)
+                .connectTimeout(15, TimeUnit.SECONDS)
+                .authenticator(mAuthenticator)
                 .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .build();
 

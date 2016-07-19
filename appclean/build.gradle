@@ -161,26 +161,24 @@ dependencies {
     compile project(':domain')
     compile project(':corelibrary')
     compile project(':data')
+    compile project(':commonlibrary')
+
     debugCompile appDependencies.leakcanaryDebug
     releaseCompile appDependencies.leakcanaryRelease
     compile appDependencies.appcompat
     compile appDependencies.supportV4
     compile appDependencies.recyclerView
     compile appDependencies.butterKnife
-
-
     testCompile appTestDependencies.junit
     testCompile appTestDependencies.mockito
     testCompile appTestDependencies.robolectric
     testCompile appTestDependencies.robolectricShadows
     testCompile appTestDependencies.assertj
-
     // Espresso 相关的引用
     androidTestCompile androidTestDependencies.espresso
     //Junit4
     androidTestCompile androidTestDependencies.testRunner
     androidTestCompile androidTestDependencies.testRules
-
     androidTestCompile appDependencies.supportV4
     androidTestCompile appDependencies.recyclerView
 

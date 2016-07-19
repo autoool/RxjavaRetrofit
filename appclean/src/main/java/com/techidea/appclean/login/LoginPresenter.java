@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by zchao on 2016/5/20.
  */
-public class LoginPresenter implements LoginContract.Precenter {
+public class LoginPresenter implements LoginContract.Presenter {
 
     private LoginContract.View mView;
     private final Login mLogin;

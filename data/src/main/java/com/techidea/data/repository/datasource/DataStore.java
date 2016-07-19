@@ -1,5 +1,6 @@
 package com.techidea.data.repository.datasource;
 
+import com.techidea.domain.entity.CityItem;
 import com.techidea.domain.entity.LoginUser;
 import com.techidea.domain.entity.Product;
 import com.techidea.domain.entity.ProductCategory;
@@ -21,4 +22,6 @@ public interface DataStore {
     Observable<List<UserInfo>> initUserInfo(String deviceId, String deviceType);
 
     Observable<LoginUser> login(String deviceId, String username, String password);
+
+    Observable<List<CityItem>> getCityList(String cityname);
 }

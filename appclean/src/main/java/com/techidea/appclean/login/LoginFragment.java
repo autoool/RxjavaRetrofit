@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 
-import com.squareup.haha.perflib.Main;
 import com.techidea.appclean.R;
 import com.techidea.appclean.adapter.CommonSpinnerAdapter;
 import com.techidea.appclean.adapter.SpinnerItem;
@@ -39,7 +38,7 @@ public class LoginFragment extends BaseFragment implements LoginContract.View {
     @Bind(R.id.spinner_username)
     AppCompatSpinner mAppCompatSpinner;
 
-    private LoginContract.Precenter mPrecenter;
+    private LoginContract.Presenter mPrecenter;
     private Context mContext;
     private CommonSpinnerAdapter mCommonSpinnerAdapter;
     private List<SpinnerItem> mSpinnerItems;
@@ -119,7 +118,7 @@ public class LoginFragment extends BaseFragment implements LoginContract.View {
     }
 
     @Override
-    public void setPresenter(LoginContract.Precenter presenter) {
+    public void setPresenter(LoginContract.Presenter presenter) {
         this.mPrecenter = presenter;
     }
 

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.techidea.data.cache.DataCache;
 import com.techidea.data.cache.DataCacheImpl;
+import com.techidea.domain.entity.CityItem;
 import com.techidea.data.net.HttpMethods;
 import com.techidea.data.repository.datasource.DataStore;
 import com.techidea.domain.entity.LoginUser;
@@ -76,5 +77,10 @@ public class RemoteDataSource implements DataStore {
     @Override
     public Observable<LoginUser> login(String deviceId, String username, String password) {
         return HttpMethods.getInstance().login(deviceId, username, password).doOnNext(saveToLoginUser);
+    }
+
+    @Override
+    public Observable<List<CityItem>> getCityList(String cityname) {
+        return HttpMethods.getInstance().getCityList(cityname);
     }
 }

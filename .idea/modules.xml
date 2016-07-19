@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RxjavaRetrofit.iml" filepath="$PROJECT_DIR$/RxjavaRetrofit.iml" />
       <module fileurl="file://$PROJECT_DIR$/appclean/appclean.iml" filepath="$PROJECT_DIR$/appclean/appclean.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commonlibrary/commonlibrary.iml" filepath="$PROJECT_DIR$/commonlibrary/commonlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/corelibrary/corelibrary.iml" filepath="$PROJECT_DIR$/corelibrary/corelibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/data/data.iml" filepath="$PROJECT_DIR$/data/data.iml" />
       <module fileurl="file://$PROJECT_DIR$/domain/domain.iml" filepath="$PROJECT_DIR$/domain/domain.iml" />
