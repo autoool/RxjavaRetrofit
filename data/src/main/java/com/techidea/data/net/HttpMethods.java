@@ -38,6 +38,7 @@ public class HttpMethods {
     private Retrofit retrofitHttps;
     private ApiService service;
     private ApiService serviceHttps;
+    private BaiduApiService mBaiduApiService;
 
     private static class SingletonHolder {
         private static final HttpMethods INSTANCE = new HttpMethods();
@@ -63,7 +64,7 @@ public class HttpMethods {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(BASE_URL)
                 .build();
-
+        mBaiduApiService = retrofit.create(BaiduApiService.class);
        /* retrofitHttps = new Retrofit.Builder()
                 .client(getHttpsClient())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -73,6 +74,7 @@ public class HttpMethods {
 
         service = retrofit.create(ApiService.class);
 //        serviceHttps = retrofitHttps.create(HttpApi.class);
+
     }
 
     public Observable<List<UserInfo>> initLoginUsers(String deviceId, String deviceType) {
@@ -105,6 +107,12 @@ public class HttpMethods {
                 .map(new HttpResultFuncObject<MemberInfoItem>());
     }
 
+    public Observable<List<CityItem>> getCityList(String cityname){
+        return mBaiduApiService.getCityList(cityname)
+                .compose(RxUtils.<BaiduResponse<List<CityItem>>>rxSchedulerHelper())
+                .map(new BaiduapiFunction<List<CityItem>>());
+    }
+
     /**
      * 用来统一处理Http的resultCode,并将HttpResult的Data部分剥离出来返回给subscriber
      *
@@ -133,6 +141,16 @@ public class HttpMethods {
                 throw new HttpErrorException(httpResult.getCode(), httpResult.getMsg());
             }
             return httpResult.getObject();
+        }
+    }
+
+    private class BaiduapiFunction<T> implements  Func1<BaiduResponse<T>,T>{
+        @Override
+        public T call(BaiduResponse<T> tBaiduResponse) {
+            if (tBaiduResponse.getErrNum()!=0){
+                throw new HttpErrorException(tBaiduResponse.getErrNum(), tBaiduResponse.getErrMsg());
+            }
+            return tBaiduResponse.getRetData();
         }
     }
 

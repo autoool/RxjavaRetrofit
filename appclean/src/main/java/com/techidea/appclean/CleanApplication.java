@@ -20,8 +20,8 @@ public class CleanApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        if (BuildConfig.DEBUG)
-            LeakCanary.install(this);
+//        if (BuildConfig.DEBUG)
+//            LeakCanary.install(this);
         Fabric.with(this, new Crashlytics());
         Fabric.with(this, new Answers());
 //        SslSocketFactory.getInstance().init(getApplicationContext());

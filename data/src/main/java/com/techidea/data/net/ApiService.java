@@ -60,8 +60,6 @@ public interface ApiService {
     );
 //    https://api.heweather.com/x3/citylist?search=类型&key=你的认证key
 
-    @FormUrlEncoded
-    @GET("citylist?")
-    Observable<CityEntity> getCityList();
+
 
 }

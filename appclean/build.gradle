@@ -89,7 +89,9 @@ android {
 
         alpha_rxjava {
             applicationId = "com.techidea.appclean"
-            manifestPlaceholders = [API_HOST_VALUE: "",
+            manifestPlaceholders = [API_HOST_VALUE: "http://apis.baidu.com/apistore/weatherservice/",
+                    BAIDU_APIKEY:""
+
 
             ]
             signingConfig defaultSigning
@@ -97,7 +99,7 @@ android {
 
         beta_rxjava {
             applicationId = "com.techidea.appclean"
-            manifestPlaceholders = [API_HOST_VALUE: "",
+            manifestPlaceholders = [API_HOST_VALUE: "http://apis.baidu.com/apistore/weatherservice/",
 
             ]
             signingConfig defaultSigning
@@ -105,7 +107,7 @@ android {
 
         product_rxjava {
             applicationId = "com.techidea.appclean"
-            manifestPlaceholders = [API_HOST_VALUE: "",
+            manifestPlaceholders = [API_HOST_VALUE: "http://apis.baidu.com/apistore/weatherservice/",
 
             ]
             signingConfig productSigning

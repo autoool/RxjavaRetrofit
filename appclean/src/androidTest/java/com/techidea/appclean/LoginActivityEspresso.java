@@ -12,15 +12,13 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static android.support.test.InstrumentationRegistry.getTargetContext;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
 
 /**
  * Created by zchao on 2016/7/18.
@@ -36,15 +34,22 @@ public class LoginActivityEspresso {
             = new ActivityTestRule<LoginActivity>(LoginActivity.class);
 
     @Before
-    public void setup(){
+    public void setup() {
         Intent startIntent = new Intent();
         mActivityTestRule.launchActivity(startIntent);
     }
 
     @Test
-    public void testInputPwd(){
-        onView(withId(R.id.edittext_password))
-                .perform(typeText("password"));
+    public void testLogin() {
+        login();
+        onView(withId(R.id.button_member)).check(matches(isDisplayed()));
+    }
 
+    private void login() {
+        onView(withId(R.id.edittext_username))
+                .perform(typeText("chao01"), closeSoftKeyboard());
+        onView(withId(R.id.edittext_password))
+                .perform(typeText("111111"));
+        onView(withId(R.id.button_login)).perform(click());
     }
 }
