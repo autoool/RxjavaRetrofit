@@ -38,5 +38,9 @@ public class RemoteDataSourceTest extends ApplicationTestCase {
         mRemoteDataSource.login("08:00:00:64:84:0C", "user01", "111111");
     }
 
+    @Test
+    public void testGetCityList() {
+        mRemoteDataSource.getCityList("朝阳");
+    }
 
 }

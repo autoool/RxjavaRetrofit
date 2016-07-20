@@ -2,18 +2,22 @@ package com.techidea.data.net;
 
 import java.io.IOException;
 
+import okhttp3.Authenticator;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Protocol;
+import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import okhttp3.Route;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by zchao on 2016/7/8.
+ * 拟网络返回
  */
 public class MockRetrofitHelper {
 
@@ -23,6 +27,7 @@ public class MockRetrofitHelper {
     public <T> T create(Class<T> clazz) {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new MockInterceptor())
+                .authenticator(mAuthenticator)
                 .build();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://www.api")
@@ -53,4 +58,13 @@ public class MockRetrofitHelper {
             return response;
         }
     }
+
+    private Authenticator mAuthenticator = new Authenticator() {
+        @Override
+        public Request authenticate(Route route, Response response) throws IOException {
+            return response.request().newBuilder()
+                    .header("apikey", "f187336ea55cf8a698fc13dd6a2530f9")
+                    .build();
+        }
+    };
 }

@@ -7,6 +7,7 @@ import com.techidea.data.cache.DataCacheImpl;
 import com.techidea.data.net.HttpMethods;
 import com.techidea.data.repository.datasource.local.LocalDataSource;
 import com.techidea.data.repository.datasource.remote.RemoteDataSource;
+import com.techidea.domain.entity.CityItem;
 import com.techidea.domain.entity.LoginUser;
 import com.techidea.domain.entity.MemberInfoItem;
 import com.techidea.domain.entity.Product;
@@ -92,5 +93,11 @@ public class DataRepository implements DataRepositoryDomain {
 
     public Observable<LoginUser> getLoginUser() {
         return null;
+    }
+
+    @Override
+    public Observable<List<CityItem>> getCityList(String cityname) {
+//        return HttpMethods.getInstance().getCityList(cityname);
+        return this.mRemoteDataSource.getCityList(cityname);
     }
 }

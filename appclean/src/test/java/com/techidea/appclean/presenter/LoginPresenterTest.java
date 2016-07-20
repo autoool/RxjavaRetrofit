@@ -47,7 +47,6 @@ public class LoginPresenterTest extends AndroidTestCase {
         given(loginView.context()).willReturn(mContext);
         mLoginPresenter.init(anyString(), anyString());
         mLoginPresenter.initUserInfos(anyList());
-        verify(loginView).showError(anyString());
         verify(loginView).initLoginUsers(anyList());
         verify(mInitLoginUser).initParams(anyString(), anyString());
         verify(mInitLoginUser).execute(any(Subscriber.class));

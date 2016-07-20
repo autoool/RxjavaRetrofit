@@ -49,7 +49,6 @@ public class LoginPresenter implements LoginContract.Presenter {
     public void init(String deviceid, String devicename) {
         mInitLoginUser.initParams(deviceid, devicename);
         mInitLoginUser.execute(new InitLoginUserSubscriber());
-        mView.showError("用户名或密码输入有误");
     }
 
     private boolean checkUserInput(String username, String password) {

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/search_action"
+        android:icon="@android:drawable/ic_menu_search"
+        app:showAsAction="ifRoom"
+        android:title="Search"
+        ></item>
+
+    <item
+        android:id="@+id/refresh_action"
+        android:icon="@android:drawable/ic_menu_revert"
+        app:showAsAction="ifRoom"
+        android:title="Search"
+        ></item>
+
+    <!--<item-->
+        <!--android:id="@+id/add_action"-->
+        <!--android:icon="@android:drawable/ic_menu_add"-->
+        <!--app:showAsAction="never"-->
+        <!--android:title="Other"-->
+        <!--&gt;</item>-->
+
+    <!--<item-->
+        <!--android:id="@+id/del_action"-->
+        <!--android:icon="@android:drawable/ic_menu_delete"-->
+        <!--app:showAsAction="never"-->
+        <!--android:title="Del"-->
+        <!--&gt;</item>-->
+
+</menu>

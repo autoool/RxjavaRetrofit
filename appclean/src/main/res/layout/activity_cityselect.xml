@@ -2,10 +2,9 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/coordinatorLayout"
+    android:id="@+id/coordinatorLayout_select"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -29,30 +28,21 @@
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
-
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview_citylist"
+    <RelativeLayout
+        android:id="@+id/select_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/app_bar_height"/>
+        android:layout_marginTop="@dimen/app_bar_height">
 
-    <ProgressBar
-        android:id="@+id/progressbar_load"
-        style="@style/AppTheme.ProgressBar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@android:color/holo_red_light"
-        android:visibility="gone"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview_selectcity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textview_nodata"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="暂无数据"
-        android:visibility="gone"/>
+        </android.support.v7.widget.RecyclerView>
 
+    </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -202,13 +202,26 @@ public class HttpMethods {
         }
     };
 
+    Interceptor apikeyInterceptor = new Interceptor() {
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            Request request = chain.request();
+            Request newRequest;
+            newRequest = request.newBuilder()
+                    .addHeader("apikey", "f187336ea55cf8a698fc13dd6a2530f9")
+                    .build();
+            return chain.proceed(newRequest);
+
+        }
+    };
+
     /*可以使用 Authenticator，这是一个专门设计用于当验证出现错误的时候，
     进行询问获取处理的拦截器：在http头部增加内容*/
     Authenticator mAuthenticator = new Authenticator() {
         @Override
         public Request authenticate(Route route, Response response) throws IOException {
             return response.request().newBuilder()
-                    .addHeader("apikey", "f187336ea55cf8a698fc13dd6a2530f9")
+                    .header("apikey", "f187336ea55cf8a698fc13dd6a2530f9")
                     .build();
         }
     };
@@ -235,7 +248,7 @@ public class HttpMethods {
                 .addInterceptor(logging)
                 .retryOnConnectionFailure(false)
                 .connectTimeout(15, TimeUnit.SECONDS)
-                .authenticator(mAuthenticator)
+                .addInterceptor(apikeyInterceptor)
                 .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .build();
 

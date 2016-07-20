@@ -20,13 +20,19 @@
             android:value="${API_HOST_VALUE}"/>
 
         <activity android:name=".splash.SplashActivity">
+        </activity>
+        <activity android:name=".login.LoginActivity"/>
+        <activity android:name=".main.MainActivity">
+        </activity>
+
+        <activity
+            android:name=".baidu.CityListActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-        <activity android:name=".login.LoginActivity"/>
-        <activity android:name=".main.MainActivity">
         </activity>
     </application>
 

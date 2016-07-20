@@ -24,28 +24,35 @@ public class CityListPresenter implements CityListContract.Presenter {
 
     @Override
     public void start() {
-
+        mView.showLoading();
     }
 
     @Override
-    public void init() {
-        mGetCityList.initParams("朝阳").execute(new GetCityListSub());
+    public void init(String cityname) {
+        mGetCityList.initParams(cityname);
+        mGetCityList.execute(new GetCityListSub());
+    }
+
+    public void initCityList(List<CityItem> list) {
+        mView.initCityList(list);
     }
 
     private final class GetCityListSub extends DefaultSubscriber<List<CityItem>> {
         @Override
         public void onCompleted() {
-
+            mView.hideLoading();
         }
 
         @Override
         public void onError(Throwable e) {
+            mView.hideLoading();
             mView.showError(e.getMessage());
         }
 
         @Override
         public void onNext(List<CityItem> cityItems) {
-
+            mCityItemList = cityItems;
+            initCityList(cityItems);
         }
     }
 }

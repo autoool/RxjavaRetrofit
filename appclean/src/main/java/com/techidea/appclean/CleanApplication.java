@@ -22,8 +22,8 @@ public class CleanApplication extends Application {
         super.onCreate();
 //        if (BuildConfig.DEBUG)
 //            LeakCanary.install(this);
-        Fabric.with(this, new Crashlytics());
-        Fabric.with(this, new Answers());
+//        Fabric.with(this, new Crashlytics());
+//        Fabric.with(this, new Answers());
 //        SslSocketFactory.getInstance().init(getApplicationContext());
         getApiHost();
     }

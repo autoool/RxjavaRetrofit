@@ -42,6 +42,7 @@ public class LoginActivityEspresso {
     @Test
     public void testLogin() {
         login();
+        //登陆完成以后，主页面的控件肯定显示
         onView(withId(R.id.button_member)).check(matches(isDisplayed()));
     }
 

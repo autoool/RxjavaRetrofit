@@ -6,6 +6,9 @@
 ### Robolectric
 
 ### Espresso 
+https://developer.android.com/training/testing/ui-testing/espresso-testing.html
+- Using Espresso with ActivityTestRule
+- Using Espresso with ActivityInstrumentationTestCase2  不建议
 - Google官方提供的Android UI自动化测试的框架. **适用于app内的功能性UI测试**。
 - 和Robolectric 一样，为了测试ui
 - Espresso 测试框架提供了一系列的API用于构建UI**测试来测试app内用户流操作**。这些API让你可以编写简洁可靠的自动化UI测试。Espresso非常适合用来编写白盒测试，其中测试代码的编写是利用了被测试app中程序代码实现细节。
@@ -59,3 +62,15 @@ public class CalculatorInstrumentationTest
 ## 目录结构
 - test  单元测试   测试流程
 - androidtest  测试android api
+
+
+
+## 针对android的单元测试
+### 使用espresso ui
+-  dataadapter  
+-  service
+-  webview
+### 使用junit  MockitoJUnitRunner AndroidJUnit4
+- sharepreferences
+- 
+

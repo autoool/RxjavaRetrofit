@@ -169,6 +169,7 @@ dependencies {
     compile appDependencies.supportV4
     compile appDependencies.recyclerView
     compile appDependencies.butterKnife
+    compile appDependencies.design
     testCompile appTestDependencies.junit
     testCompile appTestDependencies.mockito
     testCompile appTestDependencies.robolectric
