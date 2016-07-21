@@ -1,6 +1,5 @@
-package com.techidea.appclean.baidu;
+package com.techidea.appclean.hefeng;
 
-import com.techidea.appclean.login.LoginContract;
 import com.techidea.domain.entity.CityItem;
 import com.techidea.domain.interactor.DefaultSubscriber;
 import com.techidea.domain.interactor.GetCityList;
@@ -41,6 +40,7 @@ public class CityListPresenter implements CityListContract.Presenter {
         @Override
         public void onCompleted() {
             mView.hideLoading();
+            mView.stoprefresh();
         }
 
         @Override

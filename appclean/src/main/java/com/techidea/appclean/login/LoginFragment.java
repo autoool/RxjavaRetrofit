@@ -4,9 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatSpinner;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -31,17 +37,20 @@ import butterknife.OnClick;
  */
 public class LoginFragment extends BaseFragment implements LoginContract.View {
 
-    @Bind(R.id.edittext_username)
-    EditText mEditTextUsername;
     @Bind(R.id.edittext_password)
     EditText mEditTextPassword;
     @Bind(R.id.spinner_username)
     AppCompatSpinner mAppCompatSpinner;
+    @Bind(R.id.coordinatorLayout_login)
+    CoordinatorLayout mCoordinatorLayout;
 
     private LoginContract.Presenter mPrecenter;
     private Context mContext;
     private CommonSpinnerAdapter mCommonSpinnerAdapter;
     private List<SpinnerItem> mSpinnerItems;
+    private String username;
+    private String password;
+    private Toolbar mToolbar;
 
     public LoginFragment() {
     }
@@ -67,8 +76,14 @@ public class LoginFragment extends BaseFragment implements LoginContract.View {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, root);
-        initialize();
         return root;
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.login_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     public void initialize() {
@@ -77,7 +92,7 @@ public class LoginFragment extends BaseFragment implements LoginContract.View {
         mAppCompatSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                username = mSpinnerItems.get(position).getName();
             }
 
             @Override
@@ -87,23 +102,17 @@ public class LoginFragment extends BaseFragment implements LoginContract.View {
         });
     }
 
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mToolbar = initToolbar(R.id.toolbar_login);
+        initialize();
     }
 
     @OnClick(R.id.button_login)
     void buttonLogin() {
-        Log.d("Ser", CommonUtilAPP.getDeviceSerial());
-        String username = mEditTextUsername.getText().toString().trim();
         String password = mEditTextPassword.getText().toString().trim();
         mPrecenter.login(username, password);
-    }
-
-    @OnClick(R.id.button_jump)
-    void buttonJump() {
-        startActivity(new Intent(getActivity(), MainActivity.class));
     }
 
     @Override
@@ -114,7 +123,6 @@ public class LoginFragment extends BaseFragment implements LoginContract.View {
 
     @Override
     protected void showToastMessage(String message) {
-        super.showToastMessage(message);
     }
 
     @Override
@@ -124,13 +132,13 @@ public class LoginFragment extends BaseFragment implements LoginContract.View {
 
     @Override
     public void showError(String message) {
-        showToastMessage(message);
+        showMsg(message);
     }
 
     @Override
     public void loginSuccess() {
         mContext.startActivity(new Intent(getActivity(), MainActivity.class));
-        showToastMessage("登陆成功");
+        showMsg("登陆成功");
     }
 
     @Override
@@ -138,5 +146,12 @@ public class LoginFragment extends BaseFragment implements LoginContract.View {
         mSpinnerItems = list;
         mCommonSpinnerAdapter = new CommonSpinnerAdapter(context(), mSpinnerItems);
         mAppCompatSpinner.setAdapter(mCommonSpinnerAdapter);
+    }
+
+    public void showMsg(String msg) {
+        Snackbar snackbar = Snackbar.make(mCoordinatorLayout, msg, Snackbar.LENGTH_LONG)
+                .setAction("Action", null);
+        snackbar.getView().setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        snackbar.show();
     }
 }

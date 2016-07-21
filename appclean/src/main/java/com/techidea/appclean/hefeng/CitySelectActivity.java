@@ -1,4 +1,4 @@
-package com.techidea.appclean.baidu;
+package com.techidea.appclean.hefeng;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

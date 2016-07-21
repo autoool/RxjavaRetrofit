@@ -13,23 +13,4 @@
         android:max="100"
         />
 
-    <Button
-        android:id="@+id/button_test"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_alignParentBottom="true"
-        android:background="@android:color/holo_orange_light"
-        android:text="user"/>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/progressbar_load">
-
-        <TextView
-            android:id="@+id/textview_log"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </ScrollView>
-
 </RelativeLayout>

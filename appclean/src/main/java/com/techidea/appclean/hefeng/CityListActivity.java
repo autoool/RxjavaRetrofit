@@ -1,12 +1,11 @@
-package com.techidea.appclean.baidu;
+package com.techidea.appclean.hefeng;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.techidea.appclean.R;
@@ -45,6 +43,8 @@ public class CityListActivity extends AppCompatActivity
     ProgressBar mProgressBar;
     @Bind(R.id.textview_nodata)
     TextView mTextViewNodata;
+    @Bind(R.id.swiperefresh_layout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     private CityListAdapter mCityListAdapter;
 
@@ -64,6 +64,16 @@ public class CityListActivity extends AppCompatActivity
         );
         mCityListPresenter.init("朝阳");
         mCityItemList = new ArrayList<>();
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mCityItemList = new ArrayList<CityItem>();
+                mCityListAdapter = new CityListAdapter(mRecyclerView, mCityItemList, R.layout.view_citylist_item);
+                mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                mRecyclerView.setAdapter(mCityListAdapter);
+                mCityListPresenter.init("朝阳");
+            }
+        });
     }
 
     @Override
@@ -131,6 +141,16 @@ public class CityListActivity extends AppCompatActivity
     public void hideLoading() {
         mProgressBar.setVisibility(View.GONE);
         setProgressBarIndeterminate(false);
+    }
+
+    @Override
+    public void refreshing() {
+        mSwipeRefreshLayout.setRefreshing(true);
+    }
+
+    @Override
+    public void stoprefresh() {
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     public void showProgressLoad(boolean show) {

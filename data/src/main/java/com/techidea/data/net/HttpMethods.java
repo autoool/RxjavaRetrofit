@@ -42,7 +42,7 @@ public class HttpMethods {
     private Retrofit retrofitHttps;
     private ApiService service;
     private ApiService serviceHttps;
-    private BaiduApiService mBaiduApiService;
+    private HefApiService mBaiduApiService;
 
     private static class SingletonHolder {
         private static final HttpMethods INSTANCE = new HttpMethods();
@@ -76,7 +76,7 @@ public class HttpMethods {
                 .baseUrl(BASE_URL)
                 .build();
 
-        mBaiduApiService = retrofitBaidu.create(BaiduApiService.class);
+        mBaiduApiService = retrofitBaidu.create(HefApiService.class);
        /* retrofitHttps = new Retrofit.Builder()
                 .client(getHttpsClient())
                 .addConverterFactory(GsonConverterFactory.create())

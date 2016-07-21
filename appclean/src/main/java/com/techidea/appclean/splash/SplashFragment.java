@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ import butterknife.ButterKnife;
 /**
  * Created by zchao on 2016/5/18.
  */
-public class SplashFragment extends BaseFragment implements SplashContract.View {
+public class SplashFragment extends Fragment implements SplashContract.View {
 
     @Bind(R.id.progressbar_load)
     ProgressBar mProgressBarLoad;
@@ -80,9 +81,8 @@ public class SplashFragment extends BaseFragment implements SplashContract.View 
         showToastMessage(message);
     }
 
-    @Override
     protected void showToastMessage(String message) {
-        super.showToastMessage(message);
+
     }
 
     @Override

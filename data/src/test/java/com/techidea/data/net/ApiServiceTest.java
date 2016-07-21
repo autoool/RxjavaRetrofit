@@ -19,14 +19,14 @@ import rx.observers.TestSubscriber;
 public class ApiServiceTest {
 
     ApiService mApiService;
-    BaiduApiService mBaiduApiService;
+    HefApiService mBaiduApiService;
     MockRetrofitHelper mRetrofitHelper;
 
     @Before
     public void setUp() throws Exception {
         mRetrofitHelper = new MockRetrofitHelper();
         mApiService = mRetrofitHelper.create(ApiService.class);
-        mBaiduApiService = mRetrofitHelper.create(BaiduApiService.class);
+        mBaiduApiService = mRetrofitHelper.create(HefApiService.class);
     }
 
     @Test

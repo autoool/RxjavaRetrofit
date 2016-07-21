@@ -14,7 +14,7 @@ import rx.Observable;
 /**
  * Created by zchao on 2016/7/19.
  */
-public interface BaiduApiService {
+public interface HefApiService {
 
     @GET("citylist")
     Observable<BaiduResponse<List<CityItem>>> getCityList(@Query("cityname") String cityname);

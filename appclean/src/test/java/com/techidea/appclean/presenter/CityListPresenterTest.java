@@ -3,8 +3,8 @@ package com.techidea.appclean.presenter;
 import android.content.Context;
 import android.test.AndroidTestCase;
 
-import com.techidea.appclean.baidu.CityListContract;
-import com.techidea.appclean.baidu.CityListPresenter;
+import com.techidea.appclean.hefeng.CityListContract;
+import com.techidea.appclean.hefeng.CityListPresenter;
 import com.techidea.domain.interactor.GetCityList;
 
 import org.mockito.Mock;

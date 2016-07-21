@@ -2,13 +2,18 @@ package com.techidea.appclean.activity;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v4.media.session.MediaSessionCompat;
+import android.support.v7.widget.AppCompatSpinner;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.techidea.appclean.BuildConfig;
 import com.techidea.appclean.R;
+import com.techidea.appclean.adapter.CommonSpinnerAdapter;
+import com.techidea.appclean.adapter.SpinnerItem;
 import com.techidea.appclean.login.LoginActivity;
+import com.techidea.appclean.login.LoginFragment;
 import com.techidea.appclean.main.MainActivity;
 
 import org.junit.Assert;
@@ -22,10 +27,14 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.Shadows;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowActivity;
 import org.robolectric.shadows.ShadowTextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -43,13 +52,18 @@ public class LoginActivityRobolectric {
     private EditText mEditTextUser;
     private EditText mEditTextPwd;
     private Button mButton;
+    private AppCompatSpinner mAppCompatSpinner;
+    private LoginFragment mFragment;
+    private List<SpinnerItem> mSpinnerItems;
+    private CommonSpinnerAdapter mCommonSpinnerAdapter;
 
     @Before
     public void setup() {
         mLoginActivity = Robolectric.buildActivity(LoginActivity.class).create().resume().visible().get();
         mEditTextPwd = (EditText) mLoginActivity.findViewById(R.id.edittext_password);
-        mEditTextUser = (EditText) mLoginActivity.findViewById(R.id.edittext_username);
-        mButton = (Button) mLoginActivity.findViewById(R.id.button_jump);
+        mButton = (Button) mLoginActivity.findViewById(R.id.button_login);
+        mAppCompatSpinner = (AppCompatSpinner) mLoginActivity.findViewById(R.id.spinner_username);
+        mFragment = (LoginFragment) mLoginActivity.getSupportFragmentManager().findFragmentById(R.id.framelayout_login);
     }
 
     @Test
@@ -58,23 +72,22 @@ public class LoginActivityRobolectric {
     }
 
     @Test
-    public void spinnerInitLoginUsers() {
+    public void spinnerNotBenull() {
+        assertThat(mAppCompatSpinner, is(notNullValue()));
 
     }
-
-    @Test
-    public void testContainsLoginFragement() throws Exception{
-        // Fragment 需要保持一致
-        Fragment loginFragment = mLoginActivity.getSupportFragmentManager().findFragmentById(R.id.framelayout_login);
-        assertThat(loginFragment, is(notNullValue()));
-    }
-
 
     @Test
     public void checkUserPwd() {
-        mEditTextUser.setText("chao01");
+        mAppCompatSpinner.setSelection(0, true);
         mEditTextPwd.setText("111111");
-        mLoginActivity.findViewById(R.id.button_login).performClick();
+        mButton.performClick();
+        ShadowActivity shadowActivity = Shadows.shadowOf(mLoginActivity);
+        Intent actualIntent = shadowActivity.getNextStartedActivity();
+        if (actualIntent == null) {
+
+        }
+        Assert.assertEquals(MainActivity.class.getCanonicalName(), actualIntent.getComponent().getClassName());
     }
 
     @Test

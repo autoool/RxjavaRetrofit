@@ -2,7 +2,6 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/coordinatorLayout_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,12 +13,18 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_login"
+            android:id="@+id/toolbar_main"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_collapseMode="pin"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
+            <TextView
+                android:id="@+id/textview_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@android:color/white"/>
 
         </android.support.v7.widget.Toolbar>
 
@@ -30,27 +35,12 @@
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize">
 
-
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/spinner_username"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"/>
-
-
-        <EditText
-            android:id="@+id/edittext_password"
-            android:layout_width="400dp"
-            android:layout_height="48dp"
-            android:layout_below="@id/spinner_username"/>
-
         <Button
-            android:id="@+id/button_login"
-            android:layout_width="400dp"
+            android:id="@+id/button_citylist"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_below="@id/edittext_password"
-            android:text="login"/>
+            android:text="CityList"/>
 
     </RelativeLayout>
-
 
 </android.support.design.widget.CoordinatorLayout>

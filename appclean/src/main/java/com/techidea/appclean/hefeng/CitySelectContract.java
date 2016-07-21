@@ -1,4 +1,4 @@
-package com.techidea.appclean.baidu;
+package com.techidea.appclean.hefeng;
 
 import com.techidea.appclean.base.BasePresenter;
 import com.techidea.appclean.base.BaseView;
@@ -7,18 +7,16 @@ import com.techidea.domain.entity.CityItem;
 import java.util.List;
 
 /**
- * Created by zchao on 2016/7/19.
+ * Created by zchao on 2016/7/20.
  */
-public class CityListContract  {
+public class CitySelectContract {
 
     public interface Presenter extends BasePresenter{
-        void init(String cityname);
+        void init();
     }
 
     public interface View extends BaseView<Presenter>{
-        void showError(String msg);
-        void initCityList(List<CityItem> list);
-        void showLoading();
-        void hideLoading();
+        void initCitys(List<CityItem> list);
+
     }
 }
