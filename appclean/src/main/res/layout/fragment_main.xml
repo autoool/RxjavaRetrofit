@@ -41,6 +41,16 @@
             android:layout_height="48dp"
             android:text="CityList"/>
 
+        <TextView
+            android:id="@+id/textview_source"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"/>
+
+        <TextView
+            android:id="@+id/textview_dest"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"/>
+
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

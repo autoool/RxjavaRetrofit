@@ -66,7 +66,10 @@ public class CalculatorInstrumentationTest
 
 
 ## 针对android的单元测试
-### 使用espresso ui
+### 使用espresso  AndroidJUnit4  ui
+
+测试ui是否按照预期的显示，比如说点击了按钮，view发生了改变，可以测试view是否按照预期变化。
+
 -  dataadapter  
 -  service
 -  webview

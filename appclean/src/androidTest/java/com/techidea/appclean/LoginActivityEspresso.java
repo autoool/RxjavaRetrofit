@@ -56,8 +56,8 @@ public class LoginActivityEspresso {
 //        onData(allOf(is(instanceOf(String.class)), is("chao01"))).perform(click());
 //        onView(withId(R.id.spinner_name))
 //                .check(matches(withText(containsString("chao01"))));
-        onView(withId(R.id.edittext_password)).check(matches(isDisplayed()));
-        onView(withId(R.id.edittext_password)).perform(typeText("111111"),closeSoftKeyboard());
+//        onView(withId(R.id.edittext_password)).check(matches(isDisplayed()));
+//        onView(withId(R.id.edittext_password)).perform(typeText("111111"),closeSoftKeyboard());
 //        onView(withId(R.id.edittext_password)).check(matches(withText("111111")));
 //        onView(withId(R.id.button_login)).perform(click());
 //

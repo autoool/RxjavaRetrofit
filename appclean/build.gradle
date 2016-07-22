@@ -89,7 +89,7 @@ android {
 
         alpha_rxjava {
             applicationId = "com.techidea.appclean"
-            manifestPlaceholders = [API_HOST_VALUE: "http://apis.baidu.com/apistore/weatherservice/",
+            manifestPlaceholders = [API_HOST_VALUE: "http://mserver.conv-store.alpha.testing.fantayun.cn/yunposmserver/api/",
                     BAIDU_APIKEY:""
 
 

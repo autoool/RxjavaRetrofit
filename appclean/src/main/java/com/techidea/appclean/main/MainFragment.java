@@ -17,6 +17,7 @@ import com.techidea.appclean.base.BaseFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by zchao on 2016/6/13.
@@ -26,6 +27,10 @@ public class MainFragment extends BaseFragment {
 
     @Bind(R.id.textview_title)
     TextView mTextViewTitle;
+    @Bind(R.id.textview_source)
+    TextView mTextViewSource;
+    @Bind(R.id.textview_dest)
+    TextView mTextViewDest;
 
     private Toolbar mToolbar;
 
@@ -55,6 +60,7 @@ public class MainFragment extends BaseFragment {
         mToolbar = initToolbar(R.id.toolbar_main);
         mToolbar.setNavigationIcon(R.drawable.mobile_back);
         mTextViewTitle.setText("MainActivity");
+        mTextViewSource.setText("Source");
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,5 +74,10 @@ public class MainFragment extends BaseFragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.main_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @OnClick(R.id.button_citylist)
+    void buttonCityList() {
+        mTextViewDest.setText(mTextViewSource.getText());
     }
 }
