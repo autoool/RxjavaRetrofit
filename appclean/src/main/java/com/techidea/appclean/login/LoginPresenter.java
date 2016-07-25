@@ -55,7 +55,7 @@ public class LoginPresenter implements LoginContract.Presenter {
         return true;
     }
 
-    public void initUserInfos(List<SpinnerItem> list){
+    public void initUserInfos(List<SpinnerItem> list) {
         mView.initLoginUsers(list);
     }
 

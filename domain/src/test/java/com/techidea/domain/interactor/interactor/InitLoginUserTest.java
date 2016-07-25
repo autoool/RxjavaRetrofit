@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import rx.functions.Action1;
+
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
@@ -29,7 +31,12 @@ public class InitLoginUserTest {
 
     @Test
     public void testInitLogUserCase() {
-        mInitLoginUser.initParams("08:00:00:64:84:0C", "WIZARHAND").buildCaseObservable();
+        mInitLoginUser.initParams("08:00:00:64:84:0C", "WIZARHAND").buildCaseObservable().doOnNext(new Action1() {
+            @Override
+            public void call(Object o) {
+
+            }
+        });
         //验证一个对象的某个method得到调用的方法
         //验证 mDataRepositoryDomain 的 initUserInfo 被调用了
         verify(mDataRepositoryDomain).initUserInfo("08:00:00:64:84:0C", "WIZARHAND");

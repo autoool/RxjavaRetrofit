@@ -44,12 +44,14 @@
         <TextView
             android:id="@+id/textview_source"
             android:layout_width="match_parent"
-            android:layout_height="48dp"/>
+            android:layout_height="48dp"
+            android:layout_below="@id/button_citylist"/>
 
         <TextView
             android:id="@+id/textview_dest"
             android:layout_width="match_parent"
-            android:layout_height="48dp"/>
+            android:layout_height="48dp"
+            android:layout_below="@id/textview_source"/>
 
     </RelativeLayout>
 

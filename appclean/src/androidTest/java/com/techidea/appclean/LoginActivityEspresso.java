@@ -6,6 +6,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 
+import com.techidea.appclean.adapter.SpinnerItem;
 import com.techidea.appclean.login.LoginActivity;
 
 import org.junit.Before;
@@ -52,15 +53,15 @@ public class LoginActivityEspresso {
     @Test
     public void testLogin() {
         onView(withId(R.id.spinner_name)).check(matches(isDisplayed()));
-//        onView(withId(R.id.spinner_name)).perform(click());
-//        onData(allOf(is(instanceOf(String.class)), is("chao01"))).perform(click());
-//        onView(withId(R.id.spinner_name))
-//                .check(matches(withText(containsString("chao01"))));
-//        onView(withId(R.id.edittext_password)).check(matches(isDisplayed()));
-//        onView(withId(R.id.edittext_password)).perform(typeText("111111"),closeSoftKeyboard());
-//        onView(withId(R.id.edittext_password)).check(matches(withText("111111")));
+        onView(withId(R.id.spinner_name)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("chao01"))).perform(click());
+        onView(withId(R.id.spinner_name))
+                .check(matches(withText(containsString("chao01"))));
+        onView(withId(R.id.edittext_password)).check(matches(isDisplayed()));
+        onView(withId(R.id.edittext_password)).perform(typeText("111111"),closeSoftKeyboard());
+        onView(withId(R.id.edittext_password)).check(matches(withText("111111")));
 //        onView(withId(R.id.button_login)).perform(click());
-//
+
     }
 
 }

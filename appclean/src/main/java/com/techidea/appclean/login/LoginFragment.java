@@ -115,6 +115,11 @@ public class LoginFragment extends BaseFragment implements LoginContract.View {
         mPrecenter.login(username, password);
     }
 
+    @OnClick(R.id.button_jump)
+    void buttonJump() {
+        startActivity(new Intent(getActivity(), MainActivity.class));
+    }
+
     @Override
     public Context context() {
         return mContext.getApplicationContext();

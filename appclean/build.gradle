@@ -89,7 +89,7 @@ android {
 
         alpha_rxjava {
             applicationId = "com.techidea.appclean"
-            manifestPlaceholders = [API_HOST_VALUE: "http://mserver.conv-store.alpha.testing.fantayun.cn/yunposmserver/api/",
+            manifestPlaceholders = [API_HOST_VALUE: "",
                     BAIDU_APIKEY:""
 
 
@@ -184,3 +184,4 @@ dependencies {
     androidTestCompile appDependencies.recyclerView
 
 }
+

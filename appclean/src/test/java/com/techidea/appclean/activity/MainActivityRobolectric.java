@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import static org.hamcrest.core.Is.is;
@@ -23,8 +24,8 @@ import static org.robolectric.Shadows.shadowOf;
 /**
  * Created by zchao on 2016/7/22.
  */
-@RunWith(RobolectricGradleTestRunner.class)
-@Config(constants = BuildConfig.class)
+@RunWith(RobolectricTestRunner.class)
+@Config(constants = BuildConfig.class,sdk = 21)
 public class MainActivityRobolectric {
 
     private MainActivity mMainActivity;
@@ -34,7 +35,7 @@ public class MainActivityRobolectric {
 
     @Before
     public void setup() {
-        mMainActivity = Robolectric.buildActivity(MainActivity.class).get();
+        mMainActivity = Robolectric.setupActivity(MainActivity.class);
         mButtonCitylist = (Button) mMainActivity.findViewById(R.id.button_citylist);
         mTextViewSource = (TextView) mMainActivity.findViewById(R.id.textview_source);
         mTextViewDest = (TextView) mMainActivity.findViewById(R.id.textview_dest);
