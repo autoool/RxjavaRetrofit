@@ -55,7 +55,7 @@
             android:layout_width="400dp"
             android:layout_height="48dp"
             android:layout_below="@id/button_login"
-            android:text="login"/>
+            android:text="jump"/>
 
     </RelativeLayout>
 

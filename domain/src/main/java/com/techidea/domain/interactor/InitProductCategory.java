@@ -1,13 +1,16 @@
 package com.techidea.domain.interactor;
 
+import com.techidea.domain.entity.ProductCategory;
 import com.techidea.domain.respository.DataRepositoryDomain;
+
+import java.util.List;
 
 import rx.Observable;
 
 /**
  * Created by zchao on 2016/5/13.
  */
-public class InitProductCategory extends RxBaseCase {
+public class InitProductCategory extends RxBaseCase<List<ProductCategory>> {
 
     private String deviceId;
     private String deviceType;
@@ -25,8 +28,7 @@ public class InitProductCategory extends RxBaseCase {
     }
 
     @Override
-    public Observable buildCaseObservable() {
+    public Observable<List<ProductCategory>> execute() {
         return this.mDataRepository.initProductCategory(this.deviceId, this.deviceType);
     }
-
 }

@@ -25,7 +25,7 @@ public class CleanApplication extends Application {
 //        Fabric.with(this, new Crashlytics());
 //        Fabric.with(this, new Answers());
 //        SslSocketFactory.getInstance().init(getApplicationContext());
-        getApiHost();
+        getApiHostHeFeng();
     }
 
     private void getApiHost() {
@@ -41,4 +41,22 @@ public class CleanApplication extends Application {
             HttpMethods.setBaseUrl("http://cn.bing.com");
         }
     }
+
+    private void getApiHostHeFeng() {
+        try {
+            ApplicationInfo applicationInfo =
+                    this.getPackageManager()
+                            .getApplicationInfo(
+                                    getPackageName(), PackageManager.GET_META_DATA);
+            HttpMethods.setBaseUrl(applicationInfo.metaData.getString("API_HOST_HEFENG"));
+        } catch (PackageManager.NameNotFoundException e) {
+            HttpMethods.setBaseUrl("http://cn.bing.com");
+        } catch (Exception e) {
+            HttpMethods.setBaseUrl("http://cn.bing.com");
+        }
+    }
+
+
+
+
 }

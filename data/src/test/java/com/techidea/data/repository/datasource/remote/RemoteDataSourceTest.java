@@ -12,6 +12,7 @@ import org.robolectric.RuntimeEnvironment;
 public class RemoteDataSourceTest extends ApplicationTestCase {
 
     private RemoteDataSource mRemoteDataSource;
+    private String HEFENG_KEY = "e6ab010decc6489e8b2a325230fef519";
 
     @Before
     public void setUp() {
@@ -41,6 +42,11 @@ public class RemoteDataSourceTest extends ApplicationTestCase {
     @Test
     public void testGetCityList() {
         mRemoteDataSource.getCityList("朝阳");
+    }
+
+    @Test
+    public void getSearchCity() {
+        mRemoteDataSource.getSearchCityInfo("allworld", "e6ab010decc6489e8b2a325230fef519");
     }
 
 }

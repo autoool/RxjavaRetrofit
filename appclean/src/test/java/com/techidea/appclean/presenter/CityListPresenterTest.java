@@ -45,7 +45,7 @@ public class CityListPresenterTest extends AndroidTestCase {
         mCityListPresenter.init(anyString());
         mCityListPresenter.initCityList(anyList());
         verify(mGetCityList).initParams(anyString());
-        verify(mGetCityList).execute(any(Subscriber.class));
+        verify(mGetCityList).execute();
         verify(mView).initCityList(anyList());
     }
 

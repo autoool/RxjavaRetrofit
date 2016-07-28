@@ -8,24 +8,13 @@ import rx.subscriptions.Subscriptions;
 /**
  * Created by zchao on 2016/5/5.
  */
-public abstract class RxBaseCase {
-
-    private Subscription mSubscription = Subscriptions.empty();
+public abstract class RxBaseCase<T> {
 
     protected RxBaseCase() {
     }
 
-    public abstract Observable buildCaseObservable();
-
     public abstract RxBaseCase initParams(String... paras);
 
-    public void execute(Subscriber subscriber) {
-        this.mSubscription = this.buildCaseObservable()
-                .subscribe(subscriber);
-    }
+    public abstract Observable<T> execute();
 
-    public void unsubscribe() {
-        if (!mSubscription.isUnsubscribed())
-            mSubscription.unsubscribe();
-    }
 }

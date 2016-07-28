@@ -3,15 +3,23 @@
 - 纯java单元测试
 ### Mock以及Mockito
 - 模拟对象 没有ui，纯java 模拟对象
-### Robolectric
-
-### Espresso 
+- 能够模拟出无关的依赖模块、行为，并能够验证调用顺序
+### Robolectric 单元测试
+Robolectric is a unit test framework
+它的目标是你能够用单元测试来测试一些Android相关的代码
+模拟执行控件的点击事件，测试同步的activity跳转
+### Espresso UI测试
+https://segmentfault.com/a/1190000004355178  七篇文章
 https://developer.android.com/training/testing/ui-testing/espresso-testing.html
 - Using Espresso with ActivityTestRule
 - Using Espresso with ActivityInstrumentationTestCase2  不建议
 - Google官方提供的Android UI自动化测试的框架. **适用于app内的功能性UI测试**。
 - 和Robolectric 一样，为了测试ui
 - Espresso 测试框架提供了一系列的API用于构建UI**测试来测试app内用户流操作**。这些API让你可以编写简洁可靠的自动化UI测试。Espresso非常适合用来编写白盒测试，其中测试代码的编写是利用了被测试app中程序代码实现细节。
+- service
+- intent
+- webview
+- data adapter
 ### UI Automator：
 - UI测试框架，适用于系统和安装app间跨app的功能性UI测试
 ### ActivityInstrumentationTestCase2 

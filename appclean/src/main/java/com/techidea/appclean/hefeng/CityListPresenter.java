@@ -6,6 +6,8 @@ import com.techidea.domain.interactor.GetCityList;
 
 import java.util.List;
 
+import rx.Subscriber;
+
 /**
  * Created by zchao on 2016/7/19.
  */
@@ -29,30 +31,29 @@ public class CityListPresenter implements CityListContract.Presenter {
     @Override
     public void init(String cityname) {
         mGetCityList.initParams(cityname);
-        mGetCityList.execute(new GetCityListSub());
+        mGetCityList.execute().subscribe(new Subscriber<List<CityItem>>() {
+            @Override
+            public void onCompleted() {
+                mView.hideLoading();
+                mView.stoprefresh();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                mView.hideLoading();
+                mView.showError(e.getMessage());
+            }
+
+            @Override
+            public void onNext(List<CityItem> list) {
+                mCityItemList = list;
+                initCityList(list);
+            }
+        });
     }
 
     public void initCityList(List<CityItem> list) {
         mView.initCityList(list);
     }
 
-    private final class GetCityListSub extends DefaultSubscriber<List<CityItem>> {
-        @Override
-        public void onCompleted() {
-            mView.hideLoading();
-            mView.stoprefresh();
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            mView.hideLoading();
-            mView.showError(e.getMessage());
-        }
-
-        @Override
-        public void onNext(List<CityItem> cityItems) {
-            mCityItemList = cityItems;
-            initCityList(cityItems);
-        }
-    }
 }

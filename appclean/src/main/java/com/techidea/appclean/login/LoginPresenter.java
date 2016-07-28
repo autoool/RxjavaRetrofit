@@ -11,6 +11,8 @@ import com.techidea.domain.interactor.Login;
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.Subscriber;
+
 /**
  * Created by zchao on 2016/5/20.
  */
@@ -39,7 +41,22 @@ public class LoginPresenter implements LoginContract.Presenter {
         if (checkUserInput(username, password)) {
             mLogin.initParams(CommonUtilAPP.getMacAddress(mView.context()),
                     username, password);
-            mLogin.execute(new LoginSubscriber());
+            mLogin.execute().subscribe(new Subscriber<LoginUser>() {
+                @Override
+                public void onCompleted() {
+                    mView.loginSuccess();
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    mView.showError(e.getMessage());
+                }
+
+                @Override
+                public void onNext(LoginUser loginUser) {
+                    mLoginUser = loginUser;
+                }
+            });
         } else {
             mView.showError("用户名或密码输入有误");
         }
@@ -48,7 +65,26 @@ public class LoginPresenter implements LoginContract.Presenter {
     @Override
     public void init(String deviceid, String devicename) {
         mInitLoginUser.initParams(deviceid, devicename);
-        mInitLoginUser.execute(new InitLoginUserSubscriber());
+        mInitLoginUser.execute().subscribe(new Subscriber<List<UserInfo>>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                mView.showError(e.getMessage());
+            }
+
+            @Override
+            public void onNext(List<UserInfo> userInfoList) {
+                List<SpinnerItem> list = new ArrayList<>();
+                for (int i = 0; i < userInfoList.size(); i++) {
+                    list.add(new SpinnerItem(userInfoList.get(i).getUsername(), String.valueOf(i)));
+                }
+                initUserInfos(list);
+            }
+        });
     }
 
     private boolean checkUserInput(String username, String password) {
@@ -59,42 +95,4 @@ public class LoginPresenter implements LoginContract.Presenter {
         mView.initLoginUsers(list);
     }
 
-    private final class LoginSubscriber extends DefaultSubscriber<LoginUser> {
-        @Override
-        public void onCompleted() {
-            mView.loginSuccess();
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            mView.showError(e.getMessage());
-        }
-
-        @Override
-        public void onNext(LoginUser loginUser) {
-            //保存当前登录用户
-            mLoginUser = loginUser;
-        }
-    }
-
-    private final class InitLoginUserSubscriber extends DefaultSubscriber<List<UserInfo>> {
-        @Override
-        public void onCompleted() {
-
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            mView.showError(e.getMessage());
-        }
-
-        @Override
-        public void onNext(List<UserInfo> userInfoList) {
-            List<SpinnerItem> list = new ArrayList<>();
-            for (int i = 0; i < userInfoList.size(); i++) {
-                list.add(new SpinnerItem(userInfoList.get(i).getUsername(), String.valueOf(i)));
-            }
-            initUserInfos(list);
-        }
-    }
 }

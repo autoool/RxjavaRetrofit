@@ -16,7 +16,9 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 
+import rx.Observer;
 import rx.Subscriber;
+import rx.observers.TestObserver;
 import rx.observers.TestSubscriber;
 
 import static org.mockito.BDDMockito.given;
@@ -56,23 +58,37 @@ public class LoginPresenterTest extends AndroidTestCase {
         mLoginPresenter.initUserInfos(anyList());
         verify(loginView).initLoginUsers(anyList());
         verify(mInitLoginUser).initParams(anyString(), anyString());
-        verify(mInitLoginUser).execute(any(Subscriber.class));
+        verify(mInitLoginUser).execute();
     }
 
     public void testLogin() {
         given(loginView.context()).willReturn(mContext);
         mLoginPresenter.login("132", "123");
-        verify(mLogin).initParams(anyString(),anyString(), anyString());
-        verify(mLogin).execute(any(Subscriber.class));
+        verify(mLogin).initParams(anyString(), anyString(), anyString());
+        verify(mLogin).execute();
     }
 
-    public void testInitUsers(){
-        TestSubscriber<HttpResult<List<UserInfo>>> testSubscriber = new TestSubscriber<>();
+    public void testInitUsers() {
+        TestObserver<HttpResult<List<UserInfo>>> testObserver = new TestObserver<>();
         given(loginView.context()).willReturn(mContext);
         mInitLoginUser.initParams("08:00:00:64:84:0C", "WIZARHAND");
-        mInitLoginUser.execute(testSubscriber);
-        HttpResult<List<UserInfo>> result = testSubscriber.getOnNextEvents().get(0);
-        assertNotSame(result.getList().size(), 0);
+        mInitLoginUser.execute().subscribe(new Observer<List<UserInfo>>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(List<UserInfo> userInfoList) {
+                assertNotSame(userInfoList.size(), 0);
+            }
+        });
+
     }
 
 }

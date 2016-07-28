@@ -2,7 +2,13 @@ package com.techidea.data.net;
 
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
+import com.techidea.domain.entity.CityInfo;
 import com.techidea.domain.entity.CityItem;
+import com.techidea.domain.entity.HFCityInfo;
 import com.techidea.domain.entity.LoginUser;
 import com.techidea.domain.entity.MemberInfoItem;
 import com.techidea.domain.entity.Product;
@@ -39,10 +45,11 @@ public class HttpMethods {
 
     private Retrofit retrofit;
     private Retrofit retrofitBaidu;
+    private Retrofit retrofitHF;
     private Retrofit retrofitHttps;
     private ApiService service;
     private ApiService serviceHttps;
-    private HefApiService mBaiduApiService;
+    private HefApiService mHefApiService;
 
     private static class SingletonHolder {
         private static final HttpMethods INSTANCE = new HttpMethods();
@@ -69,14 +76,15 @@ public class HttpMethods {
                 .baseUrl(BASE_URL)
                 .build();
 
-        retrofitBaidu = new Retrofit.Builder()
-                .client(getClientBaidu())
+        retrofitHF = new Retrofit.Builder()
+                .client(getClientHF())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(BASE_URL)
                 .build();
 
-        mBaiduApiService = retrofitBaidu.create(HefApiService.class);
+        mHefApiService = retrofitHF.create(HefApiService.class);
+
        /* retrofitHttps = new Retrofit.Builder()
                 .client(getHttpsClient())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -120,10 +128,25 @@ public class HttpMethods {
     }
 
     public Observable<List<CityItem>> getCityList(String cityname) {
-        return mBaiduApiService.getCityList(cityname)
-                .compose(RxUtils.<BaiduResponse<List<CityItem>>>rxSchedulerHelper())
-                .map(new BaiduapiFunction<List<CityItem>>());
+        return null;
     }
+
+
+    public Observable<List<CityInfo>> getSearchCityInfo(String citytype, String key) {
+        return mHefApiService.getSearchCityInfo(citytype, key)
+                .compose(RxUtils.<HFCityInfo>rxSchedulerHelper())
+                .map(new Func1<HFCityInfo, List<CityInfo>>() {
+                         @Override
+                         public List<CityInfo> call(HFCityInfo result) {
+                             if (result != null) {
+                                 return result.getCity_info();
+                             }
+                             return null;
+                         }
+                     }
+                );
+    }
+
 
     /**
      * 用来统一处理Http的resultCode,并将HttpResult的Data部分剥离出来返回给subscriber
@@ -208,7 +231,7 @@ public class HttpMethods {
             Request request = chain.request();
             Request newRequest;
             newRequest = request.newBuilder()
-                    .addHeader("apikey", "f187336ea55cf8a698fc13dd6a2530f9")
+                    .addHeader("apikey", "")
                     .build();
             return chain.proceed(newRequest);
 
@@ -221,7 +244,7 @@ public class HttpMethods {
         @Override
         public Request authenticate(Route route, Response response) throws IOException {
             return response.request().newBuilder()
-                    .header("apikey", "f187336ea55cf8a698fc13dd6a2530f9")
+                    .header("apikey", "")
                     .build();
         }
     };
@@ -251,7 +274,18 @@ public class HttpMethods {
                 .addInterceptor(apikeyInterceptor)
                 .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .build();
+    }
 
+    private OkHttpClient getClientHF() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        return new OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .retryOnConnectionFailure(false)
+                .connectTimeout(15, TimeUnit.SECONDS)
+                .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                .build();
     }
 
     public void setToken(String token) {

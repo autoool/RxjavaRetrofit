@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.techidea.data.cache.DataCache;
 import com.techidea.data.cache.DataCacheImpl;
+import com.techidea.domain.entity.CityInfo;
 import com.techidea.domain.entity.CityItem;
 import com.techidea.data.net.HttpMethods;
 import com.techidea.data.repository.datasource.DataStore;
@@ -82,5 +83,10 @@ public class RemoteDataSource implements DataStore {
     @Override
     public Observable<List<CityItem>> getCityList(String cityname) {
         return HttpMethods.getInstance().getCityList(cityname);
+    }
+
+    @Override
+    public Observable<List<CityInfo>> getSearchCityInfo(String citytype, String key) {
+        return HttpMethods.getInstance().getSearchCityInfo(citytype, key);
     }
 }

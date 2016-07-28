@@ -1,5 +1,6 @@
 package com.techidea.domain.interactor;
 
+import com.techidea.domain.entity.MemberInfoItem;
 import com.techidea.domain.respository.DataRepositoryDomain;
 
 import rx.Observable;
@@ -7,7 +8,7 @@ import rx.Observable;
 /**
  * Created by zchao on 2016/6/13.
  */
-public class GetMemberInfo extends RxBaseCase {
+public class GetMemberInfo extends RxBaseCase<MemberInfoItem> {
 
     private String qrcode;
     private String type;
@@ -25,7 +26,7 @@ public class GetMemberInfo extends RxBaseCase {
     }
 
     @Override
-    public Observable buildCaseObservable() {
+    public Observable<MemberInfoItem> execute() {
         return mDataRepositoryDomain.getMemberInfo(qrcode, type);
     }
 }

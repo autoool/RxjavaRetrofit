@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 
 import com.techidea.data.repository.DataRepository;
 import com.techidea.domain.interactor.GetCityList;
+import com.techidea.domain.interactor.GetSearchCityInfo;
 import com.techidea.domain.interactor.InitLoginUser;
 import com.techidea.domain.interactor.InitProduct;
 import com.techidea.domain.interactor.InitProductCategory;
@@ -37,6 +38,10 @@ public class Injection {
 
     public static GetCityList provideGetCityList(Context context) {
         return new GetCityList(provideDataRepository(context));
+    }
+
+    public static GetSearchCityInfo provideGetSearchCityInfo(Context context) {
+        return new GetSearchCityInfo(provideDataRepository(context));
     }
 
 }

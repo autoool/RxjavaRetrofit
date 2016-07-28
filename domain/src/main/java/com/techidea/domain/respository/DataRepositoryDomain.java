@@ -1,6 +1,6 @@
 package com.techidea.domain.respository;
 
-import com.techidea.domain.entity.CityEntity;
+import com.techidea.domain.entity.CityInfo;
 import com.techidea.domain.entity.CityItem;
 import com.techidea.domain.entity.LoginUser;
 import com.techidea.domain.entity.MemberInfoItem;
@@ -25,7 +25,9 @@ public interface DataRepositoryDomain {
 
     Observable<LoginUser> login(String deviceId, String username, String password);
 
-    Observable<MemberInfoItem> getMemberInfo(String qrcode,String type);
+    Observable<MemberInfoItem> getMemberInfo(String qrcode, String type);
 
     Observable<List<CityItem>> getCityList(String cityname);
+
+    Observable<List<CityInfo>> getSearchCity(String citytype, String key);
 }

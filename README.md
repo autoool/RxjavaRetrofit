@@ -64,6 +64,7 @@
 - 如何保持rxjava的链式结构
   关于Android-CleanArchitecture的domain层 ，UserCase抽象类很困惑。
   关于UserCase 的困惑：根据这边文章 http://www.jianshu.com/p/f3f0eccbcd6f “不能打断其链式结构”，确实rxjava的链式结构真的是一大优势，但是UserCase的写法我觉得已经违背了链式结构，因为没有办法几个请求使用flapmap链式执行了。
+  - 修改RxBaseCase 满足链式结构 16/07/28
 - 数据缓存
   - 类似app全局数据，应用启动初始化从服务端获取，以后再使用的话先从内存读，内存如果没有就读取本地文件，如果仍然没有，就从网络端获取。但是就像用户正在编辑的临时数据，本地如果没有的话，网络端更加没有。
 - 缓存请求服务

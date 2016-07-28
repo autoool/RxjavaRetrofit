@@ -1,13 +1,16 @@
 package com.techidea.domain.interactor;
 
+import com.techidea.domain.entity.UserInfo;
 import com.techidea.domain.respository.DataRepositoryDomain;
+
+import java.util.List;
 
 import rx.Observable;
 
 /**
  * Created by zchao on 2016/5/5.
  */
-public class InitLoginUser extends RxBaseCase {
+public class InitLoginUser extends RxBaseCase<List<UserInfo>> {
 
     private String deviceId;
     private String deviceType;
@@ -25,7 +28,7 @@ public class InitLoginUser extends RxBaseCase {
     }
 
     @Override
-    public Observable buildCaseObservable() {
+    public Observable<List<UserInfo>> execute() {
         return this.mDataRepository.initUserInfo(deviceId, deviceType);
     }
 }

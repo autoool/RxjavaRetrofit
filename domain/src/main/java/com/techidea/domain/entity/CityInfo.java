@@ -3,7 +3,7 @@ package com.techidea.domain.entity;
 /**
  * Created by zchao on 2016/7/14.
  */
-public class CityEntity {
+public class CityInfo {
 
     private String id;
     private String city;
@@ -12,7 +12,7 @@ public class CityEntity {
     private String lon;
     private String prov;
 
-    public CityEntity() {
+    public CityInfo() {
     }
 
     public String getId() {

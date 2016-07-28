@@ -9,7 +9,7 @@ import rx.Subscriber;
 /**
  * Created by zchao on 2016/5/13.
  */
-public class Login extends RxBaseCase {
+public class Login extends RxBaseCase<LoginUser> {
 
     private String deviceId;
     private String username;
@@ -30,8 +30,7 @@ public class Login extends RxBaseCase {
     }
 
     @Override
-    public Observable<LoginUser> buildCaseObservable() {
+    public Observable<LoginUser> execute() {
         return this.mDataRepository.login(deviceId, username, password);
     }
-
 }

@@ -13,6 +13,10 @@ import com.techidea.domain.interactor.InitProductCategory;
 
 import java.util.List;
 
+import rx.Observable;
+import rx.Subscriber;
+import rx.functions.Func1;
+
 /**
  * Created by zchao on 2016/5/18.
  */
@@ -23,8 +27,6 @@ public class SplashPresenter implements SplashContract.Presenter {
     private final InitProductCategory mInitProductCategory;
     private final InitLoginUser mInitLoginUser;
 
-    private final UserInfosSubscriber mUserInfosSubscriber;
-    private final ProductCategorySubscriber mProductCategorySubscriber;
     private final ProductSubscriber mProductSubscriber;
 
     public SplashPresenter(SplashContract.View view,
@@ -36,8 +38,6 @@ public class SplashPresenter implements SplashContract.Presenter {
         mInitProduct = initProduct;
         mInitProductCategory = initProductCategory;
         mInitLoginUser = initLoginUser;
-        mUserInfosSubscriber = new UserInfosSubscriber();
-        mProductCategorySubscriber = new ProductCategorySubscriber();
         mProductSubscriber = new ProductSubscriber();
         mView.setPresenter(this);
     }
@@ -50,20 +50,40 @@ public class SplashPresenter implements SplashContract.Presenter {
 
 
     public void destory() {
-        if (mInitLoginUser != null)
-            mInitLoginUser.unsubscribe();
-        if (mInitProduct != null)
-            mInitProduct.unsubscribe();
-        if (mInitProductCategory != null)
-            mInitProductCategory.unsubscribe();
+        if (mProductSubscriber != null
+                && !mProductSubscriber.isUnsubscribed())
+            mProductSubscriber.unsubscribe();
     }
 
     private void initData() {
-        mInitLoginUser
-                .initParams(CommonUtilAPP.getMacAddress(mView.context()),
-                        CommonUtilAPP.getDeviceName())
-                .execute(new UserInfosSubscriber());
+        mInitLoginUser.initParams(CommonUtilAPP.getMacAddress(mView.context()),
+                CommonUtilAPP.getDeviceName());
+        mInitLoginUser.execute()
+                .flatMap(new Func1<List<UserInfo>, Observable<List<ProductCategory>>>() {
+                    @Override
+                    public Observable<List<ProductCategory>> call(List<UserInfo> userInfoList) {
+                        // TODO: 2016/7/28 do something with data
+
+                        mView.refreshProgress(40);
+                        mInitProductCategory.initParams(CommonUtilAPP.getMacAddress(mView.context()),
+                                CommonUtilAPP.getDeviceName());
+                        return mInitProductCategory.execute();
+                    }
+                })
+                .flatMap(new Func1<List<ProductCategory>, Observable<List<Product>>>() {
+                    @Override
+                    public Observable<List<Product>> call(List<ProductCategory> productCategories) {
+                        // TODO: 2016/7/28 do something with data
+
+                        mView.refreshProgress(70);
+                        mInitProduct.initParams(CommonUtilAPP.getMacAddress(mView.context()),
+                                CommonUtilAPP.getDeviceName());
+                        return mInitProduct.execute();
+                    }
+                })
+                .subscribe(mProductSubscriber);
     }
+
 
     private final class ProductSubscriber extends DefaultSubscriber<List<Product>> {
         @Override
@@ -81,54 +101,6 @@ public class SplashPresenter implements SplashContract.Presenter {
         public void onNext(List<Product> products) {
             for (Product item : products) {
                 Log.d("Product", item.getTitle());
-            }
-        }
-    }
-
-    private final class UserInfosSubscriber extends DefaultSubscriber<List<UserInfo>> {
-
-        @Override
-        public void onCompleted() {
-            mView.refreshProgress(10);
-            mInitProductCategory
-                    .initParams(CommonUtilAPP.getMacAddress(mView.context()),
-                            CommonUtilAPP.getDeviceName())
-                    .execute(new ProductCategorySubscriber());
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            mView.showError(e.getMessage());
-        }
-
-        @Override
-        public void onNext(List<UserInfo> userInfos) {
-            for (UserInfo item : userInfos) {
-                Log.d("UserInfo", item.getUsername());
-            }
-        }
-    }
-
-
-    private final class ProductCategorySubscriber extends DefaultSubscriber<List<ProductCategory>> {
-        @Override
-        public void onCompleted() {
-            mView.refreshProgress(50);
-            mInitProduct
-                    .initParams(CommonUtilAPP.getMacAddress(mView.context()),
-                            CommonUtilAPP.getDeviceName())
-                    .execute(new ProductSubscriber());
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            mView.showError(e.getMessage());
-        }
-
-        @Override
-        public void onNext(List<ProductCategory> productCategories) {
-            for (ProductCategory item : productCategories) {
-                Log.d("ProductCategory", item.getName());
             }
         }
     }

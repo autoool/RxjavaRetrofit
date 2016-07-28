@@ -9,7 +9,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
+        android:layout_height="?attr/actionBarSize"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -20,11 +20,20 @@
             android:fitsSystemWindows="true">
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+                android:id="@+id/toolbar_select"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                <TextView
+                    android:id="@+id/textview_ordercount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/holo_red_light"
+                    android:text="10"
+                    android:textColor="@android:color/white"/>
+            </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -34,14 +43,22 @@
         android:id="@+id/select_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/app_bar_height">
+        android:layout_marginTop="?attr/actionBarSize">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerview_selectcity"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swiperefresh_layout_select"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview_selectcity"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
 
     </RelativeLayout>
 

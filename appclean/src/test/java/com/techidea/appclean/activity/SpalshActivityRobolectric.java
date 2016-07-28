@@ -28,7 +28,7 @@ import static org.robolectric.Shadows.shadowOf;
  * Created by zchao on 2016/7/21.
  */
 @RunWith(RobolectricTestRunner.class)
-@Config(constants = BuildConfig.class)
+@Config(constants = BuildConfig.class ,sdk = 21)
 public class SpalshActivityRobolectric {
 
     private AppCompatActivity mAppCompatActivity;
@@ -36,7 +36,7 @@ public class SpalshActivityRobolectric {
 
     @Before
     public void setup() {
-        mAppCompatActivity = Robolectric.setupActivity(SplashActivity.class);
+        mAppCompatActivity = Robolectric.buildActivity(SplashActivity.class).get();
         mProgressBar = (ProgressBar) mAppCompatActivity.findViewById(R.id.progressbar_load);
     }
 

@@ -1,6 +1,5 @@
 package com.techidea.data.net;
 
-import com.techidea.domain.entity.CityEntity;
 import com.techidea.domain.entity.LoginUser;
 import com.techidea.domain.entity.MemberInfoItem;
 import com.techidea.domain.entity.Product;
@@ -11,7 +10,6 @@ import java.util.List;
 
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 import rx.Observable;
 

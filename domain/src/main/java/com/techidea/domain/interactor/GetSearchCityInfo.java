@@ -1,7 +1,6 @@
 package com.techidea.domain.interactor;
 
 import com.techidea.domain.entity.CityInfo;
-import com.techidea.domain.entity.CityItem;
 import com.techidea.domain.respository.DataRepositoryDomain;
 
 import java.util.List;
@@ -9,25 +8,27 @@ import java.util.List;
 import rx.Observable;
 
 /**
- * Created by zchao on 2016/7/19.
+ * Created by zchao on 2016/7/27.
  */
-public class GetCityList extends RxBaseCase<List<CityItem>> {
+public class GetSearchCityInfo extends RxBaseCase<List<CityInfo>> {
 
-    private String cityname;
+    private String citytype;
+    private String key;
     private DataRepositoryDomain mDataRepositoryDomain;
 
-    public GetCityList(DataRepositoryDomain dataRepositoryDomain) {
+    public GetSearchCityInfo(DataRepositoryDomain dataRepositoryDomain) {
         this.mDataRepositoryDomain = dataRepositoryDomain;
     }
 
     @Override
     public RxBaseCase initParams(String... paras) {
-        this.cityname = paras[0];
+        this.citytype = paras[0];
+        this.key = paras[1];
         return this;
     }
 
     @Override
-    public Observable<List<CityItem>> execute() {
-        return mDataRepositoryDomain.getCityList(cityname);
+    public Observable<List<CityInfo>> execute() {
+        return mDataRepositoryDomain.getSearchCity(citytype, key);
     }
 }
