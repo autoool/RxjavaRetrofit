@@ -5,16 +5,13 @@ import android.test.AndroidTestCase;
 
 import com.techidea.appclean.hefeng.CityListContract;
 import com.techidea.appclean.hefeng.CityListPresenter;
+import com.techidea.appclean.helper.RxTestHelper;
 import com.techidea.domain.interactor.GetCityList;
 
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import rx.Subscriber;
-
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyList;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.verify;
 
@@ -41,12 +38,10 @@ public class CityListPresenterTest extends AndroidTestCase {
     }
 
     public void testGetCityList() {
+        RxTestHelper.registJavaImmediate();
         given(mView.context()).willReturn(mContext);
         mCityListPresenter.init(anyString());
-        mCityListPresenter.initCityList(anyList());
-        verify(mGetCityList).initParams(anyString());
-        verify(mGetCityList).execute();
-        verify(mView).initCityList(anyList());
+        verify(mView).hideLoading();
     }
 
 

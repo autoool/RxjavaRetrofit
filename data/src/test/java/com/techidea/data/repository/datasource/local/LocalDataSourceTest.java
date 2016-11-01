@@ -10,32 +10,6 @@ import org.robolectric.RuntimeEnvironment;
 /**
  * Created by zchao on 2016/7/15.
  */
-public class LocalDataSourceTest extends ApplicationTestCase{
+public class LocalDataSourceTest  {
 
-    private LocalDataSource mLocalDataSource;
-
-    @Before
-    public void setUp(){
-        mLocalDataSource = new LocalDataSource(RuntimeEnvironment.application);
-    }
-
-    @Test
-    public void testInitLoginUsers(){
-        mLocalDataSource.initUserInfo();
-    }
-
-    @Test
-    public void testInitProduct(){
-        mLocalDataSource.initProduct();
-    }
-
-    @Test
-    public void testinitProductCategory(){
-        mLocalDataSource.initProductCategory();
-    }
-
-    @Test
-    public void testlogin(){
-        mLocalDataSource.login();
-    }
 }

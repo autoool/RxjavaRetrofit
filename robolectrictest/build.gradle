@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+
+    defaultConfig {
+        jackOptions {
+            enabled true
+        }
+        applicationId "com.techidea.robolectrictest"
+        minSdkVersion rootProject.ext.androidMinSDKVersion
+        targetSdkVersion rootProject.ext.androidTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    def appDependencies = rootProject.ext.appDependencies
+    def appTestDependencies = rootProject.ext.appTestDependencies
+
+    debugCompile appDependencies.leakcanaryDebug
+    releaseCompile appDependencies.leakcanaryRelease
+    compile appDependencies.appcompat
+    compile appDependencies.supportV4
+    compile appDependencies.recyclerView
+    compile appDependencies.butterKnife
+    compile appDependencies.design
+
+    testCompile appTestDependencies.junit
+    testCompile appTestDependencies.mockito
+    testCompile appTestDependencies.robolectric
+    testCompile appTestDependencies.robolectricShadows
+    testCompile appTestDependencies.assertj
+
+    androidTestCompile appTestDependencies.junit
+    androidTestCompile appTestDependencies.mockito
+    androidTestCompile appTestDependencies.robolectric
+    androidTestCompile appTestDependencies.robolectricShadows
+    androidTestCompile appTestDependencies.assertj
+    // Espresso 相关的引用
+    androidTestCompile appTestDependencies.espresso
+    //Junit4
+    androidTestCompile appTestDependencies.testRunner
+    androidTestCompile appTestDependencies.testRules
+    androidTestCompile appDependencies.supportV4
+    androidTestCompile appDependencies.recyclerView
+}

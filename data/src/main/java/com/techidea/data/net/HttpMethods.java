@@ -2,18 +2,10 @@ package com.techidea.data.net;
 
 import android.text.TextUtils;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
+import com.techidea.data.BuildConfig;
 import com.techidea.domain.entity.CityInfo;
 import com.techidea.domain.entity.CityItem;
 import com.techidea.domain.entity.HFCityInfo;
-import com.techidea.domain.entity.LoginUser;
-import com.techidea.domain.entity.MemberInfoItem;
-import com.techidea.domain.entity.Product;
-import com.techidea.domain.entity.ProductCategory;
-import com.techidea.domain.entity.UserInfo;
 
 import java.io.IOException;
 import java.util.List;
@@ -97,36 +89,6 @@ public class HttpMethods {
 
     }
 
-    public Observable<List<UserInfo>> initLoginUsers(String deviceId, String deviceType) {
-        return service.initLoginUsers(deviceId, deviceType)
-                .compose(RxUtils.<HttpResult<List<UserInfo>>>rxSchedulerHelper())
-                .map(new HttpResultFuncList<List<UserInfo>>());
-    }
-
-    public Observable<List<ProductCategory>> initProductCategory(String deviceId, String deviceType) {
-        return service.initProductCategory(deviceId, deviceType)
-                .compose(RxUtils.<HttpResult<List<ProductCategory>>>rxSchedulerHelper())
-                .map(new HttpResultFuncList<List<ProductCategory>>());
-    }
-
-    public Observable<List<Product>> initProduct(String deviceId, String deviceType) {
-        return service.initProduct(deviceId, deviceType)
-                .compose(RxUtils.<HttpResult<List<Product>>>rxSchedulerHelper())
-                .map(new HttpResultFuncList<List<Product>>());
-    }
-
-    public Observable<LoginUser> login(String deviceId, String username, String password) {
-        return service.login(deviceId, username, password)
-                .compose(RxUtils.<HttpResult<LoginUser>>rxSchedulerHelper())
-                .map(new HttpResultFuncObject<LoginUser>());
-    }
-
-    public Observable<MemberInfoItem> getMemberInfo(String qrcode, String type) {
-        return service.getMemberInfo(qrcode, type)
-                .compose(RxUtils.<HttpResult<MemberInfoItem>>rxSchedulerHelper())
-                .map(new HttpResultFuncObject<MemberInfoItem>());
-    }
-
     public Observable<List<CityItem>> getCityList(String cityname) {
         return null;
     }
@@ -154,30 +116,30 @@ public class HttpMethods {
      * @param <T> Subscriber真正需要的数据类型，也就是Data部分的数据类型
      * @return list
      */
-    private class HttpResultFuncList<T> implements Func1<HttpResult<T>, T> {
-
-        @Override
-        public T call(HttpResult<T> httpResult) {
-            if (httpResult.getCode() != 1)
-                throw new HttpErrorException(httpResult.getCode(), httpResult.getMsg());
-            return httpResult.getList();
-        }
-    }
+//    private class HttpResultFuncList<T> implements Func1<HttpResult<T>, T> {
+//
+//        @Override
+//        public T call(HttpResult<T> httpResult) {
+//            if (httpResult.getCode() != 1)
+//                throw new HttpErrorException(httpResult.getCode(), httpResult.getMsg());
+//            return httpResult.getList();
+//        }
+//    }
 
     /**
      * @param <T>
      * @return object
      */
-    private class HttpResultFuncObject<T> implements Func1<HttpResult<T>, T> {
-
-        @Override
-        public T call(HttpResult<T> httpResult) {
-            if (httpResult.getCode() != 1) {
-                throw new HttpErrorException(httpResult.getCode(), httpResult.getMsg());
-            }
-            return httpResult.getObject();
-        }
-    }
+//    private class HttpResultFuncObject<T> implements Func1<HttpResult<T>, T> {
+//
+//        @Override
+//        public T call(HttpResult<T> httpResult) {
+//            if (httpResult.getCode() != 1) {
+//                throw new HttpErrorException(httpResult.getCode(), httpResult.getMsg());
+//            }
+//            return httpResult.getObject();
+//        }
+//    }
 
     private class BaiduapiFunction<T> implements Func1<BaiduResponse<T>, T> {
         @Override
@@ -258,7 +220,6 @@ public class HttpMethods {
                 .retryOnConnectionFailure(false)
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .addInterceptor(mTokenInterceptor)
-                .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .build();
 
     }
@@ -293,17 +254,17 @@ public class HttpMethods {
     }
 
 
-    //    private OkHttpClient getHttpsClient() {
-//        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-//        if (BuildConfig.DEBUG) {
-//            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-//        } else {
-//            logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
-//        }
-//        return new OkHttpClient.Builder()
-//                .addInterceptor(logging)
-//                .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-//                .sslSocketFactory(SslSocketFactory.getInstance().getSSLSocketFactory())
-//                .build();
-//    }
+        private OkHttpClient getHttpsClient() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        if (BuildConfig.DEBUG) {
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        } else {
+            logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
+        }
+        return new OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                .sslSocketFactory(SslSocketFactory.getInstance().getSSLSocketFactory(),null)
+                .build();
+    }
 }

@@ -58,10 +58,6 @@ public class CityListActivity extends AppCompatActivity
         setContentView(R.layout.activity_citylist);
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
-        mCityListPresenter = new CityListPresenter(
-                this,
-                Injection.provideGetCityList(getApplicationContext())
-        );
         mCityListPresenter.init("朝阳");
         mCityItemList = new ArrayList<>();
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

@@ -18,10 +18,12 @@ public class CitySelectPresenter implements CitySelectContract.Presenter {
     private CitySelectContract.View mView;
     private List<CityInfo> mCityInfoList;
     private GetSearchCityInfo mGetSearchCityInfo;
+    private GetSearchCitySubscriber getSearchCitySubscriber;
 
     public CitySelectPresenter(CitySelectContract.View view, GetSearchCityInfo getSearchCityInfo) {
         this.mView = view;
         this.mGetSearchCityInfo = getSearchCityInfo;
+        this.getSearchCitySubscriber = new GetSearchCitySubscriber();
     }
 
     @Override
@@ -33,32 +35,29 @@ public class CitySelectPresenter implements CitySelectContract.Presenter {
     public void getSearchCityInfo(String citytype, String key) {
         mView.startRefreshing();
         this.mGetSearchCityInfo.initParams(citytype, key);
-        this.mGetSearchCityInfo.execute().doOnNext(new Action1<List<CityInfo>>() {
-            @Override
-            public void call(List<CityInfo> cityInfos) {
-
-            }
-        });
-        this.mGetSearchCityInfo.execute().subscribe(new Subscriber<List<CityInfo>>() {
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(List<CityInfo> cityInfos) {
-
-            }
-        });
+        this.mGetSearchCityInfo.execute().subscribe(new GetSearchCitySubscriber());
     }
 
     @Override
     public void start() {
 
+    }
+
+    private final class GetSearchCitySubscriber extends DefaultSubscriber<List<CityInfo>> {
+        @Override
+        public void onCompleted() {
+            mView.stopRefresh();
+            mView.showError("Success");
+            getSearchCitySubscriber.unsubscribe();
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            mView.showError(e.getMessage());
+        }
+
+        @Override
+        public void onNext(List<CityInfo> cityInfos) {
+        }
     }
 }

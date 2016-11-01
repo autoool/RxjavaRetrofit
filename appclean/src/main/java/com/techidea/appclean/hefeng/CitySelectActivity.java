@@ -12,13 +12,13 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.techidea.appclean.R;
 import com.techidea.appclean.adapter.CityInfoAdapter;
 import com.techidea.appclean.base.Injection;
 import com.techidea.commonlibrary.adapter.DividerListItemDecoration;
 import com.techidea.domain.entity.CityInfo;
-import com.techidea.domain.entity.CityItem;
 
 import java.util.List;
 
@@ -49,9 +49,14 @@ public class CitySelectActivity extends AppCompatActivity implements CitySelectC
         setContentView(R.layout.activity_cityselect);
         ButterKnife.bind(this);
         setSupportActionBar(mToolbarSelect);
-
-        mPresenter = new CitySelectPresenter(this,
-                Injection.provideGetSearchCityInfo(getApplicationContext()));
+        mToolbarSelect.setNavigationIcon(R.mipmap.ic_launcher);
+        mToolbarSelect.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //点击两次，但是第二次就不会提示成功
+                mPresenter.getSearchCityInfo("allchina", "e6ab010decc6489e8b2a325230fef519");
+            }
+        });
     }
 
     @Override

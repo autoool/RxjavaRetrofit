@@ -31,15 +31,14 @@ public class RxBaseCaseTest {
     @Test
     public void testbuildCaseObservable() {
         TestSubscriber<Integer> testSubscriber = new TestSubscriber<>();
-        mRxBaseCase.execute(testSubscriber);
+        mRxBaseCase.execute();
         assertThat(testSubscriber.getOnNextEvents().size(), is(0));
     }
 
     @Test
     public void testExecuteCase() {
         TestSubscriber<Integer> testSubscriber = new TestSubscriber<>();
-        mRxBaseCase.execute(testSubscriber);
-        mRxBaseCase.unsubscribe();
+        mRxBaseCase.execute();
         Assert.assertEquals(testSubscriber.isUnsubscribed(),true);
     }
 
@@ -49,18 +48,13 @@ public class RxBaseCaseTest {
         }
 
         @Override
-        public Observable buildCaseObservable() {
-            return Observable.empty();
-        }
-
-        @Override
         public RxBaseCase initParams(String... paras) {
             return this;
         }
 
         @Override
-        public void execute(Subscriber subscriber) {
-            super.execute(subscriber);
+        public Observable execute() {
+            return null;
         }
     }
 

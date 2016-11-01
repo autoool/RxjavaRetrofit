@@ -5,12 +5,9 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 
-import com.crashlytics.android.Crashlytics;
-import com.crashlytics.android.answers.Answers;
 import com.squareup.leakcanary.LeakCanary;
 import com.techidea.data.net.HttpMethods;
 
-import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by zchao on 2016/5/18.
@@ -25,7 +22,8 @@ public class CleanApplication extends Application {
 //        Fabric.with(this, new Crashlytics());
 //        Fabric.with(this, new Answers());
 //        SslSocketFactory.getInstance().init(getApplicationContext());
-        getApiHostHeFeng();
+//        getApiHostHeFeng();
+        getApiHost();
     }
 
     private void getApiHost() {

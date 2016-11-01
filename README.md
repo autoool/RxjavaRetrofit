@@ -16,6 +16,8 @@
           *butterknife 8.0.1 引入后没办法使用 改为7.0.1版本*
         - 根据 https://github.com/googlesamples/android-architecture 里的todo-mvp-clean/ 和 https://github.com/android10/Android-CleanArchitecture.git
           - 写的 mvp rxjava retrofit 结合的demo,里面还包含了部分单元测试
+### view层
+- 尽量让activity/fragment 做很少的事情，把需要做的事情交给presenter
 ### data 
 #### RxJava 与 Retrofit / okhttp 结合 网络请求 
 - 参考网址

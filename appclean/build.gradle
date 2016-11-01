@@ -44,6 +44,7 @@ android {
         versionName "1.0"
         //用来运行脚本
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testApplicationId 'cn.fantasee.yunpos.test'
 //        versionCode getSvnRevision().toInteger()
 //        versionName "1.0.0.${getSvnRevision()}"
     }
@@ -89,7 +90,8 @@ android {
 
         alpha_rxjava {
             applicationId = "com.techidea.appclean"
-            manifestPlaceholders = [API_HOST_VALUE: "",
+            manifestPlaceholders = [API_HOST_VALUE: "https://kyfw.12306.cn/otn/",
+                    API_HOST_HEFENG:"https://api.heweather.com/x3/",
                     BAIDU_APIKEY:""
 
 
@@ -99,7 +101,7 @@ android {
 
         beta_rxjava {
             applicationId = "com.techidea.appclean"
-            manifestPlaceholders = [API_HOST_VALUE: "http://apis.baidu.com/apistore/weatherservice/",
+            manifestPlaceholders = [API_HOST_VALUE: "",
 
             ]
             signingConfig defaultSigning
@@ -149,7 +151,6 @@ if (propFile.exists()) {
 dependencies {
     def appDependencies = rootProject.ext.appDependencies
     def appTestDependencies = rootProject.ext.appTestDependencies
-    def androidTestDependencies = rootProject.ext.androidTestDependencies
 
     compile(appDependencies.crashlytics) {
         transitive = true;
@@ -170,16 +171,23 @@ dependencies {
     compile appDependencies.recyclerView
     compile appDependencies.butterKnife
     compile appDependencies.design
+
     testCompile appTestDependencies.junit
     testCompile appTestDependencies.mockito
     testCompile appTestDependencies.robolectric
     testCompile appTestDependencies.robolectricShadows
     testCompile appTestDependencies.assertj
+
+    androidTestCompile appTestDependencies.junit
+    androidTestCompile appTestDependencies.mockito
+    androidTestCompile appTestDependencies.robolectric
+    androidTestCompile appTestDependencies.robolectricShadows
+    androidTestCompile appTestDependencies.assertj
     // Espresso 相关的引用
-    androidTestCompile androidTestDependencies.espresso
+    androidTestCompile appTestDependencies.espresso
     //Junit4
-    androidTestCompile androidTestDependencies.testRunner
-    androidTestCompile androidTestDependencies.testRules
+    androidTestCompile appTestDependencies.testRunner
+    androidTestCompile appTestDependencies.testRules
     androidTestCompile appDependencies.supportV4
     androidTestCompile appDependencies.recyclerView
 

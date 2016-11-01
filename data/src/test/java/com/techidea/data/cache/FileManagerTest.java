@@ -3,6 +3,7 @@ package com.techidea.data.cache;
 import com.techidea.data.ApplicationTestCase;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.robolectric.RuntimeEnvironment;
@@ -55,6 +56,18 @@ public class FileManagerTest extends ApplicationTestCase {
         String dummyFilePath = cacheDir.getPath() + File.separator + "dummyfile";
         File dummyFile = new File(dummyFilePath);
         return dummyFile;
+    }
+
+    @Test
+    public void testEntity() {
+        String str = "HS_P100100" +
+                "210000401" +
+                "2" +
+                "0160816000" +
+                "1";
+        String third = "P" + str.substring(19);
+        System.out.print(third);
+        Assert.assertTrue(str.length() == 31);
     }
 
 }
