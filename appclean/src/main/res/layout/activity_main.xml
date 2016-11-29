@@ -1,14 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".main.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/framelayout_main"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:weightSum="3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
+        android:layout_height="48dp">
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/buttonokhttp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="okhttp" />
+
+        <Button
+            android:id="@+id/buttonokhttps"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="okhttps" />
+
+        <Button
+            android:id="@+id/buttonokhttpsone"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="okhttpsone" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+
+        <Button
+            android:id="@+id/buttonhttpurl"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="httpurl" />
+
+        <Button
+            android:id="@+id/buttonhttpsurl"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="httpsurl" />
+
+        <Button
+            android:id="@+id/buttonhttpsurlone"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="httpsurlone" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <Button
+            android:id="@+id/buttonhttpclient"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="httpclient" />
+
+        <Button
+            android:id="@+id/buttonhttpsclient"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="httpsclient" />
+
+        <Button
+            android:id="@+id/buttonhttpsclientone"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="httpsclientone" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

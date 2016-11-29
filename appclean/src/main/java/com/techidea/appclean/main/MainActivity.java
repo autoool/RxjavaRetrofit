@@ -1,23 +1,72 @@
 package com.techidea.appclean.main;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.techidea.appclean.R;
 import com.techidea.appclean.base.BaseActivity;
 
+
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+
 public class MainActivity extends BaseActivity {
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        MainFragment mainFragment = (MainFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.framelayout_main);
-        if (mainFragment == null) {
-            mainFragment = MainFragment.getInstance();
-            addFragment(R.id.framelayout_main, mainFragment);
-        }
+        ButterKnife.bind(this);
     }
+
+    @OnClick(R.id.buttonhttpclient)
+    void buttonhttpclient(){
+
+    }
+
+    @OnClick(R.id.buttonhttpsclient)
+    void buttonhttpsclient(){
+
+    }
+
+    @OnClick(R.id.buttonhttpsclientone)
+    void buttonhttpsclientone(){
+
+    }
+
+    @OnClick(R.id.buttonokhttp)
+    void buttonokhttp(){
+
+    }
+
+    @OnClick(R.id.buttonokhttps)
+    void buttonokhttps(){
+
+    }
+
+    @OnClick(R.id.buttonokhttpsone)
+    void buttonokhttpsone(){
+
+    }
+
+    @OnClick(R.id.buttonhttpsurl)
+    void buttonhttpsurl(){
+
+    }
+
+    @OnClick(R.id.buttonhttpurl)
+    void buttonhttpurl(){
+
+    }
+
+    @OnClick(R.id.buttonhttpsurlone)
+    void buttonhttpsurlone(){
+
+    }
+
 
 }

@@ -21,6 +21,8 @@ dependencies {
 
     provided domainDependencies.javaxAnnotation
     compile domainDependencies.rxJava
+    compile project(':data')
+    compile project(':domain')
 
     testCompile domainTestDependencies.junit
     testCompile domainTestDependencies.mockito

@@ -19,6 +19,8 @@ def getSvnRevision() {
 
 android {
 
+    useLibrary 'org.apache.http.legacy'
+
     compileSdkVersion rootProject.ext.androidCompileSdkVersion
     buildToolsVersion rootProject.ext.androidBuildToolsVersion
 
@@ -159,9 +161,9 @@ dependencies {
         transitive = true;
     }
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':data')
     compile project(':domain')
     compile project(':corelibrary')
-    compile project(':data')
     compile project(':commonlibrary')
 
     debugCompile appDependencies.leakcanaryDebug

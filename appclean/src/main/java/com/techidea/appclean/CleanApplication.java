@@ -3,9 +3,8 @@ package com.techidea.appclean;
 import android.app.Application;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.os.Build;
 
-import com.squareup.leakcanary.LeakCanary;
+import com.techidea.appclean.net.OkHttpManager;
 import com.techidea.data.net.HttpMethods;
 
 

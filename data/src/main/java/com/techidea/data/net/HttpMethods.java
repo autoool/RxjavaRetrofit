@@ -9,19 +9,24 @@ import com.techidea.domain.entity.HFCityInfo;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Authenticator;
 import okhttp3.FormBody;
 import okhttp3.Interceptor;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.Route;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 import rx.Observable;
 import rx.functions.Func1;
 
@@ -109,6 +114,39 @@ public class HttpMethods {
                 );
     }
 
+    //uploadFile  uploadFileWithPartMap  uploadMultiFiles
+    public Observable<String> uploadFile(RequestBody photo, RequestBody description) {
+        return service.uploadFile(photo, description)
+                .compose(RxUtils.<HttpResult<String>>rxSchedulerHelper())
+                .map(new Func1<HttpResult<String>, String>() {
+                    @Override
+                    public String call(HttpResult<String> stringHttpResult) {
+                        return null;
+                    }
+                });
+    }
+
+    public Observable<String> uploadFileWithPartMap(Map<String, RequestBody> partMap, MultipartBody.Part file) {
+        return service.uploadFileWithPartMap(partMap, file)
+                .compose(RxUtils.<HttpResult<String>>rxSchedulerHelper())
+                .map(new Func1<HttpResult<String>, String>() {
+                    @Override
+                    public String call(HttpResult<String> stringHttpResult) {
+                        return null;
+                    }
+                });
+    }
+
+    public Observable<String> uploadMultiFiles(Map<String, RequestBody> partMap, MultipartBody.Part... files) {
+        return service.uploadMultiFiles(partMap, files)
+                .compose(RxUtils.<HttpResult<String>>rxSchedulerHelper())
+                .map(new Func1<HttpResult<String>, String>() {
+                    @Override
+                    public String call(HttpResult<String> stringHttpResult) {
+                        return null;
+                    }
+                });
+    }
 
     /**
      * 用来统一处理Http的resultCode,并将HttpResult的Data部分剥离出来返回给subscriber
@@ -254,7 +292,7 @@ public class HttpMethods {
     }
 
 
-        private OkHttpClient getHttpsClient() {
+    private OkHttpClient getHttpsClient() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         if (BuildConfig.DEBUG) {
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -264,7 +302,7 @@ public class HttpMethods {
         return new OkHttpClient.Builder()
                 .addInterceptor(logging)
                 .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-                .sslSocketFactory(SslSocketFactory.getInstance().getSSLSocketFactory(),null)
+                .sslSocketFactory(SslSocketFactory.getInstance().getSSLSocketFactory(), null)
                 .build();
     }
 }
