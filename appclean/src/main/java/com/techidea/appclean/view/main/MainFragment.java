@@ -1,4 +1,4 @@
-package com.techidea.appclean.main;
+package com.techidea.appclean.view.main;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.techidea.appclean.R;
-import com.techidea.appclean.base.BaseActivity;
 import com.techidea.appclean.base.BaseFragment;
 
 import butterknife.Bind;

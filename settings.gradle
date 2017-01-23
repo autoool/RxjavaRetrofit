@@ -1,1 +1,1 @@
-include ':data', ':domain', ':corelibrary', ':appclean', ':robolectrictest', 'commonlibrary'
+include ':data', ':domain', ':corelibrary', ':appclean', ':robolectrictest', ':jdapp', 'commonlibrary'

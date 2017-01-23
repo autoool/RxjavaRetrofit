@@ -1,7 +1,6 @@
-package com.techidea.appclean.main;
+package com.techidea.appclean.view.main;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.techidea.appclean.R;
 import com.techidea.appclean.base.BaseActivity;

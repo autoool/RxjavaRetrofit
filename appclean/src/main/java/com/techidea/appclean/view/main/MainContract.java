@@ -1,4 +1,4 @@
-package com.techidea.appclean.main;
+package com.techidea.appclean.view.main;
 
 /**
  * Created by zchao on 2016/6/13.
