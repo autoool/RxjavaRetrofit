@@ -118,23 +118,13 @@ public class HttpMethods {
     public Observable<String> uploadFile(RequestBody photo, RequestBody description) {
         return service.uploadFile(photo, description)
                 .compose(RxUtils.<HttpResult<String>>rxSchedulerHelper())
-                .map(new Func1<HttpResult<String>, String>() {
-                    @Override
-                    public String call(HttpResult<String> stringHttpResult) {
-                        return null;
-                    }
-                });
+                .map(new HttpResultFuncObject<String>());
     }
 
     public Observable<String> uploadFileWithPartMap(Map<String, RequestBody> partMap, MultipartBody.Part file) {
         return service.uploadFileWithPartMap(partMap, file)
                 .compose(RxUtils.<HttpResult<String>>rxSchedulerHelper())
-                .map(new Func1<HttpResult<String>, String>() {
-                    @Override
-                    public String call(HttpResult<String> stringHttpResult) {
-                        return null;
-                    }
-                });
+                .map(new HttpResultFuncObject<String>());
     }
 
     public Observable<String> uploadMultiFiles(Map<String, RequestBody> partMap, MultipartBody.Part... files) {
@@ -168,16 +158,16 @@ public class HttpMethods {
      * @param <T>
      * @return object
      */
-//    private class HttpResultFuncObject<T> implements Func1<HttpResult<T>, T> {
-//
-//        @Override
-//        public T call(HttpResult<T> httpResult) {
-//            if (httpResult.getCode() != 1) {
-//                throw new HttpErrorException(httpResult.getCode(), httpResult.getMsg());
-//            }
-//            return httpResult.getObject();
-//        }
-//    }
+    private class HttpResultFuncObject<T> implements Func1<HttpResult<T>, T> {
+
+        @Override
+        public T call(HttpResult<T> httpResult) {
+            if (httpResult.getCode() != 1) {
+                throw new HttpErrorException(httpResult.getCode(), httpResult.getMsg());
+            }
+            return httpResult.getData();
+        }
+    }
 
     private class BaiduapiFunction<T> implements Func1<BaiduResponse<T>, T> {
         @Override

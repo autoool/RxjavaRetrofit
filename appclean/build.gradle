@@ -87,12 +87,13 @@ android {
 
 //        https://api.heweather.com/x3/weather?cityid=城市ID&key=你的认证key
 
+
         def defaultSigning = signingConfigs.release
         def productSigning = signingConfigs.release
 
         alpha_rxjava {
             applicationId = "com.techidea.appclean"
-            manifestPlaceholders = [API_HOST_VALUE: "https://kyfw.12306.cn/otn/",
+            manifestPlaceholders = [API_HOST_VALUE: "http://192.168.1.152:8080",
                     API_HOST_HEFENG:"https://api.heweather.com/x3/",
                     BAIDU_APIKEY:""
 
